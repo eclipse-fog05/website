@@ -23,7 +23,7 @@ Then visit [http://localhost:1313](http://localhost:1313).
 
 ## License
 
-This project is licensed under the [MIT license](LICENSE).
+This project is licensed under the [Eclipse 2,0 license](LICENSE).
 This project is based on [tokio-rs website](https://github.com/tokio-rs/website)
 
 ### Contribution
