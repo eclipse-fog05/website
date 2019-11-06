@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blogs on Eclipse fog05 - The End-to-End Compute, Storage and Networking Virtualisation solution.</title>
+    <link>https://fog05.io/blog/</link>
+    <description>Recent content in Blogs on Eclipse fog05 - The End-to-End Compute, Storage and Networking Virtualisation solution.</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 16 Mar 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://fog05.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Introducing Eclipse fog05</title>
+      <link>https://fog05.io/blog/2018-03-intro-0-1/</link>
+      <pubDate>Fri, 16 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://fog05.io/blog/2018-03-intro-0-1/</guid>
+      <description>Fog computing aims at providing horizontal, system-level, abstractions to distribute computing, storage, control and networking functions closer to the user along a cloud-to-thing continuum. Whilst fog computing is increasingly recognised as the key paradigm at the foundation of Consumer and Industrial Internet of Things (IoT), most of the initiatives on fog computing focus on extending cloud infrastructure.
+As a consequence, these infrastructure fall short in addressing heterogeneity and resource constraints characteristics of fog computing environments.</description>
+    </item>
+    
+  </channel>
+</rss>

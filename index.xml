@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Eclipse fog05 - The End-to-End Compute, Storage and Networking Virtualisation solution.</title>
+    <link>https://fog05.io/</link>
+    <description>Recent content on Eclipse fog05 - The End-to-End Compute, Storage and Networking Virtualisation solution.</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 16 Mar 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://fog05.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>What is Eclipse fog05?</title>
+      <link>https://fog05.io/docs/overview/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://fog05.io/docs/overview/</guid>
+      <description>Eclipse fog05 allows the end-to-end management of compute, storage, networking and I/O fabric in the Edge and Fog Environment. Instead of relying on a centralised architecture (like cloud-management-systems) it is based on a decentralised architecture.
+Eclipse fog05 allows users to manage and deploy different types of applications, packaged as containers, VMs, binaries and so on. This possibility is achieved thanks to Eclipse fog05 plugin architecture.
+More specifically, Eclipse fog05 is a Fog Infrastrucure-as-a-Service solution composed by two major components:</description>
+    </item>
+    
+    <item>
+      <title>Introducing Eclipse fog05</title>
+      <link>https://fog05.io/blog/2018-03-intro-0-1/</link>
+      <pubDate>Fri, 16 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://fog05.io/blog/2018-03-intro-0-1/</guid>
+      <description>Fog computing aims at providing horizontal, system-level, abstractions to distribute computing, storage, control and networking functions closer to the user along a cloud-to-thing continuum. Whilst fog computing is increasingly recognised as the key paradigm at the foundation of Consumer and Industrial Internet of Things (IoT), most of the initiatives on fog computing focus on extending cloud infrastructure.
+As a consequence, these infrastructure fall short in addressing heterogeneity and resource constraints characteristics of fog computing environments.</description>
+    </item>
+    
+    <item>
+      <title>Hello World!</title>
+      <link>https://fog05.io/docs/getting-started/hello-world/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://fog05.io/docs/getting-started/hello-world/</guid>
+      <description>To kick off our tour of Eclipse fog05, we will start with the obligatory &amp;ldquo;hello world&amp;rdquo; example. This example will deploy a native compoent written in python that create a file and write &amp;ldquo;hello, world!&amp;rdquo; to the file.
+Let&amp;rsquo;s get started.
+First, we write the python code.
+import time with open(&#39;/tmp/fos_helloworld&#39;, &#39;a&#39;) as out: while True: out.write(&#39;Hello, world! It is {}\n&#39;.format(time.time_ns())) time.sleep(2)  Let&amp;rsquo;s save it as /tmp/fos_helloworld.py
+Next, we need to write the descriptor for this native component.</description>
+    </item>
+    
+    <item>
+      <title>Architecture</title>
+      <link>https://fog05.io/docs/going-deeper/architecture/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://fog05.io/docs/going-deeper/architecture/</guid>
+      <description>Eclipse fog05 is divided in two modules:
+ Fog Orchestration Engine (FOrcE) Fog Infrastrucure Manager (FIM)  Both modules provides different abstractions an APIs.
+Fog Infrastrucutre Manager This module virtualises the hardware infrastructure, such as computational, communication, storage and I/O resources.
+It provides key primitives for the management of the infrastructure and the application deployed in it.
+It also provide a set of abstraction.
+The FIM is designed to be distributed, without any controller node.</description>
+    </item>
+    
+    <item>
+      <title>Write a Runtime Pluing</title>
+      <link>https://fog05.io/docs/going-deeper/write_runtime_plugin/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://fog05.io/docs/going-deeper/write_runtime_plugin/</guid>
+      <description>Runtime Plugin The Runtime plugin implements the life-cycle management for FDU, is has to strictly follow the state machine defined for the FDU and provide handles for the state management and monitoring for the running FDUs.
+This picture represent the state machine that an FDU has to follow.
+States Each FDU can be in one of those nine states:
+ UNDEFINED DEFINED CONFIGURED RUNNING PAUSED SCALING MIGRATING TAKE_OFF LANDING  UNDEFINED In this state the FDU is registered in the catalog but there are no instances in the system</description>
+    </item>
+    
+    <item>
+      <title>Introduction</title>
+      <link>https://fog05.io/docs/internals/intro/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://fog05.io/docs/internals/intro/</guid>
+      <description>The internals section provides an in-depth guide of Eclispe fog05&amp;rsquo;s internals. It expects the reader already has a good understanding of how to use Eclipse fog05. Those unfamiliar with Eclipse fog05 should start with the getting started guide.
+ Location Transparent state access and distribution - How fog05 uses YAKS  </description>
+    </item>
+    
+    <item>
+      <title>Location transparent state access and distribution</title>
+      <link>https://fog05.io/docs/internals/yaks/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://fog05.io/docs/internals/yaks/</guid>
+      <description>Eclipse fog05 uses YAKS to provide location-transparent access to the system state and to distribute this state.
+Distributed state Eclipse fog05 is designed from the beginning to not rely in any centralised construct, such as DB servers, controllers and so on.
+We made this choice because the problem Eclipse fog05 is trying to address it the management on the Fog infrastructure which by definition is distributed, heterogenous, mobile and with intermittent connectivity.</description>
+    </item>
+    
+    <item>
+      <title>The Eclipse fog05 Community</title>
+      <link>https://fog05.io/community/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://fog05.io/community/</guid>
+      <description>Communication The Eclipse fog05 community is most readily found on its gitter channel, where you&amp;rsquo;re welcome to ask questions, report problems, or pitch ideas.
+Issues Github is used for tracking issues. The primary location for these is the main Eclipse fog05 repository.
+If you&amp;rsquo;re a Eclipse fog05 user, you&amp;rsquo;re highly encouraged to keep an eye on these issues and jump in on the discussions, to help us understand how design tradeoffs might affect you.</description>
+    </item>
+    
+  </channel>
+</rss>
