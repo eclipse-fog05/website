@@ -11,7 +11,7 @@ and to distribute this state.
 
 # Distributed state
 
-Eclipse fog05 is designed from the beginning to not rely in any *centralised* construct,
+Eclipse fog05 is designed from the beginning to not rely in any *centralized* construct,
 such as DB servers, controllers and so on.
 
 We made this choice because the problem Eclipse fog05 is trying to address it the management
@@ -44,7 +44,7 @@ The whole system state is organized in two different portions.
 - Private State
 
 
-Each of them is then separed in two different sub-portions.
+Each of them is then distinct in two different sub-portions.
 
 
 - Actual State
@@ -78,7 +78,7 @@ As already described in the [architecture][arch] section, the YAKS server can be
 ## Tree structure
 
 We said that the state is organized as a tree structure, this helps in the separation of the state of each *node* and in the definition on the storage and URIs to be used in YAKS.
-There are a total of four different trees, organised in two groups.
+There are a total of four different trees, organized in two groups.
 
 - Public trees
 - Private trees
@@ -86,7 +86,7 @@ There are a total of four different trees, organised in two groups.
 Trees in the same group differs only for the first portion of the URI, while between different groups the tree structure is different.
 
 
-Below you can find the strucutures
+Below you can find the structures
 
 ### Public
 

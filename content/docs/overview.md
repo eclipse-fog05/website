@@ -7,15 +7,15 @@ menu: "docs"
 
 Eclipse fog05 allows the end-to-end management of compute, storage,
 networking and I/O fabric in the Edge and Fog Environment.
-Instead of relying on a centralised architecture (like cloud-management-systems)
-it is based on a decentralised architecture.
+Instead of relying on a centralized architecture (like cloud-management-systems)
+it is based on a decentralized architecture.
 
 Eclipse fog05 allows users to manage and deploy different types of applications,
 packaged as containers, VMs, binaries and so on. This possibility is achieved
 thanks to Eclipse fog05 plugin architecture.
 
 
-More specifically, Eclipse fog05 is a Fog Infrastrucure-as-a-Service solution
+More specifically, Eclipse fog05 is a Fog Infrastructure-as-a-Service solution
 composed by two major components:
 
 * The Fog Orchestration Engine (FOrcE)
@@ -27,7 +27,7 @@ Fog and Edge environment.
 # Unified abstractions
 
 Common API and information model for management.
-Eclipse fog05 provides an unified API for the management of the virtualisation infrastructure.
+Eclipse fog05 provides an unified API for the management of the virtualization infrastructure.
 
 ### Operating System Plugins
 Eclipse fog05 can run on different operating systems, it just need the
@@ -35,7 +35,7 @@ right OS Plugin.
 
 
 ### Networking Plugins
-Eclipse fog05 can manage networking fabrics for which a Netwoking plugin is
+Eclipse fog05 can manage networking fabrics for which a Networking plugin is
 present.
 
 # Heterogenous applications
@@ -57,7 +57,7 @@ No matters if it is composed by heterogeneous components.
 
 Eclipse fog05 is designed to be deployed from big servers to micro-controllers.
 
-### Decentralised state
+### Decentralized state
 
 Because Eclipse fog05 uses [YAKS](http://www.yaks.is/) for location-transparency state access and management.
 It can be deployed on resource constrained devices and leverage other nodes for state management.
@@ -109,4 +109,4 @@ A basic example of an LXD container descriptor that can be deployed by Eclipse f
 }
 ```
 
-More examples can be found [here](https://github.com/atolab/fog05_demo).
+More examples can be found [here](https://github.com/eclipse-fog05/examples).

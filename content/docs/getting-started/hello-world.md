@@ -8,7 +8,7 @@ menu:
 
 To kick off our tour of Eclipse fog05, we will start with the obligatory "hello world"
 example.
-This example will deploy a native compoent written in python that create a file and write "hello, world!" to the file.
+This example will deploy a native component written in python that create a file and write "hello, world!" to the file.
 
 Let's get started.
 

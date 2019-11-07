@@ -9,7 +9,7 @@ menu:
 Eclipse fog05 is divided in two modules:
 
  - Fog Orchestration Engine (**FOrcE**)
- - Fog Infrastrucure Manager (**FIM**)
+ - Fog Infrastructure Manager (**FIM**)
 
  Both modules provides different abstractions an APIs.
 
@@ -35,7 +35,7 @@ This section describes the *abstractions* provided by the *FIM*.
 
 ### Resources
 
-In Eclipse fog05 a **resource** is any kind of assett that can be assigned either in a shared or exclusive manner.
+In Eclipse fog05 a **resource** is any kind of asset that can be assigned either in a shared or exclusive manner.
 
 The different kinds of resources supported by fog05 are **computational resources**, such as, CPU, FPGA, GPU,
 **storage resources**, such as, RAM, block storage, object storage, **networking resources**, such as, 802.11 devices, tunnels and
@@ -46,7 +46,7 @@ The different kinds of resources supported by fog05 are **computational resource
 An Eclipse fog05 **node** represents a locus of resources.
 Examples of fog05 nodes are: server, an RPi, an embedded board.
 
-In order to expose its resources in the system each node has either a running fog05 agent or a device pluigin.
+In order to expose its resources in the system each node has either a running fog05 agent or a device plugin.
 
 
 ### Network
@@ -72,7 +72,7 @@ Ports are also present in router to connect the router to the different networks
 
 ### Fog Deployment Unit (FDU)
 
-In Eclipse fog05 a **Fog Deployment Unit**, abbreviated to **FDU**, is **an indivisible unit of deployement**, such as, a binary executable, a Unikernel,
+In Eclipse fog05 a **Fog Deployment Unit**, abbreviated to **FDU**, is **an indivisible unit of deployment**, such as, a binary executable, a Unikernel,
 a container or a virtual machine.
 
 An FDU **requires** a certain kind of **resources** as a precondition to its execution.
@@ -152,7 +152,7 @@ This *composable* deployment allows to reduce the footprint and optimize the res
 
 ---
 
-# Fog Orchestation Engine
+# Fog Orchestration Engine
 
 The **Fog Orchestration Engine** is responsible for the end-to-end orchestration and management of applications and services in the Fog infrastructure.
 

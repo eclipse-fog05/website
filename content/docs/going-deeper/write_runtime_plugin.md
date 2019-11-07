@@ -145,4 +145,4 @@ In case of error returns an error using `write_fdu_error`
 
 The interface for a *Runtime* plugin is available in *Go* and *Python3* more implementation are coming soon.
 
-See example implementations from the [LXD Plugin](https://github.com/eclipse/fog05/blob/master/fos-plugins/LXD/LXD_plugin)
+See example implementations from the [LXD Plugin](https://github.com/eclipse-fog05/plugin-fdu-lxd)
