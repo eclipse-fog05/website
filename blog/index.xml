@@ -17,7 +17,7 @@
       <pubDate>Fri, 16 Mar 2018 00:00:00 +0000</pubDate>
       
       <guid>https://fog05.io/blog/2018-03-intro-0-1/</guid>
-      <description>Fog computing aims at providing horizontal, system-level, abstractions to distribute computing, storage, control and networking functions closer to the user along a cloud-to-thing continuum. Whilst fog computing is increasingly recognised as the key paradigm at the foundation of Consumer and Industrial Internet of Things (IoT), most of the initiatives on fog computing focus on extending cloud infrastructure.
+      <description>Fog computing aims at providing horizontal, system-level, abstractions to distribute computing, storage, control and networking functions closer to the user along a cloud-to-thing continuum. Whilst fog computing is increasingly recognized as the key paradigm at the foundation of Consumer and Industrial Internet of Things (IoT), most of the initiatives on fog computing focus on extending cloud infrastructure.
 As a consequence, these infrastructure fall short in addressing heterogeneity and resource constraints characteristics of fog computing environments.</description>
     </item>
     
