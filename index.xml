@@ -39,9 +39,9 @@ As a consequence, these infrastructure fall short in addressing heterogeneity an
       
       <guid>https://fog05.io/docs/getting-started/hello-world/</guid>
       <description>To kick off our tour of Eclipse fog05, we will start with the obligatory &amp;ldquo;hello world&amp;rdquo; example. This example will deploy a native component written in python that create a file and write &amp;ldquo;hello, world!&amp;rdquo; to the file.
-Let&amp;rsquo;s get started.
+Let&#39;s get started.
 First, we write the python code.
-import time with open(&#39;/tmp/fos_helloworld&#39;, &#39;a&#39;) as out: while True: out.write(&#39;Hello, world! It is {}\n&#39;.format(time.time_ns())) time.sleep(2)  Let&amp;rsquo;s save it as /tmp/fos_helloworld.py
+import time with open(&amp;#39;/tmp/fos_helloworld&amp;#39;, &amp;#39;a&amp;#39;) as out: while True: out.write(&amp;#39;Hello, world! It is {}\n&amp;#39;.format(time.time_ns())) time.sleep(2) Let&#39;s save it as /tmp/fos_helloworld.py
 Next, we need to write the descriptor for this native component.</description>
     </item>
     
@@ -53,7 +53,7 @@ Next, we need to write the descriptor for this native component.</description>
       <guid>https://fog05.io/docs/going-deeper/architecture/</guid>
       <description>Eclipse fog05 is divided in two modules:
  Fog Orchestration Engine (FOrcE) Fog Infrastructure Manager (FIM)  Both modules provides different abstractions an APIs.
-Fog Infrastrucutre Manager This module virtualises the hardware infrastructure, such as computational, communication, storage and I/O resources.
+ Fog Infrastrucutre Manager This module virtualises the hardware infrastructure, such as computational, communication, storage and I/O resources.
 It provides key primitives for the management of the infrastructure and the application deployed in it.
 It also provide a set of abstraction.
 The FIM is designed to be distributed, without any controller node.</description>
@@ -77,7 +77,7 @@ States Each FDU can be in one of those nine states:
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://fog05.io/docs/internals/intro/</guid>
-      <description>The internals section provides an in-depth guide of Eclipse fog05&amp;rsquo;s internals. It expects the reader already has a good understanding of how to use Eclipse fog05. Those unfamiliar with Eclipse fog05 should start with the getting started guide.
+      <description>The internals section provides an in-depth guide of Eclipse fog05&#39;s internals. It expects the reader already has a good understanding of how to use Eclipse fog05. Those unfamiliar with Eclipse fog05 should start with the getting started guide.
  Location Transparent state access and distribution - How fog05 uses YAKS  </description>
     </item>
     
@@ -98,9 +98,9 @@ We made this choice because the problem Eclipse fog05 is trying to address it th
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://fog05.io/community/</guid>
-      <description>Communication The Eclipse fog05 community is most readily found on its gitter channel, where you&amp;rsquo;re welcome to ask questions, report problems, or pitch ideas.
+      <description>Communication The Eclipse fog05 community is most readily found on its gitter channel, where you&#39;re welcome to ask questions, report problems, or pitch ideas.
 Issues Github is used for tracking issues. The primary location for these is the main Eclipse fog05 repository.
-If you&amp;rsquo;re a Eclipse fog05 user, you&amp;rsquo;re highly encouraged to keep an eye on these issues and jump in on the discussions, to help us understand how design tradeoffs might affect you.</description>
+If you&#39;re a Eclipse fog05 user, you&#39;re highly encouraged to keep an eye on these issues and jump in on the discussions, to help us understand how design tradeoffs might affect you.</description>
     </item>
     
   </channel>

@@ -34,7 +34,7 @@
   <body>
     <header class="navbar navbar-expand navbar-dark flex-column flex-md-row fos-navbar">
       <a class="navbar-brand" href="https://fog05.io/">
-        <img src="https://fog05.io/img/fos_mark_white.png" class="align-middle" alt="">
+        <img src="https://fog05.io/img/fos_logo.png" class="align-middle" alt="Eclipse fog05 logo" style="width:100px;">
       </a>
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav">
@@ -102,12 +102,9 @@
     <div class="d-none d-xl-block col-xl-2 fos-toc">
       <div class="section-nav">
         <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#eclipse-fog05">Eclipse fog05</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#eclipse-fog05">Eclipse fog05</a></li>
+  </ul>
 </nav>
       </div>
 
@@ -116,26 +113,19 @@
       <h1 class="fos-title">Introducing Eclipse fog05</h1>
       <p class="fos-date">16 March 2018</p>
       
-      
-
-<p>Fog computing aims at providing horizontal, system-level, abstractions to distribute computing, storage, control and networking
+      <p>Fog computing aims at providing horizontal, system-level, abstractions to distribute computing, storage, control and networking
 functions closer to the user along a cloud-to-thing continuum. Whilst fog computing is increasingly recognized as the key paradigm
 at the foundation of Consumer and Industrial Internet of Things (IoT), most of the initiatives on fog computing focus on extending
 cloud infrastructure.</p>
-
 <p>As a consequence, these infrastructure fall short in addressing heterogeneity and resource constraints characteristics of fog
 computing environments.</p>
-
 <h2 id="eclipse-fog05">Eclipse fog05</h2>
-
 <p><strong>Eclipse fog05</strong> defines a set of abstractions to unify the compute, storage and communication fabric end-to-end and thus allow applications
 to be managed, monitored and orchestrated across the cloud to thing continuum.</p>
-
 <p>The abstraction used by <strong>fog05</strong> to provision, manage and orchestrate applications, or network functions, is the entity.
 An entity is defined as either an atomic entity, such as a Virtual Machine, a container, a Unikernel, a binary executable,
 or a Directed Acyclic Graph (DAG) of entities (see Figure 1). Where the set of atomic entities supported by <strong>fog05</strong> can be extended
 through plugins.</p>
-
 <p>Entities and Atomic Entities have a FSM that defines the legal state transitions. These FSM have been defined to be sufficiently
 generic to encompass essentially any kind of atomic entity ranging from a VM to a binary executable. Entities may define a
 deployment affinity w.r.t. to each other as well as with respect to compute, storage, I/O and accelerators such GPUs and FPGAs.</p>
@@ -150,6 +140,52 @@ deployment affinity w.r.t. to each other as well as with respect to compute, sto
     </main>
   </div>
 </div>
+
+
+    <footer class="fos-footer text-muted">
+      <div class="container-fluid p-6 p-md-5">
+        <div class="row">
+          <div class="col-md-2">
+            <h5>Eclipse Incubation</h5>
+            <p><img src="img/incubation.png" style="width:100px;"></p>
+            <p>Eclipse fog05 &trade; is an incubating project under the Eclipse Foundation.</p>
+
+          </div>
+          <div class="col-md-2">
+            <h5>More Information</h5>
+            <p><a href="http://www.eclipse.org/legal">Legal</a></p>
+            <p><a href="http://www.eclipse.org/legal/privacy.php">Privacy policy</a></p>
+            <p><a href="http://www.eclipse.org/legal/termsofuse.php">Terms of use</a></p>
+            <p><a href="http://www.eclipse.org/legal/copyright.php">Copyright</a></p>
+            <p><a href="http://www.eclipse.org/">Eclipse Foundation</a></p>
+        </div>
+          <div class="col-md-2">
+              <h5>Sponsored by:</h5>
+              <p><img src="img/eclipse.svg" style="width:100px;"></p>
+              <p><img src="https://cdn.adlinktech.com/webupd/en/Upload/logo.png" style="width:100px;"></p>
+
+            </div>
+            <div class="col-md-2">
+                <h5>Follow us</h5>
+                <ul class="fos-footer-links">
+                    <li><a href="https://github.com/eclipse-fog05"> <i class="fa fa-github" aria-hidden="true"></i> GitHub</a></li>
+                    <li><a href="https://fog05.io/docs/overview/"><i class="fa fa-info-circle" aria-hidden="true"></i> About</a></li>
+                  </ul>
+            </div>
+            <div class="col-md-2">
+                <p><img src="img/logo_horizontal_notag.png" style="width:75px;"></p>
+                <p>Eclipse fog05 &trade; is free, open source and always will be.</p>
+                <p>Copyright &copy 2019 Eclipse Foundation</p>
+                <p>Build with <a href="https://gohugo.io/">HUGO</a></p>
+                <p>Theme: <a href="https://tokio.rs/">Tokio website theme</a></p>
+            </div>
+        </div>
+
+
+      </div>
+
+
+    </footer>
 
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" integrity="sha384-3ceskX3iaEnIogmQchP8opvBy3Mi7Ce34nWjpBIwVTHfGYWQS9jwHDVRnpKKHJg7" crossorigin="anonymous"></script>

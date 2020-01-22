@@ -34,7 +34,7 @@
   <body>
     <header class="navbar navbar-expand navbar-dark flex-column flex-md-row fos-navbar">
       <a class="navbar-brand" href="https://fog05.io/">
-        <img src="https://fog05.io/img/fos_mark_white.png" class="align-middle" alt="">
+        <img src="https://fog05.io/img/fos_logo.png" class="align-middle" alt="Eclipse fog05 logo" style="width:100px;">
       </a>
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav">
@@ -153,33 +153,25 @@
     <div class="d-none d-xl-block col-xl-2 fos-toc">
       <div class="section-nav">
         <nav id="TableOfContents">
-<ul>
-<li><a href="#fog-infrastrucutre-manager">Fog Infrastrucutre Manager</a>
-<ul>
-<li><a href="#abstractions">Abstractions</a>
-<ul>
-<li><a href="#resources">Resources</a></li>
-<li><a href="#node">Node</a></li>
-<li><a href="#network">Network</a></li>
-<li><a href="#router">Router</a></li>
-<li><a href="#port">Port</a></li>
-<li><a href="#fog-deployment-unit-fdu">Fog Deployment Unit (FDU)</a></li>
-</ul></li>
-<li><a href="#components">Components</a>
-<ul>
-<li><a href="#agent">Agent</a></li>
-<li><a href="#plugins">Plugins</a>
-<ul>
-<li><a href="#os-plugin">OS Plugin</a></li>
-<li><a href="#network-manager-plugin">Network Manager Plugin</a></li>
-<li><a href="#runtime-plugin">Runtime Plugin</a></li>
-<li><a href="#device-plugin">Device Plugin</a></li>
-</ul></li>
-</ul></li>
-<li><a href="#deployment">Deployment</a></li>
-</ul></li>
-<li><a href="#fog-orchestration-engine">Fog Orchestration Engine</a></li>
-</ul>
+  <ul>
+    <li><a href="#abstractions">Abstractions</a>
+      <ul>
+        <li><a href="#resources">Resources</a></li>
+        <li><a href="#node">Node</a></li>
+        <li><a href="#network">Network</a></li>
+        <li><a href="#router">Router</a></li>
+        <li><a href="#port">Port</a></li>
+        <li><a href="#fog-deployment-unit-fdu">Fog Deployment Unit (FDU)</a></li>
+      </ul>
+    </li>
+    <li><a href="#components">Components</a>
+      <ul>
+        <li><a href="#agent">Agent</a></li>
+        <li><a href="#plugins">Plugins</a></li>
+      </ul>
+    </li>
+    <li><a href="#deployment">Deployment</a></li>
+  </ul>
 </nav>
       </div>
     </div>
@@ -188,161 +180,97 @@
       <div class="github-edit">
         <a class="fa fa-github" href="https://github.com/eclipse-fog05/website/tree/master/content/docs/going-deeper/architecture.md"> Edit on GitHub</a>
       </div>
-      
-
-<p>Eclipse fog05 is divided in two modules:</p>
-
+      <p>Eclipse fog05 is divided in two modules:</p>
 <ul>
 <li>Fog Orchestration Engine (<strong>FOrcE</strong>)</li>
 <li>Fog Infrastructure Manager (<strong>FIM</strong>)</li>
 </ul>
-
 <p>Both modules provides different abstractions an APIs.</p>
-
-<hr />
-
+<hr>
 <h1 id="fog-infrastrucutre-manager">Fog Infrastrucutre Manager</h1>
-
 <p>This module <strong>virtualises</strong> the <strong>hardware</strong> infrastructure, such as
 <strong>computational</strong>, <strong>communication</strong>, <strong>storage</strong> and <strong>I/O resources</strong>.</p>
-
 <p>It provides key primitives for the management of the <strong>infrastructure</strong> and
 the application deployed in it.</p>
-
 <p>It also provide a set of abstraction.</p>
-
 <p>The <strong>FIM</strong> is designed to be distributed, without any <em>controller</em> node. The system state is managed in a location-transparent manner
 using a distributed Key-value store, namely <a href="http://yaks.is">YAKS</a>, and leverages on <a href="http://zenoh.io">Zenoh</a> for data distribution and sharing across the system.</p>
-
 <h2 id="abstractions">Abstractions</h2>
-
 <p>This section describes the <em>abstractions</em> provided by the <em>FIM</em>.</p>
-
 <h3 id="resources">Resources</h3>
-
 <p>In Eclipse fog05 a <strong>resource</strong> is any kind of asset that can be assigned either in a shared or exclusive manner.</p>
-
 <p>The different kinds of resources supported by fog05 are <strong>computational resources</strong>, such as, CPU, FPGA, GPU,
 <strong>storage resources</strong>, such as, RAM, block storage, object storage, <strong>networking resources</strong>, such as, 802.11 devices, tunnels and
 <strong>I/O resources</strong>, such as, COM, CAN, GPIO and I2C.</p>
-
 <h3 id="node">Node</h3>
-
 <p>An Eclipse fog05 <strong>node</strong> represents a locus of resources.
 Examples of fog05 nodes are: server, an RPi, an embedded board.</p>
-
 <p>In order to expose its resources in the system each node has either a running fog05 agent or a device plugin.</p>
-
 <h3 id="network">Network</h3>
-
 <p>In Eclipse fog05 a <strong>network</strong> represent a level-2 or level-3 network between a collection of deployable components.</p>
-
 <p>Such networks are usually virtualized, and span across different nodes, even end-to-end, they can also be attached to
 physical networks.</p>
-
 <h3 id="router">Router</h3>
-
 <p>An Eclipse fog05 <strong>router</strong> is a networking element able to interconnect two or more networks.</p>
-
 <p>It can also connect a network to the physical networking infrastructure.</p>
-
 <h3 id="port">Port</h3>
-
 <p>A <strong>port</strong> in Eclipse fog05 is used to represent a network connection between a deployable unit and a network.</p>
-
 <p>Ports are also present in router to connect the router to the different networks, a port can have a floating IP assigned to it.</p>
-
 <h3 id="fog-deployment-unit-fdu">Fog Deployment Unit (FDU)</h3>
-
 <p>In Eclipse fog05 a <strong>Fog Deployment Unit</strong>, abbreviated to <strong>FDU</strong>, is <strong>an indivisible unit of deployment</strong>, such as, a binary executable, a Unikernel,
 a container or a virtual machine.</p>
-
 <p>An FDU <strong>requires</strong> a certain kind of <strong>resources</strong> as a precondition to its execution.</p>
-
 <p>The life-cycle of an FDU is defined by a Finite State Machine.</p>
-
 <h2 id="components">Components</h2>
-
 <p>The is composed by the following components.</p>
-
 <h3 id="agent">Agent</h3>
-
 <p>The <strong>agent</strong> is the component in charge of the closed-loop management for a node and the advertising of node resources and functionalities to the whole system.</p>
-
 <p>It also provides an entry point for the node management and monitoring as well as the management of the FDUs running on a node.</p>
-
 <h3 id="plugins">Plugins</h3>
-
 <p>The FIM is designed to leverages plugins for most of its functionalities, in Eclipse fog05 different kinds of plugin can be used.</p>
-
 <h4 id="os-plugin">OS Plugin</h4>
-
 <p>The <strong>OS</strong> plugin is the one used to abstract the underlying operating system and provide primitives to <em>agent</em> and other plugins.
 OS plugins have to implement an interface in order to be recognized by fog05.</p>
-
 <p>In Eclipse fog05 the following <em>OS</em> plugin are implemented:</p>
-
 <ul>
 <li>Linux</li>
 <li>Windows</li>
 </ul>
-
 <h4 id="network-manager-plugin">Network Manager Plugin</h4>
-
 <p>The <strong>Network Manager</strong> plugin is used to create all the network related components, such as, <em>network</em>, <em>routers</em> and <em>ports</em>, is has to provide an implementation for each
 of this component. This plugin provides also some functionalities to <em>agent</em> and other plugins.
 Network Manager plugins have to implement an interface in order to be recognized by fog05.</p>
-
 <p>In Eclipse fog05 the following <em>Network Manager</em> plugin are implemented:</p>
-
 <ul>
 <li>Linux bridge with VxLAN virtual networks, and routers in isolated network namespaces.</li>
 </ul>
-
 <h4 id="runtime-plugin">Runtime Plugin</h4>
-
 <p>The <strong>Runtime</strong> plugin implements the life-cycle management for <em>FDU</em>, is has to strictly follow the state machine defined for the <em>FDU</em> and provide handles for the state management and monitoring for the running <em>FDUs</em>.
 Runtime plugins have to implement an interface in order to be recognized by fog05.</p>
-
 <p>In Eclipse fog05 the following <em>Runtime</em> plugin are implemented:</p>
-
 <ul>
 <li>KVM Virtual Machine</li>
 <li>Linux Containers (LXD)</li>
 <li>Native applications (Linux and Windows)</li>
 </ul>
-
 <p>The following ones are going to be implemented soon:</p>
-
 <ul>
 <li>containerd (docker) containers</li>
 <li>ROS2 Robotic framework</li>
 </ul>
-
 <h4 id="device-plugin">Device Plugin</h4>
-
 <p>This kind of plugin is the one that abstract the three previous one, and it is designed to allow the deployment and discovery of micro-controller and IoT board that does not have an operating system.</p>
-
 <p>The <em>Device</em> plugin has to provide a subset of the functionalities provided by <em>OS</em>, <em>Network Manager</em> and <em>Runtime</em> plugin. It will also be connected and managed by an <em>agent</em> running on a different node.  For the user point-of-view, the resource constrained device look like any other <em>node</em> of the system.
 It is difficult to provide a real interface to be implemented for the device plugin, we plan to provide an example implementation for a micro-controller that can be used as base for other implementations.</p>
-
 <h2 id="deployment">Deployment</h2>
-
 <p>All the component of Eclipse fog05 are designed to be deployed in a distributed manner, in order to address the system heterogeneity.
 In particular the minimal set to run a fog05 <em>node</em> is to have an <em>agent</em> and a set of <em>plugins</em> running on it, while in the case of micro-controllers the minimal set is composed by only the <em>device</em> plugin. Other components such as the YAKS server and Zenoh routers can be either deployed in a fog05 <em>node</em> or on different machines.</p>
-
 <p>This <em>composable</em> deployment allows to reduce the footprint and optimize the resource utilization of the infrastructure  software.</p>
-
-<p><img src="https://fog05.io/img/deployments.png" alt="Deployment examples" /></p>
-
-<hr />
-
+<p><img src="https://fog05.io/img/deployments.png" alt="Deployment examples"></p>
+<hr>
 <h1 id="fog-orchestration-engine">Fog Orchestration Engine</h1>
-
 <p>The <strong>Fog Orchestration Engine</strong> is responsible for the end-to-end orchestration and management of applications and services in the Fog infrastructure.</p>
-
 <p>It enforces the <strong>constraints</strong> defined by the application/service and provides an allocation algorithm for the components of an application/service.</p>
-
 <p>This component is still in the design phase, it also leverages on state distribution and location-transparent data access for its functionalities.</p>
 
       
@@ -354,6 +282,52 @@ In particular the minimal set to run a fog05 <em>node</em> is to have an <em>age
     </main>
   </div>
 </div>
+
+
+    <footer class="fos-footer text-muted">
+      <div class="container-fluid p-6 p-md-5">
+        <div class="row">
+          <div class="col-md-2">
+            <h5>Eclipse Incubation</h5>
+            <p><img src="img/incubation.png" style="width:100px;"></p>
+            <p>Eclipse fog05 &trade; is an incubating project under the Eclipse Foundation.</p>
+
+          </div>
+          <div class="col-md-2">
+            <h5>More Information</h5>
+            <p><a href="http://www.eclipse.org/legal">Legal</a></p>
+            <p><a href="http://www.eclipse.org/legal/privacy.php">Privacy policy</a></p>
+            <p><a href="http://www.eclipse.org/legal/termsofuse.php">Terms of use</a></p>
+            <p><a href="http://www.eclipse.org/legal/copyright.php">Copyright</a></p>
+            <p><a href="http://www.eclipse.org/">Eclipse Foundation</a></p>
+        </div>
+          <div class="col-md-2">
+              <h5>Sponsored by:</h5>
+              <p><img src="img/eclipse.svg" style="width:100px;"></p>
+              <p><img src="https://cdn.adlinktech.com/webupd/en/Upload/logo.png" style="width:100px;"></p>
+
+            </div>
+            <div class="col-md-2">
+                <h5>Follow us</h5>
+                <ul class="fos-footer-links">
+                    <li><a href="https://github.com/eclipse-fog05"> <i class="fa fa-github" aria-hidden="true"></i> GitHub</a></li>
+                    <li><a href="https://fog05.io/docs/overview/"><i class="fa fa-info-circle" aria-hidden="true"></i> About</a></li>
+                  </ul>
+            </div>
+            <div class="col-md-2">
+                <p><img src="img/logo_horizontal_notag.png" style="width:75px;"></p>
+                <p>Eclipse fog05 &trade; is free, open source and always will be.</p>
+                <p>Copyright &copy 2019 Eclipse Foundation</p>
+                <p>Build with <a href="https://gohugo.io/">HUGO</a></p>
+                <p>Theme: <a href="https://tokio.rs/">Tokio website theme</a></p>
+            </div>
+        </div>
+
+
+      </div>
+
+
+    </footer>
 
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" integrity="sha384-3ceskX3iaEnIogmQchP8opvBy3Mi7Ce34nWjpBIwVTHfGYWQS9jwHDVRnpKKHJg7" crossorigin="anonymous"></script>
