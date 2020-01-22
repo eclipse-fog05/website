@@ -34,7 +34,7 @@
   <body>
     <header class="navbar navbar-expand navbar-dark flex-column flex-md-row fos-navbar">
       <a class="navbar-brand" href="https://fog05.io/">
-        <img src="https://fog05.io/img/fos_mark_white.png" class="align-middle" alt="">
+        <img src="https://fog05.io/img/fos_logo.png" class="align-middle" alt="Eclipse fog05 logo" style="width:100px;">
       </a>
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav">
@@ -153,33 +153,32 @@
     <div class="d-none d-xl-block col-xl-2 fos-toc">
       <div class="section-nav">
         <nav id="TableOfContents">
-<ul>
-<li><a href="#unified-abstractions">Unified abstractions</a>
-<ul>
-<li>
-<ul>
-<li><a href="#operating-system-plugins">Operating System Plugins</a></li>
-<li><a href="#networking-plugins">Networking Plugins</a></li>
-</ul></li>
-</ul></li>
-<li><a href="#heterogenous-applications">Heterogenous applications</a>
-<ul>
-<li>
-<ul>
-<li><a href="#runtime-plugins">Runtime Plugins</a></li>
-<li><a href="#single-descriptor">Single Descriptor</a></li>
-</ul></li>
-</ul></li>
-<li><a href="#lightweight">Lightweight</a>
-<ul>
-<li>
-<ul>
-<li><a href="#decentralized-state">Decentralized state</a></li>
-<li><a href="#modular">Modular</a></li>
-</ul></li>
-</ul></li>
-<li><a href="#example">Example</a></li>
-</ul>
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#operating-system-plugins">Operating System Plugins</a></li>
+        <li><a href="#networking-plugins">Networking Plugins</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#runtime-plugins">Runtime Plugins</a></li>
+        <li><a href="#single-descriptor">Single Descriptor</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#decentralized-state">Decentralized state</a></li>
+        <li><a href="#modular">Modular</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
       </div>
     </div>
@@ -188,114 +187,85 @@
       <div class="github-edit">
         <a class="fa fa-github" href="https://github.com/eclipse-fog05/website/tree/master/content/docs/overview.md"> Edit on GitHub</a>
       </div>
-      
-
-<p>Eclipse fog05 allows the end-to-end management of compute, storage,
+      <p>Eclipse fog05 allows the end-to-end management of compute, storage,
 networking and I/O fabric in the Edge and Fog Environment.
 Instead of relying on a centralized architecture (like cloud-management-systems)
 it is based on a decentralized architecture.</p>
-
 <p>Eclipse fog05 allows users to manage and deploy different types of applications,
 packaged as containers, VMs, binaries and so on. This possibility is achieved
 thanks to Eclipse fog05 plugin architecture.</p>
-
 <p>More specifically, Eclipse fog05 is a Fog Infrastructure-as-a-Service solution
 composed by two major components:</p>
-
 <ul>
 <li>The Fog Orchestration Engine (FOrcE)</li>
 <li>The Fog Infrastructure Manager (FIM)</li>
 </ul>
-
 <p>These components provides the abstractions to deploy your applications in the
 Fog and Edge environment.</p>
-
 <h1 id="unified-abstractions">Unified abstractions</h1>
-
 <p>Common API and information model for management.
 Eclipse fog05 provides an unified API for the management of the virtualization infrastructure.</p>
-
 <h3 id="operating-system-plugins">Operating System Plugins</h3>
-
 <p>Eclipse fog05 can run on different operating systems, it just need the
 right OS Plugin.</p>
-
 <h3 id="networking-plugins">Networking Plugins</h3>
-
 <p>Eclipse fog05 can manage networking fabrics for which a Networking plugin is
 present.</p>
-
 <h1 id="heterogenous-applications">Heterogenous applications</h1>
-
 <p>Support of heterogenous runtimes, hypervisors and networking.
 Deploy heterogenous applications composed by VMs, containers, ROS2, native applications.</p>
-
 <h3 id="runtime-plugins">Runtime Plugins</h3>
-
 <p>Eclipse fog05 can manage and open-ended set of hypervisors and container
 technologies for which a Runtime Plugin was implemented.</p>
-
 <h3 id="single-descriptor">Single Descriptor</h3>
-
 <p>Eclipse fog05 allows you to define your application in a single descriptor.
 No matters if it is composed by heterogeneous components.</p>
-
 <h1 id="lightweight">Lightweight</h1>
-
 <p>Eclipse fog05 is designed to be deployed from big servers to micro-controllers.</p>
-
 <h3 id="decentralized-state">Decentralized state</h3>
-
 <p>Because Eclipse fog05 uses <a href="http://www.yaks.is/">YAKS</a> for location-transparency state access and management.
 It can be deployed on resource constrained devices and leverage other nodes for state management.</p>
-
 <h3 id="modular">Modular</h3>
-
 <p>Eclipse fog05 is built with a plugin architecture and his components can be deployed separately.</p>
-
 <h1 id="example">Example</h1>
-
 <p>A basic example of an LXD container descriptor that can be deployed by Eclipse fog05</p>
-
-<pre><code class="language-json">{
-    &quot;id&quot;: &quot;lxd_example_fdu&quot;,
-    &quot;name&quot;: &quot;test_1&quot;,
-    &quot;computation_requirements&quot;: {
-        &quot;cpu_arch&quot;: &quot;x86_64&quot;,
-        &quot;cpu_min_freq&quot;: 0,
-        &quot;cpu_min_count&quot;: 1,
-        &quot;ram_size_mb&quot;: 128.0,
-        &quot;storage_size_gb&quot;: 5.0
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+    <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#e6db74">&#34;lxd_example_fdu&#34;</span>,
+    <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;test_1&#34;</span>,
+    <span style="color:#f92672">&#34;computation_requirements&#34;</span>: {
+        <span style="color:#f92672">&#34;cpu_arch&#34;</span>: <span style="color:#e6db74">&#34;x86_64&#34;</span>,
+        <span style="color:#f92672">&#34;cpu_min_freq&#34;</span>: <span style="color:#ae81ff">0</span>,
+        <span style="color:#f92672">&#34;cpu_min_count&#34;</span>: <span style="color:#ae81ff">1</span>,
+        <span style="color:#f92672">&#34;ram_size_mb&#34;</span>: <span style="color:#ae81ff">128.0</span>,
+        <span style="color:#f92672">&#34;storage_size_gb&#34;</span>: <span style="color:#ae81ff">5.0</span>
     },
-    &quot;image&quot;: {
-        &quot;uri&quot;: &quot;lxd://alpine/edge&quot;,
-        &quot;checksum&quot;: &quot;&quot;,
-        &quot;format&quot;: &quot;&quot;
+    <span style="color:#f92672">&#34;image&#34;</span>: {
+        <span style="color:#f92672">&#34;uri&#34;</span>: <span style="color:#e6db74">&#34;lxd://alpine/edge&#34;</span>,
+        <span style="color:#f92672">&#34;checksum&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
+        <span style="color:#f92672">&#34;format&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>
     },
-    &quot;storage&quot;: [],
-    &quot;hypervisor&quot;: &quot;LXD&quot;,
-    &quot;migration_kind&quot;: &quot;COLD&quot;,
-    &quot;interfaces&quot;: [
+    <span style="color:#f92672">&#34;storage&#34;</span>: [],
+    <span style="color:#f92672">&#34;hypervisor&#34;</span>: <span style="color:#e6db74">&#34;LXD&#34;</span>,
+    <span style="color:#f92672">&#34;migration_kind&#34;</span>: <span style="color:#e6db74">&#34;COLD&#34;</span>,
+    <span style="color:#f92672">&#34;interfaces&#34;</span>: [
         {
-            &quot;name&quot;: &quot;eth0&quot;,
-            &quot;is_mgmt&quot;: false,
-            &quot;if_type&quot;: &quot;INTERNAL&quot;,
-            &quot;mac_address&quot;: &quot;be:ef:be:ef:00:01&quot;,
-            &quot;virtual_interface&quot;: {
-                &quot;intf_type&quot;: &quot;BRIDGED&quot;,
-                &quot;vpci&quot;: &quot;lxdbr0&quot;,
-                &quot;bandwidth&quot;: 10
+            <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;eth0&#34;</span>,
+            <span style="color:#f92672">&#34;is_mgmt&#34;</span>: <span style="color:#66d9ef">false</span>,
+            <span style="color:#f92672">&#34;if_type&#34;</span>: <span style="color:#e6db74">&#34;INTERNAL&#34;</span>,
+            <span style="color:#f92672">&#34;mac_address&#34;</span>: <span style="color:#e6db74">&#34;be:ef:be:ef:00:01&#34;</span>,
+            <span style="color:#f92672">&#34;virtual_interface&#34;</span>: {
+                <span style="color:#f92672">&#34;intf_type&#34;</span>: <span style="color:#e6db74">&#34;BRIDGED&#34;</span>,
+                <span style="color:#f92672">&#34;vpci&#34;</span>: <span style="color:#e6db74">&#34;lxdbr0&#34;</span>,
+                <span style="color:#f92672">&#34;bandwidth&#34;</span>: <span style="color:#ae81ff">10</span>
             }
         }
     ],
-    &quot;io_ports&quot;: [],
-    &quot;connection_points&quot;: [],
-    &quot;depends_on&quot;: []
+    <span style="color:#f92672">&#34;io_ports&#34;</span>: [],
+    <span style="color:#f92672">&#34;connection_points&#34;</span>: [],
+    <span style="color:#f92672">&#34;depends_on&#34;</span>: []
 }
-}
-</code></pre>
-
-<p>More examples can be found <a href="https://github.com/eclipse-fog05/examples">here</a>.</p>
+<span style="color:#960050;background-color:#1e0010">}</span>
+</code></pre></div><p>More examples can be found <a href="https://github.com/eclipse-fog05/examples">here</a>.</p>
 
       
       
@@ -306,6 +276,52 @@ It can be deployed on resource constrained devices and leverage other nodes for 
     </main>
   </div>
 </div>
+
+
+    <footer class="fos-footer text-muted">
+      <div class="container-fluid p-6 p-md-5">
+        <div class="row">
+          <div class="col-md-2">
+            <h5>Eclipse Incubation</h5>
+            <p><img src="img/incubation.png" style="width:100px;"></p>
+            <p>Eclipse fog05 &trade; is an incubating project under the Eclipse Foundation.</p>
+
+          </div>
+          <div class="col-md-2">
+            <h5>More Information</h5>
+            <p><a href="http://www.eclipse.org/legal">Legal</a></p>
+            <p><a href="http://www.eclipse.org/legal/privacy.php">Privacy policy</a></p>
+            <p><a href="http://www.eclipse.org/legal/termsofuse.php">Terms of use</a></p>
+            <p><a href="http://www.eclipse.org/legal/copyright.php">Copyright</a></p>
+            <p><a href="http://www.eclipse.org/">Eclipse Foundation</a></p>
+        </div>
+          <div class="col-md-2">
+              <h5>Sponsored by:</h5>
+              <p><img src="img/eclipse.svg" style="width:100px;"></p>
+              <p><img src="https://cdn.adlinktech.com/webupd/en/Upload/logo.png" style="width:100px;"></p>
+
+            </div>
+            <div class="col-md-2">
+                <h5>Follow us</h5>
+                <ul class="fos-footer-links">
+                    <li><a href="https://github.com/eclipse-fog05"> <i class="fa fa-github" aria-hidden="true"></i> GitHub</a></li>
+                    <li><a href="https://fog05.io/docs/overview/"><i class="fa fa-info-circle" aria-hidden="true"></i> About</a></li>
+                  </ul>
+            </div>
+            <div class="col-md-2">
+                <p><img src="img/logo_horizontal_notag.png" style="width:75px;"></p>
+                <p>Eclipse fog05 &trade; is free, open source and always will be.</p>
+                <p>Copyright &copy 2019 Eclipse Foundation</p>
+                <p>Build with <a href="https://gohugo.io/">HUGO</a></p>
+                <p>Theme: <a href="https://tokio.rs/">Tokio website theme</a></p>
+            </div>
+        </div>
+
+
+      </div>
+
+
+    </footer>
 
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" integrity="sha384-3ceskX3iaEnIogmQchP8opvBy3Mi7Ce34nWjpBIwVTHfGYWQS9jwHDVRnpKKHJg7" crossorigin="anonymous"></script>

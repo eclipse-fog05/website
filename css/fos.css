@@ -47,7 +47,8 @@ img {
 
 .fos-navbar {
   /* background-color: #09569e; */
-  background-color: #374554;
+  /* background-color: #374554; */
+  background-color: #475767;
   box-shadow: 0 .5rem 1rem rgba(0,0,0,.05),inset 0 -1px 0 rgba(0,0,0,.1);
   position: -webkit-sticky;
   position: sticky;
@@ -446,8 +447,8 @@ img {
 
 .fos-masthead .fos-logo {
   display: block;
-  max-height: 300px;
-  opacity: 0.8;
+  max-height: 800px;
+  opacity: 1;
   margin-left: auto;
   margin-right: auto;
 }

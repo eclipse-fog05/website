@@ -34,7 +34,7 @@
   <body>
     <header class="navbar navbar-expand navbar-dark flex-column flex-md-row fos-navbar">
       <a class="navbar-brand" href="https://fog05.io/">
-        <img src="https://fog05.io/img/fos_mark_white.png" class="align-middle" alt="">
+        <img src="https://fog05.io/img/fos_logo.png" class="align-middle" alt="Eclipse fog05 logo" style="width:100px;">
       </a>
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav">
@@ -153,34 +153,33 @@
     <div class="d-none d-xl-block col-xl-2 fos-toc">
       <div class="section-nav">
         <nav id="TableOfContents">
-<ul>
-<li><a href="#runtime-plugin">Runtime Plugin</a>
-<ul>
-<li><a href="#states">States</a>
-<ul>
-<li><a href="#undefined">UNDEFINED</a></li>
-<li><a href="#defined">DEFINED</a></li>
-<li><a href="#configure">CONFIGURE</a></li>
-<li><a href="#running">RUNNING</a></li>
-<li><a href="#migrating">MIGRATING</a></li>
-<li><a href="#pause">PAUSE</a></li>
-<li><a href="#scaling">SCALING</a></li>
-</ul></li>
-<li><a href="#state-transitions">State transitions</a>
-<ul>
-<li><a href="#define-fdu">define_fdu</a></li>
-<li><a href="#undefine-fdu">undefine_fdu</a></li>
-<li><a href="#configure-fdu">configure_fdu</a></li>
-<li><a href="#clean-fdu">clean_fdu</a></li>
-<li><a href="#run-fdu">run_fdu</a></li>
-<li><a href="#stop-fdu">stop_fdu</a></li>
-<li><a href="#pause-fdu">pause_fdu</a></li>
-<li><a href="#resume-fdu">resume_fdu</a></li>
-<li><a href="#scale-fdu">scale_fdu</a></li>
-<li><a href="#migrate-fdu">migrate_fdu</a></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#states">States</a>
+      <ul>
+        <li><a href="#undefined">UNDEFINED</a></li>
+        <li><a href="#defined">DEFINED</a></li>
+        <li><a href="#configure">CONFIGURE</a></li>
+        <li><a href="#running">RUNNING</a></li>
+        <li><a href="#migrating">MIGRATING</a></li>
+        <li><a href="#pause">PAUSE</a></li>
+        <li><a href="#scaling">SCALING</a></li>
+      </ul>
+    </li>
+    <li><a href="#state-transitions">State transitions</a>
+      <ul>
+        <li><a href="#define_fdu">define_fdu</a></li>
+        <li><a href="#undefine_fdu">undefine_fdu</a></li>
+        <li><a href="#configure_fdu">configure_fdu</a></li>
+        <li><a href="#clean_fdu">clean_fdu</a></li>
+        <li><a href="#run_fdu">run_fdu</a></li>
+        <li><a href="#stop_fdu">stop_fdu</a></li>
+        <li><a href="#pause_fdu">pause_fdu</a></li>
+        <li><a href="#resume_fdu">resume_fdu</a></li>
+        <li><a href="#scale_fdu">scale_fdu</a></li>
+        <li><a href="#migrate_fdu">migrate_fdu</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
       </div>
     </div>
@@ -189,20 +188,12 @@
       <div class="github-edit">
         <a class="fa fa-github" href="https://github.com/eclipse-fog05/website/tree/master/content/docs/going-deeper/write_runtime_plugin.md"> Edit on GitHub</a>
       </div>
-      
-
-<h1 id="runtime-plugin">Runtime Plugin</h1>
-
+      <h1 id="runtime-plugin">Runtime Plugin</h1>
 <p>The <strong>Runtime</strong> plugin implements the life-cycle management for <em>FDU</em>, is has to strictly follow the state machine defined for the <em>FDU</em> and provide handles for the state management and monitoring for the running <em>FDUs</em>.</p>
-
 <p>This picture represent the state machine that an <em>FDU</em> has to follow.</p>
-
-<p><img src="https://fog05.io/img/fdufsm.png" alt="FDU State Machine" /></p>
-
+<p><img src="https://fog05.io/img/fdufsm.png" alt="FDU State Machine"></p>
 <h2 id="states">States</h2>
-
 <p>Each <em>FDU</em> can be in one of those nine states:</p>
-
 <ul>
 <li>UNDEFINED</li>
 <li>DEFINED</li>
@@ -214,132 +205,72 @@
 <li>TAKE_OFF</li>
 <li>LANDING</li>
 </ul>
-
 <h3 id="undefined">UNDEFINED</h3>
-
 <p>In this state the FDU is registered in the catalog but there are no instances in the system</p>
-
 <h3 id="defined">DEFINED</h3>
-
 <p>In this state a FDU instance was created in a node, but it is only created, meaning that an instance UUID was assigned to it.</p>
-
 <h3 id="configure">CONFIGURE</h3>
-
 <p>The FDU instance was configured in a node, the image was fetched, resources allocated, and the instance was defined in the underlying hypervisor/container engine.
 Or in case of native application the namespace was created.</p>
-
 <h3 id="running">RUNNING</h3>
-
 <p>The FDU instance is started, the instance is started in the underlying hypervisor/container engine or the native application process is started.
 Monitoring of the instance begin at this stage.</p>
-
 <h3 id="migrating">MIGRATING</h3>
-
 <p>The FDU instance is instructed for migration, this leads to two different states on the source and destination node.
 Source node instance transits to TAKE_OFF, when it is ready for migration, while destination instance transits to LANDING when ready for migration.
 After migration the instance in the source node is destroyed, while in destination node the instance is in RUNNING state.
 Migration is supported only for collaborative FDUs.</p>
-
 <h3 id="pause">PAUSE</h3>
-
 <p>The execution of the instance is freezed. This state is supported only for certain FDUs.</p>
-
 <h3 id="scaling">SCALING</h3>
-
 <p>The instance is scaled up or down. This state is supported only for certain FDUs.</p>
-
 <h2 id="state-transitions">State transitions</h2>
-
 <p>The <em>Runtime</em> plugin has to implement state transition for the FDU is able to manage.
 The <em>Runtime</em> plugin can access to functionalities of the <em>OS</em> and <em>Network Manager</em> plugin using the <code>os</code> and <code>nm</code> objects.</p>
-
 <p>State transitions are defined by the <em>RuntimePluginFDU</em> interface and by the implementation of the following functions.</p>
-
-<h3 id="define-fdu">define_fdu</h3>
-
+<h3 id="define_fdu">define_fdu</h3>
 <p>It takes as parameter the FDU instance record and create the instance in the node.</p>
-
 <p>In case of success updates the status using <code>update_fdu_status</code></p>
-
 <p>In case of error returns an error using <code>write_fdu_error</code></p>
-
-<h3 id="undefine-fdu">undefine_fdu</h3>
-
+<h3 id="undefine_fdu">undefine_fdu</h3>
 <p>Takes the instance UUID as parameter and destroy the instance from the node.</p>
-
 <p>In case of success updates the status using <code>update_fdu_status</code></p>
-
 <p>In case of error returns an error using <code>write_fdu_error</code></p>
-
-<h3 id="configure-fdu">configure_fdu</h3>
-
+<h3 id="configure_fdu">configure_fdu</h3>
 <p>Takes the instance UUID as parameter and create all the resources needed for the execution of the FDU, creates the instance in the hypervisor/container engine if needed, creates the needed networking
 components by calling the <em>Network Manager</em> plugin.</p>
-
 <p>In case of success updates the status using <code>update_fdu_status</code></p>
-
 <p>In case of error returns an error using <code>write_fdu_error</code></p>
-
-<h3 id="clean-fdu">clean_fdu</h3>
-
+<h3 id="clean_fdu">clean_fdu</h3>
 <p>Takes the instance UUID as parameter and cleans the configured FDU, removes images, instance from hypervisor/container engine if needed, networking components, releases the resources.</p>
-
 <p>In case of success updates the status using <code>update_fdu_status</code></p>
-
 <p>In case of error returns an error using <code>write_fdu_error</code></p>
-
-<h3 id="run-fdu">run_fdu</h3>
-
+<h3 id="run_fdu">run_fdu</h3>
 <p>Take the instance UUID and starts the instance UUID, calls APIs from hypervisors/container engine in needed or start the native application.</p>
-
 <p>In case of success updates the status using <code>update_fdu_status</code></p>
-
 <p>In case of error returns an error using <code>write_fdu_error</code></p>
-
-<h3 id="stop-fdu">stop_fdu</h3>
-
+<h3 id="stop_fdu">stop_fdu</h3>
 <p>Takes the instance UUID and stops the instance running, calls APIs from hypervisors/container engine in needed or send a signal the native application.</p>
-
 <p>In case of success updates the status using <code>update_fdu_status</code></p>
-
 <p>In case of error returns an error using <code>write_fdu_error</code></p>
-
-<h3 id="pause-fdu">pause_fdu</h3>
-
+<h3 id="pause_fdu">pause_fdu</h3>
 <p>Takes the instance UUID and pauses the execution of the running FDU if it is possible.</p>
-
 <p>In case of success updates the status using <code>update_fdu_status</code></p>
-
 <p>In case of error returns an error using <code>write_fdu_error</code></p>
-
-<h3 id="resume-fdu">resume_fdu</h3>
-
+<h3 id="resume_fdu">resume_fdu</h3>
 <p>Takes the instance UUID and resumes the execution of the paused FDU.</p>
-
 <p>In case of success updates the status using <code>update_fdu_status</code></p>
-
 <p>In case of error returns an error using <code>write_fdu_error</code></p>
-
-<h3 id="scale-fdu">scale_fdu</h3>
-
+<h3 id="scale_fdu">scale_fdu</h3>
 <p>Takes the instance UUID and scaling parameters and scales the running FDU if it is possible.</p>
-
 <p>In case of success updates the status using <code>update_fdu_status</code></p>
-
 <p>In case of error returns an error using <code>write_fdu_error</code></p>
-
-<h3 id="migrate-fdu">migrate_fdu</h3>
-
+<h3 id="migrate_fdu">migrate_fdu</h3>
 <p>Takes the instance UUID and migrates the FDU from a source node to a destination node if it is possible.</p>
-
 <p>In case of success updates the status using <code>update_fdu_status</code></p>
-
 <p>In case of error returns an error using <code>write_fdu_error</code></p>
-
-<hr />
-
+<hr>
 <p>The interface for a <em>Runtime</em> plugin is available in <em>Go</em> and <em>Python3</em> more implementation are coming soon.</p>
-
 <p>See example implementations from the <a href="https://github.com/eclipse-fog05/plugin-fdu-lxd">LXD Plugin</a></p>
 
       
@@ -351,6 +282,52 @@ components by calling the <em>Network Manager</em> plugin.</p>
     </main>
   </div>
 </div>
+
+
+    <footer class="fos-footer text-muted">
+      <div class="container-fluid p-6 p-md-5">
+        <div class="row">
+          <div class="col-md-2">
+            <h5>Eclipse Incubation</h5>
+            <p><img src="img/incubation.png" style="width:100px;"></p>
+            <p>Eclipse fog05 &trade; is an incubating project under the Eclipse Foundation.</p>
+
+          </div>
+          <div class="col-md-2">
+            <h5>More Information</h5>
+            <p><a href="http://www.eclipse.org/legal">Legal</a></p>
+            <p><a href="http://www.eclipse.org/legal/privacy.php">Privacy policy</a></p>
+            <p><a href="http://www.eclipse.org/legal/termsofuse.php">Terms of use</a></p>
+            <p><a href="http://www.eclipse.org/legal/copyright.php">Copyright</a></p>
+            <p><a href="http://www.eclipse.org/">Eclipse Foundation</a></p>
+        </div>
+          <div class="col-md-2">
+              <h5>Sponsored by:</h5>
+              <p><img src="img/eclipse.svg" style="width:100px;"></p>
+              <p><img src="https://cdn.adlinktech.com/webupd/en/Upload/logo.png" style="width:100px;"></p>
+
+            </div>
+            <div class="col-md-2">
+                <h5>Follow us</h5>
+                <ul class="fos-footer-links">
+                    <li><a href="https://github.com/eclipse-fog05"> <i class="fa fa-github" aria-hidden="true"></i> GitHub</a></li>
+                    <li><a href="https://fog05.io/docs/overview/"><i class="fa fa-info-circle" aria-hidden="true"></i> About</a></li>
+                  </ul>
+            </div>
+            <div class="col-md-2">
+                <p><img src="img/logo_horizontal_notag.png" style="width:75px;"></p>
+                <p>Eclipse fog05 &trade; is free, open source and always will be.</p>
+                <p>Copyright &copy 2019 Eclipse Foundation</p>
+                <p>Build with <a href="https://gohugo.io/">HUGO</a></p>
+                <p>Theme: <a href="https://tokio.rs/">Tokio website theme</a></p>
+            </div>
+        </div>
+
+
+      </div>
+
+
+    </footer>
 
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" integrity="sha384-3ceskX3iaEnIogmQchP8opvBy3Mi7Ce34nWjpBIwVTHfGYWQS9jwHDVRnpKKHJg7" crossorigin="anonymous"></script>
