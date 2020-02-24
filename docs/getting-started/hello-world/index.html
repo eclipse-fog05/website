@@ -202,7 +202,9 @@ Let's call it <code>fdu_helloworld.json</code>:</p>
 use the Eclipse fog05 Python API to register and deploy this component.</p>
 <p>Let's imagine that our descriptor was saved in our <code>$HOME</code> directory,
 we can use this simple python script to deploy the &ldquo;hello world&rdquo; example</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> fog05 <span style="color:#f92672">import</span> FIMAPI
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> json
+<span style="color:#f92672">from</span> fog05 <span style="color:#f92672">import</span> FIMAPI
+<span style="color:#f92672">from</span> fog05_sdk.interfaces.FDU <span style="color:#f92672">import</span> FDU
 
 <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">read_file</span>(filepath):
     <span style="color:#66d9ef">with</span> open(filepath, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;</span>) <span style="color:#66d9ef">as</span> f:
@@ -211,9 +213,10 @@ we can use this simple python script to deploy the &ldquo;hello world&rdquo; exa
 
 n <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">&lt;our node id&gt;</span><span style="color:#e6db74">&#39;</span>
 api <span style="color:#f92672">=</span> FIMAPI()
-desc <span style="color:#f92672">=</span> read_file(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">$HOME/fdu_helloworld.json</span><span style="color:#e6db74">&#39;</span>)
+desc <span style="color:#f92672">=</span> json<span style="color:#f92672">.</span>loads(read_file(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">$HOME/fdu_helloworld.json</span><span style="color:#e6db74">&#39;</span>))
 
-fduD <span style="color:#f92672">=</span> api<span style="color:#f92672">.</span>fdu<span style="color:#f92672">.</span>onboard(desc)
+fdu_descriptor <span style="color:#f92672">=</span> FDU(desc)
+fduD <span style="color:#f92672">=</span> api<span style="color:#f92672">.</span>fdu<span style="color:#f92672">.</span>onboard(fdu_descriptor)
 <span style="color:#66d9ef">print</span> (<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">fdu_id : {}</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">.</span>format(fduD<span style="color:#f92672">.</span>get_uuid()))
 time<span style="color:#f92672">.</span>sleep(<span style="color:#ae81ff">2</span>)
 inst_info <span style="color:#f92672">=</span> api<span style="color:#f92672">.</span>fdu<span style="color:#f92672">.</span>instantiate(fdu_id, n)
