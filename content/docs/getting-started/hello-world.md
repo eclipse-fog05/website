@@ -62,7 +62,9 @@ Let's imagine that our descriptor was saved in our `$HOME` directory,
 we can use this simple python script to deploy the "hello world" example
 
 ```python
+import json
 from fog05 import FIMAPI
+from fog05_sdk.interfaces.FDU import FDU
 
 def read_file(filepath):
     with open(filepath, 'r') as f:
@@ -71,9 +73,10 @@ def read_file(filepath):
 
 n = '<our node id>'
 api = FIMAPI()
-desc = read_file('$HOME/fdu_helloworld.json')
+desc = json.loads(read_file('$HOME/fdu_helloworld.json'))
 
-fduD = api.fdu.onboard(desc)
+fdu_descriptor = FDU(desc)
+fduD = api.fdu.onboard(fdu_descriptor)
 print ('fdu_id : {}'.format(fduD.get_uuid()))
 time.sleep(2)
 inst_info = api.fdu.instantiate(fdu_id, n)
