@@ -1,5 +1,5 @@
 ---
-title: "Write a Runtime Pluing"
+title: "Write a Runtime Plugin"
 weight: 7101
 menu:
   docs:
