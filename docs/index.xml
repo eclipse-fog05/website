@@ -11,6 +11,18 @@
     
     
     <item>
+      <title>Installation</title>
+      <link>https://fog05.io/docs/getting-started/installation/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://fog05.io/docs/getting-started/installation/</guid>
+      <description>Before getting started with Eclipse fog05 we need to install and start it
+We have two possibilities for installing Eclipse fog05
+ From source From debian packages  From source Agent Eclipse fog05 core component is written in OCaml, hence to build it we need a functional OCaml environment, luckily installing OCaml compiler and build system is not that complicated.
+$ sudo apt install jq libev-dev libssl-dev m4 pkg-config rsync unzip bubblewrap -y $ sh &amp;lt;(curl -sL https://raw.</description>
+    </item>
+    
+    <item>
       <title>What is Eclipse fog05?</title>
       <link>https://fog05.io/docs/overview/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -67,16 +79,16 @@ States Each FDU can be in one of those nine states:
       
       <guid>https://fog05.io/docs/internals/intro/</guid>
       <description>The internals section provides an in-depth guide of Eclipse fog05&#39;s internals. It expects the reader already has a good understanding of how to use Eclipse fog05. Those unfamiliar with Eclipse fog05 should start with the getting started guide.
- Location Transparent state access and distribution - How fog05 uses YAKS  </description>
+ Location Transparent state access and distribution - How fog05 uses Zenoh  </description>
     </item>
     
     <item>
       <title>Location transparent state access and distribution</title>
-      <link>https://fog05.io/docs/internals/yaks/</link>
+      <link>https://fog05.io/docs/internals/zenoh/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://fog05.io/docs/internals/yaks/</guid>
-      <description>Eclipse fog05 uses YAKS to provide location-transparent access to the system state and to distribute this state.
+      <guid>https://fog05.io/docs/internals/zenoh/</guid>
+      <description>Eclipse fog05 uses Zenoh to provide location-transparent access to the system state and to distribute this state.
 Distributed state Eclipse fog05 is designed from the beginning to not rely in any centralized construct, such as DB servers, controllers and so on.
 We made this choice because the problem Eclipse fog05 is trying to address it the management on the Fog infrastructure which by definition is distributed, heterogenous, mobile and with intermittent connectivity.</description>
     </item>

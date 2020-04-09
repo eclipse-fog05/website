@@ -45,7 +45,7 @@
             
             
             
-            <a class="nav-link  active " href="https://fog05.io/docs/getting-started/hello-world/">Documentation</a>
+            <a class="nav-link  active " href="https://fog05.io/docs/getting-started/installation/">Documentation</a>
           </li>
           <li class="nav-item">
             
@@ -105,10 +105,12 @@
             
               
               <div class="fos-toc-item ">
-                <a class="fos-toc-link" href="https://fog05.io/docs/getting-started/hello-world/">
+                <a class="fos-toc-link" href="https://fog05.io/docs/getting-started/installation/">
                   Getting started
                 </a>
                 <ul class="nav fos-sidenav">
+                
+                  <li><a href="https://fog05.io/docs/getting-started/installation/" class="">Installation</a></li>
                 
                   <li><a href="https://fog05.io/docs/getting-started/hello-world/" class="">Hello World!</a></li>
                 
@@ -142,7 +144,7 @@
                 
                   <li><a href="https://fog05.io/docs/internals/intro/" class="">Introduction</a></li>
                 
-                  <li><a href="https://fog05.io/docs/internals/yaks/" class="">Location transparent state access and distribution</a></li>
+                  <li><a href="https://fog05.io/docs/internals/zenoh/" class="">Location transparent state access and distribution</a></li>
                 
                 </ul>
               </div>
@@ -194,7 +196,7 @@
 the application deployed in it.</p>
 <p>It also provide a set of abstraction.</p>
 <p>The <strong>FIM</strong> is designed to be distributed, without any <em>controller</em> node. The system state is managed in a location-transparent manner
-using a distributed Key-value store, namely <a href="http://yaks.is">YAKS</a>, and leverages on <a href="http://zenoh.io">Zenoh</a> for data distribution and sharing across the system.</p>
+leveraging <a href="http://zenoh.io">Zenoh</a> for data distribution and sharing across the system.</p>
 <h2 id="abstractions">Abstractions</h2>
 <p>This section describes the <em>abstractions</em> provided by the <em>FIM</em>.</p>
 <h3 id="resources">Resources</h3>
@@ -264,7 +266,7 @@ Runtime plugins have to implement an interface in order to be recognized by fog0
 It is difficult to provide a real interface to be implemented for the device plugin, we plan to provide an example implementation for a micro-controller that can be used as base for other implementations.</p>
 <h2 id="deployment">Deployment</h2>
 <p>All the component of Eclipse fog05 are designed to be deployed in a distributed manner, in order to address the system heterogeneity.
-In particular the minimal set to run a fog05 <em>node</em> is to have an <em>agent</em> and a set of <em>plugins</em> running on it, while in the case of micro-controllers the minimal set is composed by only the <em>device</em> plugin. Other components such as the YAKS server and Zenoh routers can be either deployed in a fog05 <em>node</em> or on different machines.</p>
+In particular the minimal set to run a fog05 <em>node</em> is to have an <em>agent</em> and a set of <em>plugins</em> running on it, while in the case of micro-controllers the minimal set is composed by only the <em>device</em> plugin. Other components such as the Zenoh routers can be either deployed in a fog05 <em>node</em> or on different machines.</p>
 <p>This <em>composable</em> deployment allows to reduce the footprint and optimize the resource utilization of the infrastructure  software.</p>
 <p><img src="https://fog05.io/img/deployments.png" alt="Deployment examples"></p>
 <hr>
