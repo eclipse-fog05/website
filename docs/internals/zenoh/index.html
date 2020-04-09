@@ -27,7 +27,7 @@
 
     <title>
       
-        What is Eclipse fog05? · Eclipse fog05
+        Location transparent state access and distribution · Eclipse fog05
       
     </title>
   </head>
@@ -136,7 +136,7 @@
           
             
               
-              <div class="fos-toc-item ">
+              <div class="fos-toc-item active">
                 <a class="fos-toc-link" href="https://fog05.io/docs/internals/intro/">
                   Eclipse fog05 internals
                 </a>
@@ -144,7 +144,7 @@
                 
                   <li><a href="https://fog05.io/docs/internals/intro/" class="">Introduction</a></li>
                 
-                  <li><a href="https://fog05.io/docs/internals/zenoh/" class="">Location transparent state access and distribution</a></li>
+                  <li><a href="https://fog05.io/docs/internals/zenoh/" class="active">Location transparent state access and distribution</a></li>
                 
                 </ul>
               </div>
@@ -156,28 +156,11 @@
       <div class="section-nav">
         <nav id="TableOfContents">
   <ul>
-    <li>
+    <li><a href="#state-separation">State separation</a></li>
+    <li><a href="#tree-structure">Tree structure</a>
       <ul>
-        <li><a href="#operating-system-plugins">Operating System Plugins</a></li>
-        <li><a href="#networking-plugins">Networking Plugins</a></li>
-      </ul>
-    </li>
-  </ul>
-
-  <ul>
-    <li>
-      <ul>
-        <li><a href="#runtime-plugins">Runtime Plugins</a></li>
-        <li><a href="#single-descriptor">Single Descriptor</a></li>
-      </ul>
-    </li>
-  </ul>
-
-  <ul>
-    <li>
-      <ul>
-        <li><a href="#decentralized-state">Decentralized state</a></li>
-        <li><a href="#modular">Modular</a></li>
+        <li><a href="#public">Public</a></li>
+        <li><a href="#private">Private</a></li>
       </ul>
     </li>
   </ul>
@@ -185,97 +168,213 @@
       </div>
     </div>
     <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 fos-content fos-docs">
-      <h1 class="fos-title">What is Eclipse fog05?</h1>
+      <h1 class="fos-title">Location transparent state access and distribution</h1>
       <div class="github-edit">
-        <a class="fa fa-github" href="https://github.com/eclipse-fog05/website/tree/master/content/docs/overview.md"> Edit on GitHub</a>
+        <a class="fa fa-github" href="https://github.com/eclipse-fog05/website/tree/master/content/docs/internals/zenoh.md"> Edit on GitHub</a>
       </div>
-      <p>Eclipse fog05 allows the end-to-end management of compute, storage,
-networking and I/O fabric in the Edge and Fog Environment.
-Instead of relying on a centralized architecture (like cloud-management-systems)
-it is based on a decentralized architecture.</p>
-<p>Eclipse fog05 allows users to manage and deploy different types of applications,
-packaged as containers, VMs, binaries and so on. This possibility is achieved
-thanks to Eclipse fog05 plugin architecture.</p>
-<p>More specifically, Eclipse fog05 is a Fog Infrastructure-as-a-Service solution
-composed by two major components:</p>
+      <p>Eclipse fog05 uses Zenoh to provide location-transparent access to the system state
+and to distribute this state.</p>
+<h1 id="distributed-state">Distributed state</h1>
+<p>Eclipse fog05 is designed from the beginning to not rely in any <em>centralized</em> construct,
+such as DB servers, controllers and so on.</p>
+<p>We made this choice because the problem Eclipse fog05 is trying to address it the management
+on the Fog infrastructure which by definition is distributed, heterogenous, mobile and with
+intermittent connectivity. This environment has driven all the design choices in Eclipse fog05,
+and so in very short time we found ourself with the problem to how access the system state in such environment.</p>
+<p>As each <em>node</em> may have intermittent connectivity, can move from one place to another in the system, we needed
+a way to provide <strong>location-transparent</strong> access to the state of each <em>node</em> as well as build the system state starting from
+the state of each single <em>node</em>.</p>
+<p>We moved towards build all the piece of software in a state-less fashion and leveraging the <em>location-transparency</em> state
+access for storing and retrieving state information.</p>
+<p>All the state information in Eclipse fog05 are stored in <a href="http://zenoh.io">YAKS</a> a distributed Key-value store, that support location-transparency access,
+scalability, URI as Keys, it provides a <em>eventual consistency</em> model and mechanisms to trigger computations (and so build an RPC on top).</p>
+<h1 id="how-eclipse-fog05-uses-zenoh">How Eclipse fog05 uses Zenoh</h1>
+<p>In Eclipse fog05 all the components are designed to be state-less, and to store all the information in Zenoh.
+Information are organized following a tree structure in order to facilitate queries in Zenoh.</p>
+<h2 id="state-separation">State separation</h2>
+<p>The whole system state is organized in two different portions.</p>
 <ul>
-<li>The Fog Orchestration Engine (FOrcE)</li>
-<li>The Fog Infrastructure Manager (FIM)</li>
+<li>Public State</li>
+<li>Private State</li>
 </ul>
-<p>These components provides the abstractions to deploy your applications in the
-Fog and Edge environment.</p>
-<h1 id="unified-abstractions">Unified abstractions</h1>
-<p>Common API and information model for management.
-Eclipse fog05 provides an unified API for the management of the virtualization infrastructure.</p>
-<h3 id="operating-system-plugins">Operating System Plugins</h3>
-<p>Eclipse fog05 can run on different operating systems, it just need the
-right OS Plugin.</p>
-<h3 id="networking-plugins">Networking Plugins</h3>
-<p>Eclipse fog05 can manage networking fabrics for which a Networking plugin is
-present.</p>
-<h1 id="heterogenous-applications">Heterogenous applications</h1>
-<p>Support of heterogenous runtimes, hypervisors and networking.
-Deploy heterogenous applications composed by VMs, containers, ROS2, native applications.</p>
-<h3 id="runtime-plugins">Runtime Plugins</h3>
-<p>Eclipse fog05 can manage and open-ended set of hypervisors and container
-technologies for which a Runtime Plugin was implemented.</p>
-<h3 id="single-descriptor">Single Descriptor</h3>
-<p>Eclipse fog05 allows you to define your application in a single descriptor.
-No matters if it is composed by heterogeneous components.</p>
-<h1 id="lightweight">Lightweight</h1>
-<p>Eclipse fog05 is designed to be deployed from big servers to micro-controllers.</p>
-<h3 id="decentralized-state">Decentralized state</h3>
-<p>Because Eclipse fog05 uses <a href="http://www.zenoh.io/">Zenoh</a> for location-transparency state access and management.
-It can be deployed on resource constrained devices and leverage other nodes for state management.</p>
-<h3 id="modular">Modular</h3>
-<p>Eclipse fog05 is built with a plugin architecture and his components can be deployed separately.</p>
-<h1 id="installation">Installation</h1>
-<p>If you want to try Eclipse fog05 you can find installation instruction <a href="https://fog05.io/docs/getting-started/installation/">here</a></p>
-<h1 id="example">Example</h1>
-<p>A basic example of an LXD container descriptor that can be deployed by Eclipse fog05</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
-    <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#e6db74">&#34;lxd_example_fdu&#34;</span>,
-    <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;test_1&#34;</span>,
-    <span style="color:#f92672">&#34;computation_requirements&#34;</span>: {
-        <span style="color:#f92672">&#34;cpu_arch&#34;</span>: <span style="color:#e6db74">&#34;x86_64&#34;</span>,
-        <span style="color:#f92672">&#34;cpu_min_freq&#34;</span>: <span style="color:#ae81ff">0</span>,
-        <span style="color:#f92672">&#34;cpu_min_count&#34;</span>: <span style="color:#ae81ff">1</span>,
-        <span style="color:#f92672">&#34;ram_size_mb&#34;</span>: <span style="color:#ae81ff">128.0</span>,
-        <span style="color:#f92672">&#34;storage_size_gb&#34;</span>: <span style="color:#ae81ff">5.0</span>
-    },
-    <span style="color:#f92672">&#34;image&#34;</span>: {
-        <span style="color:#f92672">&#34;uri&#34;</span>: <span style="color:#e6db74">&#34;lxd://alpine/edge&#34;</span>,
-        <span style="color:#f92672">&#34;checksum&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
-        <span style="color:#f92672">&#34;format&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>
-    },
-    <span style="color:#f92672">&#34;storage&#34;</span>: [],
-    <span style="color:#f92672">&#34;hypervisor&#34;</span>: <span style="color:#e6db74">&#34;LXD&#34;</span>,
-    <span style="color:#f92672">&#34;migration_kind&#34;</span>: <span style="color:#e6db74">&#34;COLD&#34;</span>,
-    <span style="color:#f92672">&#34;interfaces&#34;</span>: [
-        {
-            <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;eth0&#34;</span>,
-            <span style="color:#f92672">&#34;is_mgmt&#34;</span>: <span style="color:#66d9ef">false</span>,
-            <span style="color:#f92672">&#34;if_type&#34;</span>: <span style="color:#e6db74">&#34;INTERNAL&#34;</span>,
-            <span style="color:#f92672">&#34;mac_address&#34;</span>: <span style="color:#e6db74">&#34;be:ef:be:ef:00:01&#34;</span>,
-            <span style="color:#f92672">&#34;virtual_interface&#34;</span>: {
-                <span style="color:#f92672">&#34;intf_type&#34;</span>: <span style="color:#e6db74">&#34;BRIDGED&#34;</span>,
-                <span style="color:#f92672">&#34;vpci&#34;</span>: <span style="color:#e6db74">&#34;lxdbr0&#34;</span>,
-                <span style="color:#f92672">&#34;bandwidth&#34;</span>: <span style="color:#ae81ff">10</span>
-            }
-        }
-    ],
-    <span style="color:#f92672">&#34;io_ports&#34;</span>: [],
-    <span style="color:#f92672">&#34;connection_points&#34;</span>: [],
-    <span style="color:#f92672">&#34;depends_on&#34;</span>: []
-}
-<span style="color:#960050;background-color:#1e0010">}</span>
-</code></pre></div><p>More examples can be found <a href="https://github.com/eclipse-fog05/examples">here</a>.</p>
+<p>Each of them is then distinct in two different sub-portions.</p>
+<ul>
+<li>Actual State</li>
+<li>Desired State</li>
+</ul>
+<p>As you can image from the name <em>Public</em> and <em>Private</em> stores respectively information that can be accessed globally and locally, while <em>Actual</em> and <em>Desired</em> stores respectively actual state information and set-point for the system.</p>
+<p>Each of those portion have different read and write permissions, described in the following image.</p>
+<p><img src="https://fog05.io/img/state_permission.png" alt="State permissions"></p>
+<p>This separation allows to avoid write concurrency on the <em>Public Actual</em> state as only the <em>node</em> can write is own state, while on the <em>Public Desired</em> this is not an issue as the <em>node</em> will be able to order the requests. Each <em>node</em> owns only its state, the system state is built with the union of the <em>public</em> state of each <em>node</em> in the system.
+As a consequence there is no <em>central</em> nodes and each <em>node</em> can act as entry point for the system.</p>
+<p>This diagram shows how the <em>agent</em> and the <em>plugins</em> interact through Zenoh.</p>
+<p><img src="https://fog05.io/img/stores.png" alt="Zenoh Interaction"></p>
+<p>The <em>agent</em> listen to all the portion of the state, while <em>plugins</em> only listen the <em>private</em> portion, this portion is mainly used for agent-plugin communication, while the <em>public</em> one is used for inter-node and user-agent communication, the <em>agent</em> converts requests coming in the <em>public desired</em> portion to requests to the right plugin in the <em>private desired</em> portion.</p>
+<p>As already described in the <a href="https://fog05.io/docs/going-deeper/architecture/">architecture</a> section, the Zenoh server can be deployed in the same node of the <em>agent</em> or in a another one.</p>
+<h2 id="tree-structure">Tree structure</h2>
+<p>We said that the state is organized as a tree structure, this helps in the separation of the state of each <em>node</em> and in the definition on the storage and URIs to be used in Zenoh.
+There are a total of four different trees, organized in two groups.</p>
+<ul>
+<li>Public trees</li>
+<li>Private trees</li>
+</ul>
+<p>Trees in the same group differs only for the first portion of the URI, while between different groups the tree structure is different.</p>
+<p>Below you can find the structures</p>
+<h3 id="public">Public</h3>
+<pre><code>--- [a|d]gfos
+    |--- &lt;system id&gt;
+        |---- users
+        |     |--- &lt;user id&gt;
+        |          |--- info
+        |
+        |--- configuration
+        |
+        |--- info
+        |
+        |--- tenants
+        |     |--- &lt;tenant id&gt;
+        |          |--- info
+        |          |--- configuration
+        |          |--- catalog
+        |          |    |--- fdu
+        |          |    |    |--- &lt;fdu id&gt;
+        |          |    |         |--- info
+        |          |    |
+        |          |    |--- entity
+        |          |    |     |--- &lt;entity id&gt;
+        |          |                |--- info
+        |          |
+        |          |--- flavor
+        |          |     |--- &lt;flavor id&gt;
+        |          |            |--- info
+        |          |
+        |          |--- image
+        |          |    |--- &lt;image id&gt;
+        |          |           |--- info
+        |          |
+        |          |--- storage
+        |          |     |--- &lt;storage id&gt;
+        |          |            |--- info
+        |          |
+        |          |--- networks
+        |          |     |--- &lt;network id&gt;
+        |          |     |      |--- info
+        |          |     |
+        |          |     |--- ports
+        |          |     |      |--- &lt;port id&gt;
+        |          |     |             |--- info
+        |          |     |
+        |          |     |--- routers
+        |          |            |--- &lt;router id&gt;
+        |          |                   |--- info
+        |          |
+        |          |--- nodes
+        |          |     |--- &lt;node id&gt;
+        |          |            |--- agent
+        |          |            |     |--- exec
+        |          |            |            |--- functions...
+        |          |            |
+        |          |            |--- info
+        |          |            |--- status
+        |          |            |--- configuration
+        |          |            |--- plugins
+        |          |            |     |--- &lt;plugin id&gt;
+        |          |            |     |       |--- info
+        |          |            |     |       |--- exec
+        |          |            |                   |--- functions ...
+        |          |            |--- flavor
+        |          |            |      |--- &lt;flavor id&gt;
+        |          |            |             |--- info
+        |          |            |
+        |          |            |--- image
+        |          |            |     |--- &lt;image id&gt;
+        |          |            |            |--- info
+        |          |            |
+        |          |            |--- storage
+        |          |            |     |--- &lt;storage id&gt;
+        |          |            |            |--- info
+        |          |            |
+        |          |            |--- fdu
+        |          |            |    |--- &lt;fdu id&gt;
+        |          |            |            |--- instances
+        |          |            |                   |--- &lt;instance id&gt;
+        |          |            |                           |--- info
+        |          |            |
+        |          |            |--- networks
+        |          |            |     |--- &lt;network id&gt;
+        |          |            |     |      |--- info
+        |          |            |     |
+        |          |            |     |--- ports
+        |          |            |     |       |--- &lt;port id&gt;
+        |          |            |     |             |--- info
+        |          |            |     |
+        |          |            |     |--- routers
+        |          |            |     |     |--- &lt;router id&gt;
+        |          |            |     |             |--- info
+        |          |            |     |
+        |          |            |     |--- floating-ips
+        |          |            |     |     |--- &lt;floating ip id&gt;
+        |          |            |     |             |--- info
+
+</code></pre><h3 id="private">Private</h3>
+<pre><code>--- [a|d]lfos
+        |--- &lt;node id&gt;
+        |      |--- agent
+        |      |     |--- exec
+        |      |          |--- functions...
+        |      |
+        |      |--- info
+        |      |--- status
+        |      |--- configuration
+        |      |--- plugins
+        |      |     |--- &lt;plugin id&gt;
+        |      |     |     |--- info
+        |      |     |--- exec
+        |      |           |--- functions ...
+        |      |
+        |      |--- runtimes
+        |      |      |--- &lt;plugin id&gt;
+        |      |            |--- flavor
+        |      |            |     |--- &lt;flavor id&gt;
+        |      |            |            |--- info
+        |      |            |
+        |      |            |--- image
+        |      |            |      |--- &lt;image id&gt;
+        |      |            |            |--- info
+        |      |            |
+        |      |            |--- storage
+        |      |            |     |--- &lt;storage id&gt;
+        |      |            |            |--- info
+        |      |            |
+        |      |            |--- fdu
+        |      |            |    |--- &lt;fdu id&gt;
+        |      |            |            |--- instances
+        |      |            |                   |--- &lt;instance id&gt;
+        |      |            |                           |--- info
+        |      |
+        |      |--- network_managers
+        |      |      |--- &lt;plugin id&gt;
+        |      |            |--- networks
+        |      |            |     |--- &lt;network id&gt;
+        |      |            |            |--- info
+        |      |            |
+        |      |            |--- ports
+        |      |            |     |--- &lt;port id&gt;
+        |      |            |            |--- info
+        |      |            |
+        |      |            |--- routers
+        |      |            |      |--- &lt;router id&gt;
+        |      |            |             |--- info
+        |      |            |
+        |      |            |--- floating-ips
+        |      |            |     |--- &lt;floating ip id&gt;
+        |      |            |            |--- info
+        |      |            |
+        |      |            |--- exec
+        |      |            |     |--- functions ...
+</code></pre><p>The usage of this structure is implemented in the <code>YaksConnector</code> object implemented in the SDK for different languages.</p>
 
       
-      
-        <div class="fos-next">
-          <b>Next up</b>: <a href ="/docs/getting-started/hello-world/">Hello World!</a>
-        </div>
       
     </main>
   </div>

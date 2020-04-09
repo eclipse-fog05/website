@@ -3,6 +3,10 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://fog05.io/docs/getting-started/installation/</loc>
+  </url>
+  
+  <url>
     <loc>https://fog05.io/docs/overview/</loc>
   </url>
   
@@ -28,7 +32,7 @@
   </url>
   
   <url>
-    <loc>https://fog05.io/docs/internals/yaks/</loc>
+    <loc>https://fog05.io/docs/internals/zenoh/</loc>
   </url>
   
   <url>
