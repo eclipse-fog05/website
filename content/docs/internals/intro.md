@@ -12,6 +12,6 @@ unfamiliar with Eclipse fog05 should start with the [getting started][guide] gui
 
 [guide]: {{< ref "/docs/getting-started/hello-world.md" >}}
 
-- [Location Transparent state access and distribution][yaks] - How fog05 uses YAKS
+- [Location Transparent state access and distribution][zenoh] - How fog05 uses Zenoh
 
-[yaks]: {{< ref "/docs/internals/yaks.md" >}}
+[zenoh]: {{< ref "/docs/internals/zenoh.md" >}}

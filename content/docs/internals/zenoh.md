@@ -6,7 +6,7 @@ menu:
     parent: "internals"
 ---
 
-Eclipse fog05 uses YAKS to provide location-transparent access to the system state
+Eclipse fog05 uses Zenoh to provide location-transparent access to the system state
 and to distribute this state.
 
 # Distributed state
@@ -26,15 +26,15 @@ the state of each single *node*.
 We moved towards build all the piece of software in a state-less fashion and leveraging the *location-transparency* state
 access for storing and retrieving state information.
 
-All the state information in Eclipse fog05 are stored in [YAKS](http://yaks.is) a distributed Key-value store, that support location-transparency access,
+All the state information in Eclipse fog05 are stored in [YAKS](http://zenoh.io) a distributed Key-value store, that support location-transparency access,
 scalability, URI as Keys, it provides a *eventual consistency* model and mechanisms to trigger computations (and so build an RPC on top).
 
-It leverages on the [Zenoh](http://zenoh.io) protocol to provide its functionalities.
 
-# How Eclipse fog05 uses YAKS
 
-In Eclipse fog05 all the components are designed to be state-less, and to store all the information in YAKS.
-Information are organized following a tree structure in order to facilitate queries in YAKS.
+# How Eclipse fog05 uses Zenoh
+
+In Eclipse fog05 all the components are designed to be state-less, and to store all the information in Zenoh.
+Information are organized following a tree structure in order to facilitate queries in Zenoh.
 
 ## State separation
 
@@ -62,22 +62,22 @@ Each of those portion have different read and write permissions, described in th
 This separation allows to avoid write concurrency on the *Public Actual* state as only the *node* can write is own state, while on the *Public Desired* this is not an issue as the *node* will be able to order the requests. Each *node* owns only its state, the system state is built with the union of the *public* state of each *node* in the system.
 As a consequence there is no *central* nodes and each *node* can act as entry point for the system.
 
-This diagram shows how the *agent* and the *plugins* interact through YAKS.
+This diagram shows how the *agent* and the *plugins* interact through Zenoh.
 
 
-![YAKS Interaction](/img/stores.png)
+![Zenoh Interaction](/img/stores.png)
 
 
 The *agent* listen to all the portion of the state, while *plugins* only listen the *private* portion, this portion is mainly used for agent-plugin communication, while the *public* one is used for inter-node and user-agent communication, the *agent* converts requests coming in the *public desired* portion to requests to the right plugin in the *private desired* portion.
 
-As already described in the [architecture][arch] section, the YAKS server can be deployed in the same node of the *agent* or in a another one.
+As already described in the [architecture][arch] section, the Zenoh server can be deployed in the same node of the *agent* or in a another one.
 
 
 [arch]: {{< ref "/docs/going-deeper/architecture.md" >}}
 
 ## Tree structure
 
-We said that the state is organized as a tree structure, this helps in the separation of the state of each *node* and in the definition on the storage and URIs to be used in YAKS.
+We said that the state is organized as a tree structure, this helps in the separation of the state of each *node* and in the definition on the storage and URIs to be used in Zenoh.
 There are a total of four different trees, organized in two groups.
 
 - Public trees

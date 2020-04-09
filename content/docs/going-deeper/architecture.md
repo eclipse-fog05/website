@@ -27,7 +27,7 @@ the application deployed in it.
 It also provide a set of abstraction.
 
 The **FIM** is designed to be distributed, without any *controller* node. The system state is managed in a location-transparent manner
-using a distributed Key-value store, namely [YAKS](http://yaks.is), and leverages on [Zenoh](http://zenoh.io) for data distribution and sharing across the system.
+leveraging [Zenoh](http://zenoh.io) for data distribution and sharing across the system.
 
 ## Abstractions
 
@@ -143,7 +143,7 @@ It is difficult to provide a real interface to be implemented for the device plu
 ## Deployment
 
 All the component of Eclipse fog05 are designed to be deployed in a distributed manner, in order to address the system heterogeneity.
-In particular the minimal set to run a fog05 *node* is to have an *agent* and a set of *plugins* running on it, while in the case of micro-controllers the minimal set is composed by only the *device* plugin. Other components such as the YAKS server and Zenoh routers can be either deployed in a fog05 *node* or on different machines.
+In particular the minimal set to run a fog05 *node* is to have an *agent* and a set of *plugins* running on it, while in the case of micro-controllers the minimal set is composed by only the *device* plugin. Other components such as the Zenoh routers can be either deployed in a fog05 *node* or on different machines.
 
 This *composable* deployment allows to reduce the footprint and optimize the resource utilization of the infrastructure  software.
 
