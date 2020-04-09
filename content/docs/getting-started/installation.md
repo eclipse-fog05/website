@@ -152,7 +152,7 @@ To install the Linux Plugin we can simply run
 
 ```bash
 $ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.1.0/libzenoh-0.3.0-ubuntu-amd64.deb
-$ sudo apt install libzenoh-0.3.0-ubuntu-amd64.deb
+$ sudo apt install ./libzenoh-0.3.0-ubuntu-amd64.deb
 $ sudo pip3 install yaks==0.3.0 zenoh==0.3.0
 $ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.1.0/python3-fog05-sdk_0.1.0-1_all.deb
 sudo apt install ./python3-fog05-sdk_0.1.0-1_all.deb
