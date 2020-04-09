@@ -59,12 +59,16 @@ Eclipse fog05 is designed to be deployed from big servers to micro-controllers.
 
 ### Decentralized state
 
-Because Eclipse fog05 uses [YAKS](http://www.yaks.is/) for location-transparency state access and management.
+Because Eclipse fog05 uses [Zenoh](http://www.zenoh.io/) for location-transparency state access and management.
 It can be deployed on resource constrained devices and leverage other nodes for state management.
 
 ### Modular
 
 Eclipse fog05 is built with a plugin architecture and his components can be deployed separately.
+
+# Installation
+
+If you want to try Eclipse fog05 you can find installation instruction [here]({{< relref "installation.md" >}})
 
 # Example
 
