@@ -16,8 +16,8 @@ First, we need to install [containerd](https://containerd.io/) and the container
 
 
 ```bash
-$ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.2.0/fog05-plugin-fdu-containerd_0.2.0-1_amd64_ubuntu.bionic.deb
-$ sudo apt install ./fog05-plugin-fdu-containerd_0.2.0-1_amd64_ubuntu.bionic.deb
+$ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.2.0/fog05-plugin-fdu-containerd_0.2.0-1_amd64_ubuntu:bionic.deb
+$ sudo apt install ./fog05-plugin-fdu-containerd_0.2.0-1_amd64_ubuntu:bionic.deb
 ```
 
 Once it is installed let's start the fog05 services

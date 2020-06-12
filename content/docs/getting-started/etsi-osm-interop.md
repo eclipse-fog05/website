@@ -115,7 +115,7 @@ If you want your fog05 installation to be able to use VLANs for virtual networks
  ],
  "description": "linux Bridge network plugin",
  "configuration": {
-   "ylocator": "tcp/<your zenoh ip>:7447",
+   "ylocator": "tcp/<your yaks ip>:7887",
    "nodeid": "<your node id>",
    "dataplane_interface": "<interface for overlay networks>",
    "use_vlan": true,
