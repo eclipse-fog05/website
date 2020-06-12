@@ -138,10 +138,10 @@ For each release `.deb` files are generated for Ubuntu 18.04 LTS, and works also
 To install the `agent` we can simply run
 
 ```bash
-$ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.2.1/zenoh_0.3.0-1_amd64.deb
-sudo apt install ./zenoh_0.3.0-1_amd64.deb -y
-$ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.2.1/fog05_0.2.1-1_amd64.deb
-$ sudo apt install ./fog05_0.2.1-1_amd64.deb -y
+$ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.3.0/zenoh_0.3.0-1_amd64.deb
+sudo apt install ./zenoh_0.3.0-1_amd64.deb
+$ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.2.0/fog05_0.2.0-1_amd64_ubuntu:bionic.deb
+$ sudo apt install ./fog05_0.2.0-1_amd64_ubuntu-bionic.deb
 ```
 
 It will create the folder `/etc/fos` in which we can found the configuration file `agent.json` and the `agent`, and configures the systemd service `fos_agent` and the Zenoh systemd service `zenoh`
@@ -151,11 +151,12 @@ It will create the folder `/etc/fos` in which we can found the configuration fil
 To install the Linux Plugin we can simply run
 
 ```bash
-$ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.2.1/libzenoh-0.3.0-amd64.deb
-$ sudo apt install ./libzenoh-0.3.0-amd64.deb -y
-$ sudo pip3 install fog05-sdk==0.2.1
-$ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.2.1/fog05-plugin-os-linux_0.2.0-1_amd64.deb
-$ sudo apt install ./fog05-plugin-os-linux_0.2.0-1_amd64.deb
+$ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.2.0/llibzenoh-0.3.0-Linux.deb
+$ sudo apt install ./libzenoh-0.3.0-Linux.deb
+$ sudo pip3 install fog05-sdk==0.2.0
+sudo apt install ./python3-fog05-sdk_0.2.0-1_all.deb
+$ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.2.0/fog05-plugin-os-linux_0.2.0-1_amd64_ubuntu:bionic.deb
+$ sudo apt install ./fog05-plugin-os-linux_0.2.0-1_amd64_ubuntu:bionic.deb
 ```
 
 After the installation the directory `/etc/fos/plugins/plugin-os-linux` is created and the plugin configuration `/etc/fos/plugins/plugin-os-linux/linux_plugin.json` is populated with the `/etc/machine-id` as `nodeid` value. The systemd service `fos_linux` is created.
@@ -165,8 +166,8 @@ After the installation the directory `/etc/fos/plugins/plugin-os-linux` is creat
 To install the LinuxBridge Plugin we can simply run
 
 ```bash
-$ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.2.1/fog05-plugin-net-linuxbridge_0.2.1-1_amd64.deb
-$ sudo apt install ./fog05-plugin-net-linuxbridge_0.2.1-1_amd64.deb
+$ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.2.0/fog05-plugin-net-linuxbridge_0.2.0-1_amd64_ubuntu:bionic.deb
+$ sudo apt install ./fog05-plugin-net-linuxbridge_0.2.0-1_amd64_ubuntu:bionic.deb
 ```
 
 After the installation the directory `/etc/fos/plugins/plugin-net-linuxbridge` is created and the plugin configuration `/etc/fos/plugins/plugin-net-linuxbridge/linuxbridge_plugin.json` is populated with the `/etc/machine-id` as `nodeid` value. The systemd service `fos_linuxbridge` is created.
@@ -184,8 +185,8 @@ sudo snap install lxd
 Then we install the plugin
 
 ```bash
-$ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.2.1/fog05-plugin-fdu-lxd_0.2.1-1_amd64.deb
-$ sudo apt install ./fog05-plugin-fdu-lxd_0.2.1-1_amd64.deb
+$ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.2.0/fog05-plugin-fdu-lxd_0.2.0-1_amd64_ubuntu:bionic.deb
+$ sudo apt install ./fog05-plugin-fdu-lxd_0.2.0-1_amd64_ubuntu:bionic.deb
 ```
 
 After the installation the directory `/etc/fos/plugins/plugin-fdu-lxd` is created and the plugin configuration `/etc/fos/plugins/plugin-fdu-lxd/LXD_plugin.json` is populated with the `/etc/machine-id` as `nodeid` value. The systemd service `fos_lxd` is created.
