@@ -6,7 +6,7 @@ menu:
     parent: getting_started
 ---
 
-To kick off our tour of Eclipse fog05, we will start with the obligatory "hello world"
+To kick off our tour of Eclipse fog05 and to demonstrate use and access of the Fog Infrastructure Manager, we will start with the obligatory "hello world"
 example.
 This example will deploy a docker container that just prints "Hello World!"
 
