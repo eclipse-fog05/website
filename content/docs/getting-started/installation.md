@@ -74,15 +74,15 @@ To install the OS plugin, we need Python3 and a set of dependencies
 ```bash
 $ sudo apt install python3 python3-dev python3-pip cmake build-essential
 $ git clone https://github.com/atolab/zenoh-c -b 0.3.0 && cd zenoh && make && sudo make install && cd ..
-$ pip3 install yaks==0.3.0 zenoh==0.3.0 psutil netifaces pyangbind sphinx jinja2 packaging
-$ git clone https://github.com/eclipse-fog05/sdk-python cd sdk-python && make && sudo make install && cd ..
+$ pip3 install yaks==0.3.0.post1 zenoh==0.3.0 psutil netifaces pyangbind sphinx jinja2 packaging
+$ git clone https://github.com/eclipse-fog05/sdk-python -b 0.2.x cd sdk-python && make && sudo make install && cd ..
 
 ```
 
 Then we can clone and install the Linux Plugin
 
 ```bash
-$ git clone https://github.com/eclipse-fog05/plugin-os-linux
+$ git clone https://github.com/eclipse-fog05/plugin-os-linux -b 0.2.x
 $ cd plugin-os-linux
 $ sudo make install
 ```
@@ -97,7 +97,7 @@ To install the Network Manager plugin, we need the same dependencies as the Linu
 So we can clone and install the Network Manager Plugin
 
 ```bash
-$ git clone https://github.com/eclipse-fog05/plugin-net-linuxbridge
+$ git clone https://github.com/eclipse-fog05/plugin-net-linuxbridge -b 0.2.x
 $ cd plugin-os-linux
 $ sudo make install
 ```
@@ -121,7 +121,7 @@ Then we clone and install the plugin
 
 
 ```bash
-$ git clone https://github.com/eclipse-fog05/plugin-fdu-lxd
+$ git clone https://github.com/eclipse-fog05/plugin-fdu-lxd -b 0.2.x
 $ cd plugin-os-linux
 $ sudo make install
 ```
@@ -131,17 +131,17 @@ After the installation the directory `/etc/fos/plugins/plugin-fdu-lxd` is create
 
 ## From debian packages
 
-For each release `.deb` files are generated for latest Ubuntu LTS and Debian. Those files can be found in the [release page on GitHub](https://github.com/eclipse-fog05/fog05/releases/tag/v0.1.0), and are available for `x86_64` and `aarch64`.
+For each release `.deb` files are generated for latest Ubuntu LTS and Debian. Those files can be found in the [release page on GitHub](https://github.com/eclipse-fog05/fog05/releases/tag/v0.2.0), and are available for `x86_64` and `aarch64`.
 
 #### Agent
 
 To install the `agent` we can simply run
 
 ```bash
-$ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.1.0/zenoh_0.1.0-1_amd64-ubuntu.deb
-sudo apt install ./zenoh_0.1.0-1_amd64-ubuntu.deb
-$ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.1.0/fog05_0.1.0-1_amd64_ubuntu-bionic.deb
-$ sudo apt install ./fog05_0.1.0-1_amd64_ubuntu-bionic.deb
+$ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.3.0/zenoh_0.3.0-1_amd64.deb
+sudo apt install ./zenoh_0.3.0-1_amd64.deb
+$ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.2.0/fog05_0.2.0-1_amd64_ubuntu:bionic.deb
+$ sudo apt install ./fog05_0.2.0-1_amd64_ubuntu-bionic.deb
 ```
 
 It will create the folder `/etc/fos` in which we can found the configuration file `agent.json` and the `agent`, and configures the systemd service `fos_agent` and the Zenoh systemd service `zenoh`
@@ -151,13 +151,12 @@ It will create the folder `/etc/fos` in which we can found the configuration fil
 To install the Linux Plugin we can simply run
 
 ```bash
-$ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.1.0/libzenoh-0.3.0-ubuntu-amd64.deb
-$ sudo apt install ./libzenoh-0.3.0-ubuntu-amd64.deb
-$ sudo pip3 install yaks==0.3.0 zenoh==0.3.0
-$ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.1.0/python3-fog05-sdk_0.1.0-1_all.deb
-sudo apt install ./python3-fog05-sdk_0.1.0-1_all.deb
-$ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.1.0/fog05-plugin-os-linux_0.1.0-1_amd64_ubuntu_bionic.deb
-$ sudo apt install ./fog05-plugin-os-linux_0.1.0-1_amd64_ubuntu_bionic.deb
+$ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.2.0/llibzenoh-0.3.0-Linux.deb
+$ sudo apt install ./libzenoh-0.3.0-Linux.deb
+$ sudo pip3 install fog05-sdk==0.2.0
+sudo apt install ./python3-fog05-sdk_0.2.0-1_all.deb
+$ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.2.0/fog05-plugin-os-linux_0.2.0-1_amd64_ubuntu:bionic.deb
+$ sudo apt install ./fog05-plugin-os-linux_0.2.0-1_amd64_ubuntu:bionic.deb
 ```
 
 After the installation the directory `/etc/fos/plugins/plugin-os-linux` is created and the plugin configuration `/etc/fos/plugins/plugin-os-linux/linux_plugin.json` is populated with the `/etc/machine-id` as `nodeid` value. The systemd service `fos_linux` is created.
@@ -167,8 +166,8 @@ After the installation the directory `/etc/fos/plugins/plugin-os-linux` is creat
 To install the LinuxBridge Plugin we can simply run
 
 ```bash
-$ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.1.0/fog05-plugin-net-linuxbridge_0.1.0-1_amd64_ubuntu_bionic.deb
-$ sudo apt install ./fog05-plugin-net-linuxbridge_0.1.0-1_amd64_ubuntu_bionic.deb
+$ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.2.0/fog05-plugin-net-linuxbridge_0.2.0-1_amd64_ubuntu:bionic.deb
+$ sudo apt install ./fog05-plugin-net-linuxbridge_0.2.0-1_amd64_ubuntu:bionic.deb
 ```
 
 After the installation the directory `/etc/fos/plugins/plugin-net-linuxbridge` is created and the plugin configuration `/etc/fos/plugins/plugin-net-linuxbridge/linuxbridge_plugin.json` is populated with the `/etc/machine-id` as `nodeid` value. The systemd service `fos_linuxbridge` is created.
@@ -186,8 +185,8 @@ sudo snap install lxd
 Then we install the plugin
 
 ```bash
-$ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.1.0/fog05-plugin-fdu-lxd_0.1.0-1_amd64_ubuntu-bionic.deb
-$ sudo apt install ./fog05-plugin-fdu-lxd_0.1.0-1_amd64_ubuntu-bionic.deb
+$ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.2.0/fog05-plugin-fdu-lxd_0.2.0-1_amd64_ubuntu:bionic.deb
+$ sudo apt install ./fog05-plugin-fdu-lxd_0.2.0-1_amd64_ubuntu:bionic.deb
 ```
 
 After the installation the directory `/etc/fos/plugins/plugin-fdu-lxd` is created and the plugin configuration `/etc/fos/plugins/plugin-fdu-lxd/LXD_plugin.json` is populated with the `/etc/machine-id` as `nodeid` value. The systemd service `fos_lxd` is created.

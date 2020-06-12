@@ -8,55 +8,58 @@ menu:
 
 To kick off our tour of Eclipse fog05, we will start with the obligatory "hello world"
 example.
-This example will deploy a native component written in python that create a file and write "hello, world!" to the file.
+This example will deploy a docker container that just prints "Hello World!"
 
 Let's get started.
 
-First, we write the python code.
+First, we need to install [containerd](https://containerd.io/) as container engine.
+Then we can install the Eclipse fog05 containerd plugin.
 
-```python
-
-import time
-
-with open('/tmp/fos_helloworld', 'a') as out:
-    while True:
-        out.write('Hello, world! It is {}\n'.format(time.time_ns()))
-        time.sleep(2)
-
+```bash
+$ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.2.0/fog05-plugin-fdu-containerd_0.2.0-1_amd64_ubuntu:bionic.deb
+$ sudo apt install ./fog05-plugin-fdu-containerd_0.2.0-1_amd64_ubuntu:bionic.deb
 ```
 
-Let's save it as `/tmp/fos_helloworld.py`
+Once it is installed let's start the fog05 services
 
-Next, we need to write the descriptor for this native component.
+```bash
+$ sudo systemctl start zenoh
+$ sudo systemctl start fos_agent
+$ sudo systemctl start fos_linux
+$ sudo systemctl start fos_linuxbridge
+$ sudo systemctl start fos_ctd
+```
+
+
+Next we need to write the descriptor for this container.
 Let's call it `fdu_helloworld.json`:
 
 ```json
 {
-    "id": "helloword_fdu",
-    "name": "helloworld",
+    "id": "hello-world-docker",
+    "name": "hello-world",
     "computation_requirements": {
         "cpu_arch": "x86_64",
         "cpu_min_freq": 0,
         "cpu_min_count": 1,
         "ram_size_mb": 64.0,
-        "storage_size_gb": 1.0
+        "storage_size_gb": 0.1
     },
-    "command": {
-        "binary": "python3",
-        "args": ["/tmp/fos_helloworld.py"]
+    "image": {
+        "uri": "docker.io/gabrik91/loop:latest",
+        "checksum": "",
+        "format": ""
     },
-    "hypervisor": "BARE",
-    "migration_kind": "COLD",
     "storage": [],
-    "depends_on": [],
+    "hypervisor": "DOCKER",
+    "migration_kind": "COLD",
     "interfaces": [],
     "io_ports": [],
-    "connection_points": []
+    "connection_points": [],
+    "depends_on": []
 }
 ```
 
-Now if we suppose to have an Eclipse fog05 node in our localhost, we can
-use the Eclipse fog05 Python API to register and deploy this component.
 
 Let's imagine that our descriptor was saved in our `$HOME` directory,
 we can use this simple python script to deploy the "hello world" example
@@ -71,7 +74,7 @@ def read_file(filepath):
         data = f.read()
     return data
 
-n = '<our node id>'
+
 api = FIMAPI()
 desc = json.loads(read_file('$HOME/fdu_helloworld.json'))
 
@@ -79,8 +82,17 @@ fdu_descriptor = FDU(desc)
 fduD = api.fdu.onboard(fdu_descriptor)
 print ('fdu_id : {}'.format(fduD.get_uuid()))
 time.sleep(2)
-inst_info = api.fdu.instantiate(fdu_id, n)
-print ('Instance ID : {}'.format(inst_info.get_uuid()))
+inst_info = api.fdu.define(fdu_id)
+
+api.fdu.configure(inst_info.get_uuid())
+api.fdu.start(inst_info.get_uuid(), "MYENV=Hello World!")
+print ('Instance ID : {}'.format())
+
+time.sleep(1)
+log = api.fdu.log(inst_info.get_uuid())
+print ('FDU Output:\n{}\n'.format(log))
+
+
 
 input('Press enter to terminate')
 
@@ -96,19 +108,18 @@ We can save this file as `fos_deploy.py` and run it using `python3`
 $ python3 fos_deploy.py
 fdu_id: 6f52866c-0e69-4075-9ee1-b24c3b8a0969
 Instance ID: 4ac683a6-7fee-4481-af2b-c7ca6c5bdf9c
+FDU Output:
+Hello World!
+Hello World!
+Hello World!
+Hello World!
+Hello World!
+Hello World!
+
+
 Press enter to terminate
 ...
 $
 ```
 
-Before the termination you can run `cat /tmp/fos_helloworld` and you shold get something similar to
 
-```bash
-$ cat /tmp/fos_helloworld
-Hello, world! It is 1571134486584032000
-Hello, world! It is 1571134488586158000
-Hello, world! It is 1571134490586510000
-Hello, world! It is 1571134492586757000
-Hello, world! It is 1571134494589501000
-Hello, world! It is 1571134496589933000
-```
