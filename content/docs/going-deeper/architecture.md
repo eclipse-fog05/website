@@ -23,6 +23,10 @@ This module **virtualises** the **hardware** infrastructure, such as
 
 It provides key primitives for the management of the **infrastructure** and
 the application deployed in it.
+An example on how to interact with the **FIM** can be found in [getting started][guide] guide.
+
+
+[guide]: {{< ref "/docs/getting-started/hello-world.md" >}}
 
 It also provide a set of abstraction.
 
