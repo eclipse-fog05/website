@@ -26,7 +26,7 @@ the state of each single *node*.
 We moved towards build all the piece of software in a state-less fashion and leveraging the *location-transparency* state
 access for storing and retrieving state information.
 
-All the state information in Eclipse fog05 are stored in [YAKS](http://zenoh.io) a distributed Key-value store, that support location-transparency access,
+All the state information in Eclipse fog05 are stored in [Zenoh](http://zenoh.io) a distributed Key-value store, that support location-transparency access,
 scalability, URI as Keys, it provides a *eventual consistency* model and mechanisms to trigger computations (and so build an RPC on top).
 
 
