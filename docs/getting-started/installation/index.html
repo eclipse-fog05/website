@@ -54,7 +54,7 @@
           <li class="nav-item">
             
             
-            <a class="nav-link " href="https://fog05.io/blog/2018-03-intro-0-1/">Blog</a>
+            <a class="nav-link " href="https://fog05.io/blog/2020-06-release-0-2/">Blog</a>
           </li>
         </ul>
       </div>
@@ -113,6 +113,8 @@
                   <li><a href="https://fog05.io/docs/getting-started/installation/" class="active">Installation</a></li>
                 
                   <li><a href="https://fog05.io/docs/getting-started/hello-world/" class="">Hello World!</a></li>
+                
+                  <li><a href="https://fog05.io/docs/getting-started/etsi-osm-interop/" class="">Eclipse fog05 with ETSI OSM Orchestrator</a></li>
                 
                 </ul>
               </div>
@@ -215,18 +217,18 @@ $ sudo make install
 <p>To install the OS plugin, we need Python3 and a set of dependencies</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ sudo apt install python3 python3-dev python3-pip cmake build-essential
 $ git clone https://github.com/atolab/zenoh-c -b 0.3.0 <span style="color:#f92672">&amp;&amp;</span> cd zenoh <span style="color:#f92672">&amp;&amp;</span> make <span style="color:#f92672">&amp;&amp;</span> sudo make install <span style="color:#f92672">&amp;&amp;</span> cd ..
-$ pip3 install yaks<span style="color:#f92672">=</span><span style="color:#f92672">=</span>0.3.0 zenoh<span style="color:#f92672">=</span><span style="color:#f92672">=</span>0.3.0 psutil netifaces pyangbind sphinx jinja2 packaging
-$ git clone https://github.com/eclipse-fog05/sdk-python cd sdk-python <span style="color:#f92672">&amp;&amp;</span> make <span style="color:#f92672">&amp;&amp;</span> sudo make install <span style="color:#f92672">&amp;&amp;</span> cd ..
+$ pip3 install yaks<span style="color:#f92672">=</span><span style="color:#f92672">=</span>0.3.0.post1 zenoh<span style="color:#f92672">=</span><span style="color:#f92672">=</span>0.3.0 psutil netifaces pyangbind sphinx jinja2 packaging
+$ git clone https://github.com/eclipse-fog05/sdk-python -b 0.2.x cd sdk-python <span style="color:#f92672">&amp;&amp;</span> make <span style="color:#f92672">&amp;&amp;</span> sudo make install <span style="color:#f92672">&amp;&amp;</span> cd ..
 
 </code></pre></div><p>Then we can clone and install the Linux Plugin</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git clone https://github.com/eclipse-fog05/plugin-os-linux
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git clone https://github.com/eclipse-fog05/plugin-os-linux -b 0.2.x
 $ cd plugin-os-linux
 $ sudo make install
 </code></pre></div><p>After the installation the directory <code>/etc/fos/plugins/plugin-os-linux</code> is created and the plugin configuration <code>/etc/fos/plugins/plugin-os-linux/linux_plugin.json</code> is populated with the <code>/etc/machine-id</code> as <code>nodeid</code> value. The systemd service <code>fos_linux</code> is created.</p>
 <h4 id="linux-bridge-plugin">Linux Bridge Plugin</h4>
 <p>To install the Network Manager plugin, we need the same dependencies as the Linux one</p>
 <p>So we can clone and install the Network Manager Plugin</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git clone https://github.com/eclipse-fog05/plugin-net-linuxbridge
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git clone https://github.com/eclipse-fog05/plugin-net-linuxbridge -b 0.2.x
 $ cd plugin-os-linux
 $ sudo make install
 </code></pre></div><p>After the installation the directory <code>/etc/fos/plugins/plugin-net-linuxbridge</code> is created and the plugin configuration <code>/etc/fos/plugins/plugin-net-linuxbridge/linuxbridge_plugin.json</code> is populated with the <code>/etc/machine-id</code> as <code>nodeid</code> value. The systemd service <code>fos_linuxbridge</code> is created.</p>
@@ -236,41 +238,39 @@ $ sudo make install
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo pip3 install pylxd
 sudo snap install lxd
 </code></pre></div><p>Then we clone and install the plugin</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git clone https://github.com/eclipse-fog05/plugin-fdu-lxd
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git clone https://github.com/eclipse-fog05/plugin-fdu-lxd -b 0.2.x
 $ cd plugin-os-linux
 $ sudo make install
 </code></pre></div><p>After the installation the directory <code>/etc/fos/plugins/plugin-fdu-lxd</code> is created and the plugin configuration <code>/etc/fos/plugins/plugin-fdu-lxd/LXD_plugin.json</code> is populated with the <code>/etc/machine-id</code> as <code>nodeid</code> value. The systemd service <code>fos_lxd</code> is created.</p>
 <h2 id="from-debian-packages">From debian packages</h2>
-<p>For each release <code>.deb</code> files are generated for latest Ubuntu LTS and Debian. Those files can be found in the <a href="https://github.com/eclipse-fog05/fog05/releases/tag/v0.1.0">release page on GitHub</a>, and are available for <code>x86_64</code> and <code>aarch64</code>.</p>
+<p>For each release <code>.deb</code> files are generated for latest Ubuntu LTS and Debian. Those files can be found in the <a href="https://github.com/eclipse-fog05/fog05/releases/tag/v0.2.0">release page on GitHub</a>, and are available for <code>x86_64</code> and <code>aarch64</code>.</p>
 <h4 id="agent-1">Agent</h4>
 <p>To install the <code>agent</code> we can simply run</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.1.0/zenoh_0.1.0-1_amd64-ubuntu.deb
-sudo apt install ./zenoh_0.1.0-1_amd64-ubuntu.deb
-$ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.1.0/fog05_0.1.0-1_amd64_ubuntu-bionic.deb
-$ sudo apt install ./fog05_0.1.0-1_amd64_ubuntu-bionic.deb
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.2.0/zenoh_0.3.0-1_amd64.deb
+sudo apt install ./zenoh_0.3.0-1_amd64.deb
+$ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.2.0/fog05_0.2.0-1_amd64_ubuntu.bionic.deb
+$ sudo apt install ./fog05_0.2.0-1_amd64_ubuntu.bionic.deb
 </code></pre></div><p>It will create the folder <code>/etc/fos</code> in which we can found the configuration file <code>agent.json</code> and the <code>agent</code>, and configures the systemd service <code>fos_agent</code> and the Zenoh systemd service <code>zenoh</code></p>
 <h4 id="linux-plugin-1">Linux Plugin</h4>
 <p>To install the Linux Plugin we can simply run</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.1.0/libzenoh-0.3.0-ubuntu-amd64.deb
-$ sudo apt install ./libzenoh-0.3.0-ubuntu-amd64.deb
-$ sudo pip3 install yaks<span style="color:#f92672">=</span><span style="color:#f92672">=</span>0.3.0 zenoh<span style="color:#f92672">=</span><span style="color:#f92672">=</span>0.3.0
-$ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.1.0/python3-fog05-sdk_0.1.0-1_all.deb
-sudo apt install ./python3-fog05-sdk_0.1.0-1_all.deb
-$ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.1.0/fog05-plugin-os-linux_0.1.0-1_amd64_ubuntu_bionic.deb
-$ sudo apt install ./fog05-plugin-os-linux_0.1.0-1_amd64_ubuntu_bionic.deb
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.2.0/libzenoh-0.3.0-Linux.deb
+$ sudo apt install ./libzenoh-0.3.0-Linux.deb
+$ sudo pip3 install fog05-sdk<span style="color:#f92672">=</span><span style="color:#f92672">=</span>0.2.0
+$ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.2.0/fog05-plugin-os-linux_0.2.0-1_amd64_ubuntu.bionic.deb
+$ sudo apt install ./fog05-plugin-os-linux_0.2.0-1_amd64_ubuntu.bionic.deb
 </code></pre></div><p>After the installation the directory <code>/etc/fos/plugins/plugin-os-linux</code> is created and the plugin configuration <code>/etc/fos/plugins/plugin-os-linux/linux_plugin.json</code> is populated with the <code>/etc/machine-id</code> as <code>nodeid</code> value. The systemd service <code>fos_linux</code> is created.</p>
 <h4 id="linux-bridge-plugin-1">Linux Bridge Plugin</h4>
 <p>To install the LinuxBridge Plugin we can simply run</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.1.0/fog05-plugin-net-linuxbridge_0.1.0-1_amd64_ubuntu_bionic.deb
-$ sudo apt install ./fog05-plugin-net-linuxbridge_0.1.0-1_amd64_ubuntu_bionic.deb
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.2.0/fog05-plugin-net-linuxbridge_0.2.0-1_amd64_ubuntu.bionic.deb
+$ sudo apt install ./fog05-plugin-net-linuxbridge_0.2.0-1_amd64_ubuntu.bionic.deb
 </code></pre></div><p>After the installation the directory <code>/etc/fos/plugins/plugin-net-linuxbridge</code> is created and the plugin configuration <code>/etc/fos/plugins/plugin-net-linuxbridge/linuxbridge_plugin.json</code> is populated with the <code>/etc/machine-id</code> as <code>nodeid</code> value. The systemd service <code>fos_linuxbridge</code> is created.</p>
 <h4 id="fdus-plugin-1">FDUs plugin</h4>
 <p>For this guide we show how to install the LXD plugin, the steps are similar for the others plugins.</p>
 <p>We install the dependencies</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo snap install lxd
 </code></pre></div><p>Then we install the plugin</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.1.0/fog05-plugin-fdu-lxd_0.1.0-1_amd64_ubuntu-bionic.deb
-$ sudo apt install ./fog05-plugin-fdu-lxd_0.1.0-1_amd64_ubuntu-bionic.deb
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.2.0/fog05-plugin-fdu-lxd_0.2.0-1_amd64_ubuntu.bionic.deb
+$ sudo apt install ./fog05-plugin-fdu-lxd_0.2.0-1_amd64_ubuntu.bionic.deb
 </code></pre></div><p>After the installation the directory <code>/etc/fos/plugins/plugin-fdu-lxd</code> is created and the plugin configuration <code>/etc/fos/plugins/plugin-fdu-lxd/LXD_plugin.json</code> is populated with the <code>/etc/machine-id</code> as <code>nodeid</code> value. The systemd service <code>fos_lxd</code> is created.</p>
 <h2 id="start-eclipse-fog05">Start Eclipse fog05</h2>
 <p>Eclipse fog05 components can be started and stopped using systemd.</p>

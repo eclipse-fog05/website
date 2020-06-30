@@ -39,11 +39,22 @@ More specifically, Eclipse fog05 is a Fog Infrastructure-as-a-Service solution c
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://fog05.io/docs/getting-started/hello-world/</guid>
-      <description>To kick off our tour of Eclipse fog05, we will start with the obligatory &amp;ldquo;hello world&amp;rdquo; example. This example will deploy a native component written in python that create a file and write &amp;ldquo;hello, world!&amp;rdquo; to the file.
+      <description>To kick off our tour of Eclipse fog05 and to demonstrate use and access of the Fog Infrastructure Manager, we will start with the obligatory &amp;ldquo;hello world&amp;rdquo; example. This example will deploy a docker container that just prints &amp;ldquo;Hello World!&amp;rdquo;
 Let&#39;s get started.
-First, we write the python code.
-import time with open(&amp;#39;/tmp/fos_helloworld&amp;#39;, &amp;#39;a&amp;#39;) as out: while True: out.write(&amp;#39;Hello, world! It is {}\n&amp;#39;.format(time.time_ns())) time.sleep(2) Let&#39;s save it as /tmp/fos_helloworld.py
-Next, we need to write the descriptor for this native component.</description>
+First, we need to install containerd as container engine. Then we can install the Eclipse fog05 containerd plugin.
+$ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.2.0/fog05-plugin-fdu-containerd_0.2.0-1_amd64_ubuntu.bionic.deb $ sudo apt install ./fog05-plugin-fdu-containerd_0.2.0-1_amd64_ubuntu.bionic.deb Once it is installed let&#39;s start the fog05 services</description>
+    </item>
+    
+    <item>
+      <title>Eclipse fog05 with ETSI OSM Orchestrator</title>
+      <link>https://fog05.io/docs/getting-started/etsi-osm-interop/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://fog05.io/docs/getting-started/etsi-osm-interop/</guid>
+      <description>Eclipse fog05 is compatible with ETSI OSM, and can be used as a VIM by this one. Current interoperability is limited to simple NS using LXD containers as VNFs.
+Let&#39;s suppose we have a multi node fog05 deployment and we want to connect this deployment to OSM to instantiate VNFs.
+First let&#39;s add the VIM account to OSM
+osm vim-create --name fos --auth_url &amp;lt;zenoh server ip&amp;gt;:7447 --account_type fos --tenant osm --user dummy --password dummy --config &amp;#39;{hypervisor: LXD}&amp;#39; Following paramater can be added</description>
     </item>
     
     <item>
@@ -55,9 +66,7 @@ Next, we need to write the descriptor for this native component.</description>
       <description>Eclipse fog05 is divided in two modules:
  Fog Orchestration Engine (FOrcE) Fog Infrastructure Manager (FIM)  Both modules provides different abstractions an APIs.
  Fog Infrastrucutre Manager This module virtualises the hardware infrastructure, such as computational, communication, storage and I/O resources.
-It provides key primitives for the management of the infrastructure and the application deployed in it.
-It also provide a set of abstraction.
-The FIM is designed to be distributed, without any controller node.</description>
+It provides key primitives for the management of the infrastructure and the application deployed in it. An example on how to interact with the FIM can be found in getting started guide.</description>
     </item>
     
     <item>

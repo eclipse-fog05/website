@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-	<meta name="generator" content="Hugo 0.62.2" />
     
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -28,7 +27,7 @@
 
     <title>
       
-        Eclipse fog05 - The End-to-End Compute, Storage and Networking Virtualisation solution.
+        Eclipse fog05 - 0.2 Release · Eclipse fog05
       
     </title>
   </head>
@@ -40,7 +39,7 @@
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link  active " href="https://fog05.io/">Home</a>
+            <a class="nav-link " href="https://fog05.io/">Home</a>
           </li>
           <li class="nav-item">
             
@@ -55,7 +54,7 @@
           <li class="nav-item">
             
             
-            <a class="nav-link " href="https://fog05.io/blog/2020-06-release-0-2/">Blog</a>
+            <a class="nav-link  active " href="https://fog05.io/blog/2020-06-release-0-2/">Blog</a>
           </li>
         </ul>
       </div>
@@ -75,114 +74,87 @@
     </header>
 
 
-<main class="fos-masthead">
-  <div class="container">
-    <div class="row align-items-center">
-      <div class="col-5 mx-auto col-md-5 order-md-2 container-fluid">
-        <img class="img-fluid mb-3 mb-md-0 fos-logo" src="https://fog05.io/img/logo_vert_no_tag.png" alt="Eclipse fog05 logo">
+
+<div class="container-fluid fos-blog">
+  <div class="row flex-xl-nowrap">
+    <div class="col-12 col-md-3 col-xl-2 fos-sidebar">
+      
+      <div class="fos-docs-toggle d-md-none p-0 d-flex ml-3 collapsed align-item-center">
+        <h1 class="fos-title">Eclipse fog05 - 0.2 Release</h1>
+        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#fos-docs-nav" aria-controls="fos-docs-nav" aria-expanded="false" aria-label="Toggle docs navigation">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="30" height="30" focusable="false"><title>Menu</title><path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" d="M4 7h22M4 15h22M4 23h22"></path></svg>
+        </button>
       </div>
-      <div class="col-md-7 order-md-1 text-center text-md-left pr-md-5">
-        <h1 class="mb-3 fos-text-big">Eclipse fog05</h1>
-        <p class="lead">
-          The End-to-End Compute, Storage and Networking Virtualisation solution.
-        </p>
-        <p class="lead mb-4">
-          Eclipse fog05 is an open source project that aims at providing a decentralised infrastructure for provisioning and managing compute, storage, communication and I/O resources available anywhere across the network.
-          Eclipse fog05 addresses highly heterogeneous systems even those with extremely resource-constrained nodes.
-        </p>
-        <div class="d-flex flex-column flex-md-row lead mb-3">
-          <a href="https://fog05.io/docs/overview/" class="btn btn-lg btn-fos-primary mb-3 mb-md-0 mr-md-3">Get started</a>
-        </div>
-      </div>
+      <nav class="fos-links collapse" id="fos-docs-nav">
+          <div class="fos-toc-item active">
+            <p class="fos-toc-link">
+              Blog Posts
+            </p>
+            <ul class="nav fos-sidenav">
+              
+              
+                  <li><a href="https://fog05.io/blog/2020-06-release-0-2/" class="active">Eclipse fog05 - 0.2 Release</a></li>
+              
+                  <li><a href="https://fog05.io/blog/2020-04-release-0-1/" class="">Eclipse fog05 - 0.1 Release</a></li>
+              
+                  <li><a href="https://fog05.io/blog/2018-03-intro-0-1/" class="">Introducing Eclipse fog05</a></li>
+              
+            </ul>
+          </div>
+      </nav>
     </div>
-  </div>
-</main>
+    <div class="d-none d-xl-block col-xl-2 fos-toc">
+      <div class="section-nav">
+        <nav id="TableOfContents"></nav>
+      </div>
 
-<div class="masthead-followup row m-0 border border-white">
-  <div class="col-12 col-md-4 p-3 p-md-5 bg-light border border-white">
-    <h3>
-      <i class="fa fa-cloud" aria-hidden="true"></i>
-      Unified abstractions
-    </h3>
+    </div>
+    <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 fos-content fos-docs">
+      <h1 class="fos-title">Eclipse fog05 - 0.2 Release</h1>
+      <p class="fos-date">15 June 2020</p>
+      
+      <p>We are glad to announce that Eclipse fog05 got it's 0.2.0 release.</p>
+<p>This is the last release with an OCaml code-base and starting from the next development iteration there will be a migration to <a href="https://www.rust-lang.org/">rust</a></p>
+<p>Release 0.2.0 includes bugfixes but also new features and support for <a href="https://index.ros.org/doc/ros2/">ROS2</a> Robotic Applications.</p>
+<p>In details:</p>
+<ul>
+<li>Improved OCI container support</li>
+<li>ROS2 FDUs management</li>
+<li>Isolation support for Native and ROS2 FDUs</li>
+<li>Decentralized Scheduler for FDUs</li>
+<li>New FDU API for more in-deep interaction with the FDUs</li>
+<li>Improved interoperability with <a href="https://osm.etsi.org/">ETSI OSM</a></li>
+</ul>
+<p>More information and .deb packages can be found <a href="https://github.com/eclipse-fog05/fog05/releases/tag/v0.2.0">here</a></p>
+<p>The components included in the release are:</p>
+<ul>
+<li><a href="https://github.com/eclipse-fog05/agent">Agent</a></li>
+<li><a href="https://github.com/eclipse-fog05/sdk-ocaml">OCaml SDK</a></li>
+<li><a href="https://github.com/eclipse-fog05/api-ocaml">OCaml API</a></li>
+<li><a href="https://github.com/eclipse-fog05/sdk-go">go SDK</a></li>
+<li><a href="https://github.com/eclipse-fog05/api-go">go API</a></li>
+<li><a href="https://github.com/eclipse-fog05/sdk-python">Python3 SDK</a></li>
+<li><a href="https://github.com/eclipse-fog05/api-python">Python3 API</a></li>
+<li><a href="https://github.com/eclipse-fog05/plugin-os-linux">Linux Plugin</a></li>
+<li><a href="https://github.com/eclipse-fog05/plugin-net-linuxbridge">LinuxBridge Plugin</a></li>
+<li><a href="https://github.com/eclipse-fog05/plugin-fdu-native">Native FDU Plugin</a></li>
+<li><a href="https://github.com/eclipse-fog05/plugin-fdu-kvm">KVM FDU Plugin</a></li>
+<li><a href="https://github.com/eclipse-fog05/plugin-fdu-lxd">LXD FDU Plugin</a></li>
+<li><a href="https://github.com/eclipse-fog05/plugin-fdu-containerd">OCI FDU Plugin</a></li>
+<li><a href="https://github.com/eclipse-fog05/plugin-fdu-ros2">ROS2 FDU Plugin</a></li>
+</ul>
+<p>Further information can be found on the <a href="https://gitter.im/atolab/fog05">Gitter</a> and on <a href="https://github.com/eclipse-fog05/fog05">GitHub</a></p>
 
-    <p>
-      Common API and information model for management.
-      Eclipse fog05 provides an unified API for the management of the virtualisation infrastructure.
-    </p>
+      
 
-
-    <p>
-      <b>Operating System Plugins</b><br>
-      Eclipse fog05 can run on different operating systems, it just need the
-      right OS Plugin.
-    </p>
-
-
-    <p>
-        <b>Networking Plugins</b><br>
-        Eclipse fog05 can manage networking fabrics for which a Netwoking plugin is
-        present.
-      </p>
-
-
-    <hr class="half-rule">
-    <a class="btn btn-outline-primary" href="https://fog05.io/docs/overview/#unified-abstractions">Learn more</a>
-  </div>
-
-  
-  <div class="col-12 col-md-4 p-3 p-md-5 bg-light border border-white">
-    <h3>
-      <i class="fa fa-cogs" aria-hidden="true"></i>
-      Heterogenous applications
-    </h3>
-
-    <p>
-      Support of heterogenous runtimes, hypervisors and networking.
-      Deploy heterogenous applications composed by VMs, containers, ROS2, native applications.
-    </p>
-
-    <p>
-        <b>Runtime Plugins</b><br>
-        Eclipse fog05 can manage and open-ended set of hypervisors and container
-        technologies for which a Runtime Plugin was implemented.
-      </p>
-
-      <p>
-          <b>Single Descriptor</b><br>
-          Eclipse fog05 allows you to define your application in a single descriptor.
-          No matters if it is composed by heterogeneous components.
-        </p>
-
-    <hr class="half-rule">
-    <a class="btn btn-outline-primary" href="https://fog05.io/docs/overview/#heterogenous-applications">Learn more</a>
-  </div>
-
-  <div class="col-12 col-md-4 p-3 p-md-5 bg-light border border-white">
-    <h3>
-      <i class="fa fa-dashboard" aria-hidden="true"></i>
-      Lightweight
-    </h3>
-
-    <p>
-      Eclipse fog05 is designed to be deployed from big servers to micro-controllers.
-    </p>
-
-    <p>
-      <b>Decentralised state</b><br>
-      Because Eclipse fog05 uses <a href="https://zenoh.io">Eclipse Zenoh</a> for location-transparency state access and management.
-      It can be deployed on resource constrained devices and leverage other nodes for state management.
-    <p>
-
-    <p>
-      <b>Modular</b><br>
-      Eclipse fog05 is built with a plugin architecture and his components can be deployed separately.
-    </p>
-
-    <hr class="half-rule">
-    <a class="btn btn-outline-primary" href="https://fog05.io/docs/overview/#lightweight">Learn more</a>
+      
+        <div class="fos-next">
+          <b>Next up</b>: <a href ="/docs/overview/">What is Eclipse fog05?</a>
+        </div>
+      
+    </main>
   </div>
 </div>
-
 
 
     <footer class="fos-footer text-muted">

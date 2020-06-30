@@ -11,12 +11,26 @@
   </url>
   
   <url>
+    <loc>https://fog05.io/blog/2020-06-release-0-2/</loc>
+    <lastmod>2020-06-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fog05.io/blog/2020-04-release-0-1/</loc>
+    <lastmod>2020-04-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://fog05.io/blog/2018-03-intro-0-1/</loc>
     <lastmod>2018-03-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://fog05.io/docs/getting-started/hello-world/</loc>
+  </url>
+  
+  <url>
+    <loc>https://fog05.io/docs/getting-started/etsi-osm-interop/</loc>
   </url>
   
   <url>
@@ -37,12 +51,12 @@
   
   <url>
     <loc>https://fog05.io/blog/</loc>
-    <lastmod>2018-03-16T00:00:00+00:00</lastmod>
+    <lastmod>2020-06-15T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://fog05.io/</loc>
-    <lastmod>2018-03-16T00:00:00+00:00</lastmod>
+    <lastmod>2020-06-15T00:00:00+00:00</lastmod>
   </url>
   
   <url>
