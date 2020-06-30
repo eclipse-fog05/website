@@ -6,10 +6,34 @@
     <description>Recent content in Blogs on Eclipse fog05 - The End-to-End Compute, Storage and Networking Virtualisation solution.</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 16 Mar 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 15 Jun 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://fog05.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Eclipse fog05 - 0.2 Release</title>
+      <link>https://fog05.io/blog/2020-06-release-0-2/</link>
+      <pubDate>Mon, 15 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://fog05.io/blog/2020-06-release-0-2/</guid>
+      <description>We are glad to announce that Eclipse fog05 got it&#39;s 0.2.0 release.
+This is the last release with an OCaml code-base and starting from the next development iteration there will be a migration to rust
+Release 0.2.0 includes bugfixes but also new features and support for ROS2 Robotic Applications.
+In details:
+ Improved OCI container support ROS2 FDUs management Isolation support for Native and ROS2 FDUs Decentralized Scheduler for FDUs New FDU API for more in-deep interaction with the FDUs Improved interoperability with ETSI OSM  More information and .</description>
+    </item>
+    
+    <item>
+      <title>Eclipse fog05 - 0.1 Release</title>
+      <link>https://fog05.io/blog/2020-04-release-0-1/</link>
+      <pubDate>Mon, 06 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://fog05.io/blog/2020-04-release-0-1/</guid>
+      <description>We are glad to announce that Eclipse fog05 got it&#39;s first release.
+It includes:
+ Decentralised design Pluggable design Runtime discovery of new nodes in the system Support for KVM Virtual Machines Support for binaries Support for LXD containers Experimental support for docker containers. Network virtualisation (virtual overlay LANs, routers and assignment of WiFi interfaces) leveraging Linux Bridge and ip2 toolchain Linux support APIs and SDK in OCaml, Python3, go.  More information and .</description>
+    </item>
     
     <item>
       <title>Introducing Eclipse fog05</title>

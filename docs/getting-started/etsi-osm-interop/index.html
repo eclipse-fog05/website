@@ -27,7 +27,7 @@
 
     <title>
       
-        Write a Runtime Plugin · Eclipse fog05
+        Eclipse fog05 with ETSI OSM Orchestrator · Eclipse fog05
       
     </title>
   </head>
@@ -104,7 +104,7 @@
           
             
               
-              <div class="fos-toc-item ">
+              <div class="fos-toc-item active">
                 <a class="fos-toc-link" href="https://fog05.io/docs/getting-started/installation/">
                   Getting started
                 </a>
@@ -114,7 +114,7 @@
                 
                   <li><a href="https://fog05.io/docs/getting-started/hello-world/" class="">Hello World!</a></li>
                 
-                  <li><a href="https://fog05.io/docs/getting-started/etsi-osm-interop/" class="">Eclipse fog05 with ETSI OSM Orchestrator</a></li>
+                  <li><a href="https://fog05.io/docs/getting-started/etsi-osm-interop/" class="active">Eclipse fog05 with ETSI OSM Orchestrator</a></li>
                 
                 </ul>
               </div>
@@ -122,7 +122,7 @@
           
             
               
-              <div class="fos-toc-item active">
+              <div class="fos-toc-item ">
                 <a class="fos-toc-link" href="https://fog05.io/docs/going-deeper/architecture/">
                   Going deeper
                 </a>
@@ -130,7 +130,7 @@
                 
                   <li><a href="https://fog05.io/docs/going-deeper/architecture/" class="">Architecture</a></li>
                 
-                  <li><a href="https://fog05.io/docs/going-deeper/write_runtime_plugin/" class="active">Write a Runtime Plugin</a></li>
+                  <li><a href="https://fog05.io/docs/going-deeper/write_runtime_plugin/" class="">Write a Runtime Plugin</a></li>
                 
                 </ul>
               </div>
@@ -158,29 +158,9 @@
       <div class="section-nav">
         <nav id="TableOfContents">
   <ul>
-    <li><a href="#states">States</a>
+    <li><a href="#example-ns">Example NS</a>
       <ul>
-        <li><a href="#undefined">UNDEFINED</a></li>
-        <li><a href="#defined">DEFINED</a></li>
-        <li><a href="#configure">CONFIGURE</a></li>
-        <li><a href="#running">RUNNING</a></li>
-        <li><a href="#migrating">MIGRATING</a></li>
-        <li><a href="#pause">PAUSE</a></li>
-        <li><a href="#scaling">SCALING</a></li>
-      </ul>
-    </li>
-    <li><a href="#state-transitions">State transitions</a>
-      <ul>
-        <li><a href="#define_fdu">define_fdu</a></li>
-        <li><a href="#undefine_fdu">undefine_fdu</a></li>
-        <li><a href="#configure_fdu">configure_fdu</a></li>
-        <li><a href="#clean_fdu">clean_fdu</a></li>
-        <li><a href="#run_fdu">run_fdu</a></li>
-        <li><a href="#stop_fdu">stop_fdu</a></li>
-        <li><a href="#pause_fdu">pause_fdu</a></li>
-        <li><a href="#resume_fdu">resume_fdu</a></li>
-        <li><a href="#scale_fdu">scale_fdu</a></li>
-        <li><a href="#migrate_fdu">migrate_fdu</a></li>
+        <li><a href="#vlan-configuration-optional">VLAN Configuration (optional)</a></li>
       </ul>
     </li>
   </ul>
@@ -188,99 +168,111 @@
       </div>
     </div>
     <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 fos-content fos-docs">
-      <h1 class="fos-title">Write a Runtime Plugin</h1>
+      <h1 class="fos-title">Eclipse fog05 with ETSI OSM Orchestrator</h1>
       <div class="github-edit">
-        <a class="fa fa-github" href="https://github.com/eclipse-fog05/website/tree/master/content/docs/going-deeper/write_runtime_plugin.md"> Edit on GitHub</a>
+        <a class="fa fa-github" href="https://github.com/eclipse-fog05/website/tree/master/content/docs/getting-started/etsi-osm-interop.md"> Edit on GitHub</a>
       </div>
-      <h1 id="runtime-plugin">Runtime Plugin</h1>
-<p>The <strong>Runtime</strong> plugin implements the life-cycle management for <em>FDU</em>, is has to strictly follow the state machine defined for the <em>FDU</em> and provide handles for the state management and monitoring for the running <em>FDUs</em>.</p>
-<p>This picture represent the state machine that an <em>FDU</em> has to follow.</p>
-<p><img src="https://fog05.io/img/fdufsm.png" alt="FDU State Machine"></p>
-<h2 id="states">States</h2>
-<p>Each <em>FDU</em> can be in one of those nine states:</p>
+      <p>Eclipse fog05 is compatible with ETSI OSM, and can be used as a VIM by this one.
+Current interoperability is limited to simple NS using LXD containers as VNFs.</p>
+<p>Let's suppose we have a multi node fog05 deployment and we want to connect this deployment to OSM to instantiate VNFs.</p>
+<p>First let's add the VIM account to OSM</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">osm vim-create --name fos --auth_url &lt;zenoh server ip&gt;:7447 --account_type fos --tenant osm --user dummy --password dummy --config <span style="color:#e6db74">&#39;{hypervisor: LXD}&#39;</span>
+</code></pre></div><p>Following paramater can be added</p>
 <ul>
-<li>UNDEFINED</li>
-<li>DEFINED</li>
-<li>CONFIGURED</li>
-<li>RUNNING</li>
-<li>PAUSED</li>
-<li>SCALING</li>
-<li>MIGRATING</li>
-<li>TAKE_OFF</li>
-<li>LANDING</li>
+<li><code>arch</code> cpu architecture used when creating the VDUs for this VIM account eg. x86_64, aarch64, default is x86_64.</li>
+<li><code>hypervisor</code> hypervisor supported by this VIM account, can be one of: LXD, KVM, BARE, DOCKER, ROS2, at least one node of the system as to be able to manage the selected hypervisor, currently only LXD is supported within the OSM connector.</li>
 </ul>
-<h3 id="undefined">UNDEFINED</h3>
-<p>In this state the FDU is registered in the catalog but there are no instances in the system</p>
-<h3 id="defined">DEFINED</h3>
-<p>In this state a FDU instance was created in a node, but it is only created, meaning that an instance UUID was assigned to it.</p>
-<h3 id="configure">CONFIGURE</h3>
-<p>The FDU instance was configured in a node, the image was fetched, resources allocated, and the instance was defined in the underlying hypervisor/container engine.
-Or in case of native application the namespace was created.</p>
-<h3 id="running">RUNNING</h3>
-<p>The FDU instance is started, the instance is started in the underlying hypervisor/container engine or the native application process is started.
-Monitoring of the instance begin at this stage.</p>
-<h3 id="migrating">MIGRATING</h3>
-<p>The FDU instance is instructed for migration, this leads to two different states on the source and destination node.
-Source node instance transits to TAKE_OFF, when it is ready for migration, while destination instance transits to LANDING when ready for migration.
-After migration the instance in the source node is destroyed, while in destination node the instance is in RUNNING state.
-Migration is supported only for collaborative FDUs.</p>
-<h3 id="pause">PAUSE</h3>
-<p>The execution of the instance is freezed. This state is supported only for certain FDUs.</p>
-<h3 id="scaling">SCALING</h3>
-<p>The instance is scaled up or down. This state is supported only for certain FDUs.</p>
-<h2 id="state-transitions">State transitions</h2>
-<p>The <em>Runtime</em> plugin has to implement state transition for the FDU is able to manage.
-The <em>Runtime</em> plugin can access to functionalities of the <em>OS</em> and <em>Network Manager</em> plugin using the <code>os</code> and <code>nm</code> objects.</p>
-<p>State transitions are defined by the <em>RuntimePluginFDU</em> interface and by the implementation of the following functions.</p>
-<h3 id="define_fdu">define_fdu</h3>
-<p>It takes as parameter the FDU instance record and create the instance in the node.</p>
-<p>In case of success updates the status using <code>update_fdu_status</code></p>
-<p>In case of error returns an error using <code>write_fdu_error</code></p>
-<h3 id="undefine_fdu">undefine_fdu</h3>
-<p>Takes the instance UUID as parameter and destroy the instance from the node.</p>
-<p>In case of success updates the status using <code>update_fdu_status</code></p>
-<p>In case of error returns an error using <code>write_fdu_error</code></p>
-<h3 id="configure_fdu">configure_fdu</h3>
-<p>Takes the instance UUID as parameter and create all the resources needed for the execution of the FDU, creates the instance in the hypervisor/container engine if needed, creates the needed networking
-components by calling the <em>Network Manager</em> plugin.</p>
-<p>In case of success updates the status using <code>update_fdu_status</code></p>
-<p>In case of error returns an error using <code>write_fdu_error</code></p>
-<h3 id="clean_fdu">clean_fdu</h3>
-<p>Takes the instance UUID as parameter and cleans the configured FDU, removes images, instance from hypervisor/container engine if needed, networking components, releases the resources.</p>
-<p>In case of success updates the status using <code>update_fdu_status</code></p>
-<p>In case of error returns an error using <code>write_fdu_error</code></p>
-<h3 id="run_fdu">run_fdu</h3>
-<p>Take the instance UUID and starts the instance UUID, calls APIs from hypervisors/container engine in needed or start the native application.</p>
-<p>In case of success updates the status using <code>update_fdu_status</code></p>
-<p>In case of error returns an error using <code>write_fdu_error</code></p>
-<h3 id="stop_fdu">stop_fdu</h3>
-<p>Takes the instance UUID and stops the instance running, calls APIs from hypervisors/container engine in needed or send a signal the native application.</p>
-<p>In case of success updates the status using <code>update_fdu_status</code></p>
-<p>In case of error returns an error using <code>write_fdu_error</code></p>
-<h3 id="pause_fdu">pause_fdu</h3>
-<p>Takes the instance UUID and pauses the execution of the running FDU if it is possible.</p>
-<p>In case of success updates the status using <code>update_fdu_status</code></p>
-<p>In case of error returns an error using <code>write_fdu_error</code></p>
-<h3 id="resume_fdu">resume_fdu</h3>
-<p>Takes the instance UUID and resumes the execution of the paused FDU.</p>
-<p>In case of success updates the status using <code>update_fdu_status</code></p>
-<p>In case of error returns an error using <code>write_fdu_error</code></p>
-<h3 id="scale_fdu">scale_fdu</h3>
-<p>Takes the instance UUID and scaling parameters and scales the running FDU if it is possible.</p>
-<p>In case of success updates the status using <code>update_fdu_status</code></p>
-<p>In case of error returns an error using <code>write_fdu_error</code></p>
-<h3 id="migrate_fdu">migrate_fdu</h3>
-<p>Takes the instance UUID and migrates the FDU from a source node to a destination node if it is possible.</p>
-<p>In case of success updates the status using <code>update_fdu_status</code></p>
-<p>In case of error returns an error using <code>write_fdu_error</code></p>
-<hr>
-<p>The interface for a <em>Runtime</em> plugin is available in <em>Go</em> and <em>Python3</em> more implementation are coming soon.</p>
-<p>See example implementations from the <a href="https://github.com/eclipse-fog05/plugin-fdu-lxd">LXD Plugin</a></p>
+<p>Images need to be already present at the VIM.</p>
+<h2 id="example-ns">Example NS</h2>
+<p>Here you can find and example of network service that can be instantiated to the Eclipse fog05 VIM using OSM.
+The network service is composed by a single VNF based on an Alpine Linux LXD image.</p>
+<p><code>alpine-vnfd.yaml</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">vnfd:vnfd-catalog:
+   vnfd:
+   <span style="color:#e6db74">-  </span><span style="color:#e6db74"> </span><span style="color:#e6db74">id: alpine_vnfd</span>
+       name: alpine_vnf
+       short-name: alpine_vnf
+       description: Simple VNF example with a Alpine
+       vendor: OSM
+       version: <span style="color:#e6db74">&#39;1.0&#39;</span>
+       logo: alpine.jpg
+       connection-point:
+           <span style="color:#e6db74">-  </span><span style="color:#e6db74"> </span><span style="color:#e6db74">name: eth0</span>
+               type: VPORT
+       vdu:
+       <span style="color:#e6db74">-  </span><span style="color:#e6db74"> </span><span style="color:#e6db74">id: alpine_vnfd-LXD</span>
+           name: alpine_vnfd-LXD
+           description: alpine_vnfd-LXD
+           count: <span style="color:#ae81ff">1</span>
+           vm-flavor:
+               vcpu-count: <span style="color:#ae81ff">1</span>
+               memory-mb: <span style="color:#ae81ff">256</span>
+               storage-gb: <span style="color:#ae81ff">1</span>
+           image: alpine-lxd
+           interface:
+           <span style="color:#e6db74">-  </span><span style="color:#e6db74"> </span><span style="color:#e6db74">name: eth0</span>
+               type: EXTERNAL
+               virtual-interface:
+                   type: VIRTIO
+                   bandwidth: <span style="color:#e6db74">&#39;0&#39;</span>
+                   vpci: <span style="color:#ae81ff">0000</span>:<span style="color:#ae81ff">00</span>:0a<span style="color:#ae81ff">.0</span>
+               external-connection-point-ref: eth0
+       mgmt-interface:
+           cp: eth0
 
+</code></pre></div><p><code>alpine-nsd.yaml</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">nsd:nsd-catalog:
+   nsd:
+   <span style="color:#e6db74">-  </span><span style="color:#e6db74"> </span><span style="color:#e6db74">id: alpine_nsd</span>
+       name: alpine_ns
+       short-name: alpine_ns
+       description: Generated by OSM pacakage generator
+       vendor: OSM
+       version: <span style="color:#e6db74">&#39;1.0&#39;</span>
+       constituent-vnfd:
+       <span style="color:#e6db74">-  </span><span style="color:#e6db74"> </span><span style="color:#e6db74">member-vnf-index: 1</span>
+           vnfd-id-ref: alpine_vnfd
+       vld:
+       <span style="color:#75715e">### Networks for the VNFs</span>
+           <span style="color:#e6db74">-  </span><span style="color:#e6db74"> </span><span style="color:#e6db74">id: alpine_nsd_vld1</span>
+               name: alpine_nsd_vld1
+               short-name: alpine_nsd_vld1
+               type: ELAN
+               mgmt-network: <span style="color:#e6db74">&#39;true&#39;</span>
+               vnfd-connection-point-ref:
+               <span style="color:#e6db74">-  </span><span style="color:#e6db74"> </span><span style="color:#e6db74">member-vnf-index-ref: 1</span>
+                   vnfd-id-ref: alpine_vnfd
+                   vnfd-connection-point-ref: eth0
+</code></pre></div><h3 id="vlan-configuration-optional">VLAN Configuration (optional)</h3>
+<p>If you want your fog05 installation to be able to use VLANs for virtual networks instead of overlay VxLANs you need to change the configuration on all nodes.
+You need to update the configuration file <code>/etc/fos/plugins/linuxbridge/linuxbridge_plugin.json</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+ <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;linuxbridge&#34;</span>,
+ <span style="color:#f92672">&#34;version&#34;</span>: <span style="color:#ae81ff">1</span>,
+ <span style="color:#f92672">&#34;uuid&#34;</span>: <span style="color:#e6db74">&#34;d42b4163-af35-423a-acb4-a228290cf0be&#34;</span>,
+ <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;network&#34;</span>,
+ <span style="color:#f92672">&#34;requirements&#34;</span>: [
+   <span style="color:#e6db74">&#34;jinja2&#34;</span>
+ ],
+ <span style="color:#f92672">&#34;description&#34;</span>: <span style="color:#e6db74">&#34;linux Bridge network plugin&#34;</span>,
+ <span style="color:#f92672">&#34;configuration&#34;</span>: {
+   <span style="color:#f92672">&#34;ylocator&#34;</span>: <span style="color:#e6db74">&#34;tcp/&lt;your zenoh ip&gt;:7447&#34;</span>,
+   <span style="color:#f92672">&#34;nodeid&#34;</span>: <span style="color:#e6db74">&#34;&lt;your node id&gt;&#34;</span>,
+   <span style="color:#f92672">&#34;dataplane_interface&#34;</span>: <span style="color:#e6db74">&#34;&lt;interface for overlay networks&gt;&#34;</span>,
+   <span style="color:#f92672">&#34;use_vlan&#34;</span>: <span style="color:#66d9ef">true</span>,
+   <span style="color:#f92672">&#34;vlan_interface&#34;</span>: <span style="color:#e6db74">&#34;&lt;interface for vlans&gt;&#34;</span>,
+   <span style="color:#f92672">&#34;vlan_range&#34;</span>: [
+     <span style="color:#960050;background-color:#1e0010">&lt;</span><span style="color:#960050;background-color:#1e0010">s</span><span style="color:#960050;background-color:#1e0010">t</span><span style="color:#960050;background-color:#1e0010">a</span><span style="color:#960050;background-color:#1e0010">r</span><span style="color:#960050;background-color:#1e0010">t</span> <span style="color:#960050;background-color:#1e0010">v</span><span style="color:#960050;background-color:#1e0010">l</span><span style="color:#960050;background-color:#1e0010">a</span><span style="color:#960050;background-color:#1e0010">n</span> <span style="color:#960050;background-color:#1e0010">i</span><span style="color:#960050;background-color:#1e0010">d</span><span style="color:#960050;background-color:#1e0010">&gt;</span>,
+     <span style="color:#960050;background-color:#1e0010">&lt;</span><span style="color:#960050;background-color:#1e0010">e</span><span style="color:#960050;background-color:#1e0010">n</span><span style="color:#960050;background-color:#1e0010">d</span> <span style="color:#960050;background-color:#1e0010">v</span><span style="color:#960050;background-color:#1e0010">l</span><span style="color:#960050;background-color:#1e0010">a</span><span style="color:#960050;background-color:#1e0010">n</span> <span style="color:#960050;background-color:#1e0010">i</span><span style="color:#960050;background-color:#1e0010">d</span><span style="color:#960050;background-color:#1e0010">&gt;</span>
+   ]
+ }
+}
+
+</code></pre></div>
       
       
         <div class="fos-next">
-          <b>Next up</b>: <a href ="/docs/internals/intro/">Introduction</a>
+          <b>Next up</b>: <a href ="/docs/going-deeper/architecture/">Architecture</a>
         </div>
       
     </main>

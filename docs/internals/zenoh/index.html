@@ -54,7 +54,7 @@
           <li class="nav-item">
             
             
-            <a class="nav-link " href="https://fog05.io/blog/2018-03-intro-0-1/">Blog</a>
+            <a class="nav-link " href="https://fog05.io/blog/2020-06-release-0-2/">Blog</a>
           </li>
         </ul>
       </div>
@@ -113,6 +113,8 @@
                   <li><a href="https://fog05.io/docs/getting-started/installation/" class="">Installation</a></li>
                 
                   <li><a href="https://fog05.io/docs/getting-started/hello-world/" class="">Hello World!</a></li>
+                
+                  <li><a href="https://fog05.io/docs/getting-started/etsi-osm-interop/" class="">Eclipse fog05 with ETSI OSM Orchestrator</a></li>
                 
                 </ul>
               </div>
@@ -186,7 +188,7 @@ a way to provide <strong>location-transparent</strong> access to the state of ea
 the state of each single <em>node</em>.</p>
 <p>We moved towards build all the piece of software in a state-less fashion and leveraging the <em>location-transparency</em> state
 access for storing and retrieving state information.</p>
-<p>All the state information in Eclipse fog05 are stored in <a href="http://zenoh.io">YAKS</a> a distributed Key-value store, that support location-transparency access,
+<p>All the state information in Eclipse fog05 are stored in <a href="http://zenoh.io">Zenoh</a> a distributed Key-value store, that support location-transparency access,
 scalability, URI as Keys, it provides a <em>eventual consistency</em> model and mechanisms to trigger computations (and so build an RPC on top).</p>
 <h1 id="how-eclipse-fog05-uses-zenoh">How Eclipse fog05 uses Zenoh</h1>
 <p>In Eclipse fog05 all the components are designed to be state-less, and to store all the information in Zenoh.
