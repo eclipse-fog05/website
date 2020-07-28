@@ -6,7 +6,7 @@
     <description>Recent content on Eclipse fog05 - The End-to-End Compute, Storage and Networking Virtualisation solution.</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 15 Jun 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 28 Jul 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://fog05.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -32,6 +32,16 @@ $ sudo apt install jq libev-dev libssl-dev m4 pkg-config rsync unzip bubblewrap 
       <description>Eclipse fog05 allows the end-to-end management of compute, storage, networking and I/O fabric in the Edge and Fog Environment. Instead of relying on a centralized architecture (like cloud-management-systems) it is based on a decentralized architecture.
 Eclipse fog05 allows users to manage and deploy different types of applications, packaged as containers, VMs, binaries and so on. This possibility is achieved thanks to Eclipse fog05 plugin architecture.
 More specifically, Eclipse fog05 is a Fog Infrastructure-as-a-Service solution composed by two major components:</description>
+    </item>
+    
+    <item>
+      <title>Edge Robotics with Eclipse fog05</title>
+      <link>https://fog05.io/blog/2020-07-ros2/</link>
+      <pubDate>Tue, 28 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://fog05.io/blog/2020-07-ros2/</guid>
+      <description>Edge Robotics is emerging as a new trend and natural evolution of cloud robotics. Its aims is to leverage compute and storage resources are closer to the robots in order to augment their capabilities while keeping latency under control and enabling new use-cases.
+Moreover it also introduces the possibility to elaborate data closer to where they are produced and gives the user control on the data shared with third parties like cloud platform.</description>
     </item>
     
     <item>
@@ -76,8 +86,8 @@ As a consequence, these infrastructure fall short in addressing heterogeneity an
       <guid>https://fog05.io/docs/getting-started/hello-world/</guid>
       <description>To kick off our tour of Eclipse fog05 and to demonstrate use and access of the Fog Infrastructure Manager, we will start with the obligatory &amp;ldquo;hello world&amp;rdquo; example. This example will deploy a docker container that just prints &amp;ldquo;Hello World!&amp;rdquo;
 Let&#39;s get started.
-First, we need to install containerd as container engine. Then we can install the Eclipse fog05 containerd plugin.
-$ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.2.0/fog05-plugin-fdu-containerd_0.2.0-1_amd64_ubuntu.bionic.deb $ sudo apt install ./fog05-plugin-fdu-containerd_0.2.0-1_amd64_ubuntu.bionic.deb Once it is installed let&#39;s start the fog05 services</description>
+First, we need to install containerd and the containerd plugin for Eclipse fog05
+$ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.2.1/containerd.io_1.3.4-1_amd64.deb $ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.2.1/fog05-plugin-fdu-containerd_0.2.1-1_amd64.deb $ sudo apt install ./containerd.io_1.3.4-1_amd64.deb ./fog05-plugin-fdu-containerd_0.2.1-1_amd64.deb -y Once it is installed let&#39;s start the fog05 services</description>
     </item>
     
     <item>

@@ -54,7 +54,7 @@
           <li class="nav-item">
             
             
-            <a class="nav-link " href="https://fog05.io/blog/2020-06-release-0-2/">Blog</a>
+            <a class="nav-link " href="https://fog05.io/blog/2020-07-ros2/">Blog</a>
           </li>
         </ul>
       </div>
@@ -168,10 +168,10 @@
 example.
 This example will deploy a docker container that just prints &ldquo;Hello World!&rdquo;</p>
 <p>Let's get started.</p>
-<p>First, we need to install <a href="https://containerd.io/">containerd</a> as container engine.
-Then we can install the Eclipse fog05 containerd plugin.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.2.0/fog05-plugin-fdu-containerd_0.2.0-1_amd64_ubuntu.bionic.deb
-$ sudo apt install ./fog05-plugin-fdu-containerd_0.2.0-1_amd64_ubuntu.bionic.deb
+<p>First, we need to install <a href="https://containerd.io/">containerd</a> and the containerd plugin for Eclipse fog05</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.2.1/containerd.io_1.3.4-1_amd64.deb
+$ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.2.1/fog05-plugin-fdu-containerd_0.2.1-1_amd64.deb
+$ sudo apt install ./containerd.io_1.3.4-1_amd64.deb ./fog05-plugin-fdu-containerd_0.2.1-1_amd64.deb -y
 </code></pre></div><p>Once it is installed let's start the fog05 services</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ sudo systemctl start zenoh
 $ sudo systemctl start fos_agent
@@ -206,33 +206,29 @@ Let's call it <code>fdu_helloworld.json</code>:</p>
 </code></pre></div><p>Let's imagine that our descriptor was saved in our <code>$HOME</code> directory,
 we can use this simple python script to deploy the &ldquo;hello world&rdquo; example</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> json
+<span style="color:#f92672">import</span> time
 <span style="color:#f92672">from</span> fog05 <span style="color:#f92672">import</span> FIMAPI
 <span style="color:#f92672">from</span> fog05_sdk.interfaces.FDU <span style="color:#f92672">import</span> FDU
 
 <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">read_file</span>(filepath):
-    <span style="color:#66d9ef">with</span> open(filepath, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;</span>) <span style="color:#66d9ef">as</span> f:
-        data <span style="color:#f92672">=</span> f<span style="color:#f92672">.</span>read()
-    <span style="color:#66d9ef">return</span> data
-
+	<span style="color:#66d9ef">with</span> open(filepath, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;</span>) <span style="color:#66d9ef">as</span> f:
+		data <span style="color:#f92672">=</span> f<span style="color:#f92672">.</span>read()
+	<span style="color:#66d9ef">return</span> data
 
 api <span style="color:#f92672">=</span> FIMAPI()
-desc <span style="color:#f92672">=</span> json<span style="color:#f92672">.</span>loads(read_file(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">$HOME/fdu_helloworld.json</span><span style="color:#e6db74">&#39;</span>))
-
-fdu_descriptor <span style="color:#f92672">=</span> FDU(desc)
+desc <span style="color:#f92672">=</span> json<span style="color:#f92672">.</span>loads(read_file(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">/home/ubuntu/fdu_helloworld.json</span><span style="color:#e6db74">&#39;</span>))
+fdu_descriptor <span style="color:#f92672">=</span>  FDU(desc)
 fduD <span style="color:#f92672">=</span> api<span style="color:#f92672">.</span>fdu<span style="color:#f92672">.</span>onboard(fdu_descriptor)
-<span style="color:#66d9ef">print</span> (<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">fdu_id : {}</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">.</span>format(fduD<span style="color:#f92672">.</span>get_uuid()))
-time<span style="color:#f92672">.</span>sleep(<span style="color:#ae81ff">2</span>)
-inst_info <span style="color:#f92672">=</span> api<span style="color:#f92672">.</span>fdu<span style="color:#f92672">.</span>define(fdu_id)
+fdu_id <span style="color:#f92672">=</span> fduD<span style="color:#f92672">.</span>get_uuid()
+<span style="color:#66d9ef">print</span> ( <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">fdu_id: {}</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">.</span>format(fduD<span style="color:#f92672">.</span>get_uuid()))
 
+inst_info<span style="color:#f92672">=</span>api<span style="color:#f92672">.</span>fdu<span style="color:#f92672">.</span>define(fdu_id)
 api<span style="color:#f92672">.</span>fdu<span style="color:#f92672">.</span>configure(inst_info<span style="color:#f92672">.</span>get_uuid())
 api<span style="color:#f92672">.</span>fdu<span style="color:#f92672">.</span>start(inst_info<span style="color:#f92672">.</span>get_uuid(), <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">MYENV=Hello World!</span><span style="color:#e6db74">&#34;</span>)
-<span style="color:#66d9ef">print</span> (<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">Instance ID : {}</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">.</span>format())
-
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">Instance ID: {}</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">.</span>format(inst_info<span style="color:#f92672">.</span>get_uuid()))
 time<span style="color:#f92672">.</span>sleep(<span style="color:#ae81ff">1</span>)
 log <span style="color:#f92672">=</span> api<span style="color:#f92672">.</span>fdu<span style="color:#f92672">.</span>log(inst_info<span style="color:#f92672">.</span>get_uuid())
-<span style="color:#66d9ef">print</span> (<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">FDU Output:</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">{}</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">.</span>format(log))
-
-
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">FDU Output:</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">{}</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">.</span>format(log))
 
 input(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">Press enter to terminate</span><span style="color:#e6db74">&#39;</span>)
 
@@ -240,6 +236,7 @@ api<span style="color:#f92672">.</span>fdu<span style="color:#f92672">.</span>te
 
 api<span style="color:#f92672">.</span>close()
 exit(<span style="color:#ae81ff">0</span>)
+
 </code></pre></div><p>We can save this file as <code>fos_deploy.py</code> and run it using <code>python3</code></p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ python3 fos_deploy.py
 fdu_id: 6f52866c-0e69-4075-9ee1-b24c3b8a0969
