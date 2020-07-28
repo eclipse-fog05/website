@@ -129,12 +129,12 @@
 <p>Moreover it also introduces the possibility to elaborate data closer to where they are produced and gives the user control on the data shared with third parties like cloud platform.</p>
 <p>With Eclipse <strong><a href="https://fog05.io">fog05</a></strong> plugin for <a href="https://index.ros.org/doc/ros2/">ROS2</a>, it is possible to have an <strong>Edge Robotic</strong> system that can enable dynamic reconfiguration and offload of robotic tasks to robots and the nearby Edge infrastructure.</p>
 <p>ROS2 is a robot operating system that provides a set of abstractions and mechanisms to facilitate the writing of complex robotic applications. Using ROS2  robotic application that can be written to run on different robots. Additionally, all communication and low-level interaction will be managed by ROS2 APIs.</p>
-<p>While ROS2 provides great help in writing the application, it provides only basic support to run those applications via the <code>[ros2 run</code>](<a href="https://index.ros.org/doc/ros2/Tutorials/Understanding-ROS2-Nodes/#id6">https://index.ros.org/doc/ros2/Tutorials/Understanding-ROS2-Nodes/#id6</a>) and <code>[ros2 launch](https://index.ros.org/doc/ros2/Tutorials/Launch-system/)</code> .</p>
+<p>While ROS2 provides great help in writing the application, it provides only basic support to run those applications via the <a href="https://index.ros.org/doc/ros2/Tutorials/Understanding-ROS2-Nodes/#id6"><code>ros2 run</code></a> and <a href="https://index.ros.org/doc/ros2/Tutorials/Launch-system/"><code>ros2 launch</code></a> .</p>
 <p>While the former provides a way to start a simple robotic application composed by a single component, the second one provides a way to start an application composed by several components and handles all the needed configuration to make it run.</p>
 <p>But both need to be executed directly on the robot itself, usually via a remote shell, thus the support of dynamical application deployment is somewhat limited. This is where Eclipse fog05 comes in play, given its application-agnostic and plugin design you can dynamically deploy your application or part of it using Eclipse fog05.</p>
 <p>Let's immagine having a factory like the one illustrated the picture below.</p>
 <p>In our factory we have Edge servers, in-factory computers and general-purpose robots.</p>
-<p><img src="img/smart-factory.png" alt="Smart Factory"></p>
+<p><img src="https://fog05.io/img/smart-factory.png" alt="Smart Factory"></p>
 <p>We would like to be able to dynamically configure this infrastructure to achieve different tasks, like transportation of goods from one point to the other of the production line, reconfiguration of the production line, or teleoperation in case a worker cannot enter the production line.</p>
 <p>In such a case we would like to leverage all the computing, storage, and networking resources we have inside the factory plant and not rely on any cloud infrastructure because of security reasons (we do not want to expose our factory data to a third party&hellip;)</p>
 <p>Thanks to Eclipse fog05 we can achieve this goal.</p>
@@ -340,7 +340,7 @@ net_desc <span style="color:#f92672">=</span> [<span style="color:#e6db74"></spa
 </code></pre></div><p>The deployment is exectuted by launching this script, we are connecting directly with the Zenoh router on the LEC-AL as entry point for the system.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#960050;background-color:#1e0010">$</span> python3 deploy<span style="color:#f92672">.</span>py <span style="color:#f92672">&lt;</span>LEC<span style="color:#f92672">-</span>AL ip address<span style="color:#f92672">&gt;</span>
 </code></pre></div><p>After deploying we see a new WiFi network <code>Eclipse fog05 Robotic Demo</code> that allows us to connect to the teleoperation of the robot. Once connected we can navigate to the web interface at this address <code>http://172.16.123.50</code> and we are able to see the command interface.</p>
-<p><img src="img/robot-ui.jpg" alt="Robot UI"></p>
+<p><img src="https://fog05.io/img/robot-ui.jpg" alt="Robot UI"></p>
 <p>From this interface we are able to both control the robot movements and monitors its speed.</p>
 <h3 id="conclusions">Conclusions</h3>
 <p>In this blog we have seen how to use Eclipse fog05 in conjunction with ROS2 to manage a complex robotic application.</p>
