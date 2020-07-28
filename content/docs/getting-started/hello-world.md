@@ -12,12 +12,13 @@ This example will deploy a docker container that just prints "Hello World!"
 
 Let's get started.
 
-First, we need to install [containerd](https://containerd.io/) as container engine.
-Then we can install the Eclipse fog05 containerd plugin.
+First, we need to install [containerd](https://containerd.io/) and the containerd plugin for Eclipse fog05
+
 
 ```bash
-$ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.2.0/fog05-plugin-fdu-containerd_0.2.0-1_amd64_ubuntu.bionic.deb
-$ sudo apt install ./fog05-plugin-fdu-containerd_0.2.0-1_amd64_ubuntu.bionic.deb
+$ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.2.1/containerd.io_1.3.4-1_amd64.deb
+$ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.2.1/fog05-plugin-fdu-containerd_0.2.1-1_amd64.deb
+$ sudo apt install ./containerd.io_1.3.4-1_amd64.deb ./fog05-plugin-fdu-containerd_0.2.1-1_amd64.deb -y
 ```
 
 Once it is installed let's start the fog05 services
@@ -66,33 +67,29 @@ we can use this simple python script to deploy the "hello world" example
 
 ```python
 import json
+import time
 from fog05 import FIMAPI
 from fog05_sdk.interfaces.FDU import FDU
 
 def read_file(filepath):
-    with open(filepath, 'r') as f:
-        data = f.read()
-    return data
-
+	with open(filepath, 'r') as f:
+		data = f.read()
+	return data
 
 api = FIMAPI()
-desc = json.loads(read_file('$HOME/fdu_helloworld.json'))
-
-fdu_descriptor = FDU(desc)
+desc = json.loads(read_file('/home/ubuntu/fdu_helloworld.json'))
+fdu_descriptor =  FDU(desc)
 fduD = api.fdu.onboard(fdu_descriptor)
-print ('fdu_id : {}'.format(fduD.get_uuid()))
-time.sleep(2)
-inst_info = api.fdu.define(fdu_id)
+fdu_id = fduD.get_uuid()
+print ( 'fdu_id: {}'.format(fduD.get_uuid()))
 
+inst_info=api.fdu.define(fdu_id)
 api.fdu.configure(inst_info.get_uuid())
 api.fdu.start(inst_info.get_uuid(), "MYENV=Hello World!")
-print ('Instance ID : {}'.format())
-
+print('Instance ID: {}'.format(inst_info.get_uuid()))
 time.sleep(1)
 log = api.fdu.log(inst_info.get_uuid())
-print ('FDU Output:\n{}\n'.format(log))
-
-
+print('FDU Output:\n{}\n'.format(log))
 
 input('Press enter to terminate')
 
@@ -100,6 +97,7 @@ api.fdu.terminate(inst_info.get_uuid())
 
 api.close()
 exit(0)
+
 ```
 
 We can save this file as `fos_deploy.py` and run it using `python3`
