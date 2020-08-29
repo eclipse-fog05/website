@@ -41,8 +41,8 @@ More specifically, Eclipse fog05 is a Fog Infrastructure-as-a-Service solution c
       <guid>https://fog05.io/docs/getting-started/hello-world/</guid>
       <description>To kick off our tour of Eclipse fog05 and to demonstrate use and access of the Fog Infrastructure Manager, we will start with the obligatory &amp;ldquo;hello world&amp;rdquo; example. This example will deploy a docker container that just prints &amp;ldquo;Hello World!&amp;rdquo;
 Let&#39;s get started.
-First, we need to install containerd and the containerd plugin for Eclipse fog05
-$ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.2.0/fog05-plugin-fdu-containerd_0.2.0-1_amd64_ubuntu.bionic.deb $ sudo apt install ./fog05-plugin-fdu-containerd_0.2.0-1_amd64_ubuntu.bionic.deb Once it is installed let&#39;s start the fog05 services</description>
+First, we need to install containerdm the containerd plugin for Eclipse fog05 and the fog05 client API.
+$ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.2.1/containerd.io_1.3.4-1_amd64.deb $ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.2.1/fog05-plugin-fdu-containerd_0.2.1-1_amd64.deb $ sudo apt install .</description>
     </item>
     
     <item>
