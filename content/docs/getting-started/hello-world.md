@@ -12,17 +12,21 @@ This example will deploy a docker container that just prints "Hello World!"
 
 Let's get started.
 
-First, we need to install [containerd](https://containerd.io/) and the containerd plugin for Eclipse fog05
+First, we need to install [containerd](https://containerd.io/)m the containerd plugin for Eclipse fog05 and the fog05 client API.
 
 
 ```bash
-$ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.2.0/fog05-plugin-fdu-containerd_0.2.0-1_amd64_ubuntu.bionic.deb
-$ sudo apt install ./fog05-plugin-fdu-containerd_0.2.0-1_amd64_ubuntu.bionic.deb
+$ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.2.1/containerd.io_1.3.4-1_amd64.deb
+$ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.2.1/fog05-plugin-fdu-containerd_0.2.1-1_amd64.deb
+$ sudo apt install ./containerd.io_1.3.4-1_amd64.deb
+$ sudo apt install ./fog05-plugin-fdu-containerd_0.2.0-1.deb
+$ sudo pip3 install fog05==0.2.1
 ```
 
 Once it is installed let's start the fog05 services
 
 ```bash
+$ sudo systemctl start containerd
 $ sudo systemctl start zenoh
 $ sudo systemctl start fos_agent
 $ sudo systemctl start fos_linux
