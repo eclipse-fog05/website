@@ -168,11 +168,15 @@
 example.
 This example will deploy a docker container that just prints &ldquo;Hello World!&rdquo;</p>
 <p>Let's get started.</p>
-<p>First, we need to install <a href="https://containerd.io/">containerd</a> and the containerd plugin for Eclipse fog05</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.2.0/fog05-plugin-fdu-containerd_0.2.0-1_amd64_ubuntu.bionic.deb
-$ sudo apt install ./fog05-plugin-fdu-containerd_0.2.0-1_amd64_ubuntu.bionic.deb
+<p>First, we need to install <a href="https://containerd.io/">containerd</a>m the containerd plugin for Eclipse fog05 and the fog05 client API.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.2.1/containerd.io_1.3.4-1_amd64.deb
+$ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.2.1/fog05-plugin-fdu-containerd_0.2.1-1_amd64.deb
+$ sudo apt install ./containerd.io_1.3.4-1_amd64.deb
+$ sudo apt install ./fog05-plugin-fdu-containerd_0.2.0-1.deb
+$ sudo pip3 install fog05<span style="color:#f92672">=</span><span style="color:#f92672">=</span>0.2.1
 </code></pre></div><p>Once it is installed let's start the fog05 services</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ sudo systemctl start zenoh
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ sudo systemctl start containerd
+$ sudo systemctl start zenoh
 $ sudo systemctl start fos_agent
 $ sudo systemctl start fos_linux
 $ sudo systemctl start fos_linuxbridge
