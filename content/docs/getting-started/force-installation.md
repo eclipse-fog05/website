@@ -52,8 +52,8 @@ If you have docker and docker-compose enable in you machine you can download the
 And deploy it using
 
 ```bash
-wget https://raw.githubusercontent.com/eclipse-fog05/fog05/0.2.x/src/force/docker-compose.yaml
-docker stack deploy -c docker-compose.yaml force
+$ wget https://raw.githubusercontent.com/eclipse-fog05/fog05/0.2.x/src/force/docker-compose.yaml
+$ docker stack deploy -c docker-compose.yaml force
 ```
 
 
@@ -62,19 +62,19 @@ docker stack deploy -c docker-compose.yaml force
 If installed by *source* if shall be started by hand
 
 ```bash
-ZENOH=<ip address of a dedicated zenoh router> force
+$ ZENOH=<ip address of a dedicated zenoh router> force
 ```
 
 If installed by `.deb` file it can be started using systemd
 
 To start:
 ```bash
-sudo systemctl start force
+$ sudo systemctl start force
 ```
 
 To stop:
 ```bash
-sudo systemctl stop force
+$ sudo systemctl stop force
 ```
 
 Interaction is described in [fosctl usage]({{< ref "/docs/getting-started/introducing-fosctl" >}}).
