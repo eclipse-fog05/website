@@ -42,8 +42,8 @@ It is sufficient to download the debian package from fog05's release page and in
 
 
 ```bash
-$ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.2.2/fog05-fosctl_0.2.1-1_amd64.deb
-$ sudo apt install ./fog05-fosctl_0.2.1-1_amd64.deb
+$ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.2.2/fog05-fosctl_0.2.2-1_amd64.deb
+$ sudo apt install ./fog05-fosctl_0.2.2-1_amd64.deb
 ```
 
 
