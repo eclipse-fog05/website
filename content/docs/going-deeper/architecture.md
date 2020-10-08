@@ -15,7 +15,7 @@ Eclipse fog05 is divided in two modules:
 
 ---
 
-# Fog Infrastrucutre Manager
+## Fog Infrastrucutre Manager
 
 
 This module **virtualises** the **hardware** infrastructure, such as
@@ -33,11 +33,11 @@ It also provide a set of abstraction.
 The **FIM** is designed to be distributed, without any *controller* node. The system state is managed in a location-transparent manner
 leveraging [Zenoh](http://zenoh.io) for data distribution and sharing across the system.
 
-## Abstractions
+### Abstractions
 
 This section describes the *abstractions* provided by the *FIM*.
 
-### Resources
+#### Resources
 
 In Eclipse fog05 a **resource** is any kind of asset that can be assigned either in a shared or exclusive manner.
 
@@ -45,7 +45,7 @@ The different kinds of resources supported by fog05 are **computational resource
 **storage resources**, such as, RAM, block storage, object storage, **networking resources**, such as, 802.11 devices, tunnels and
 **I/O resources**, such as, COM, CAN, GPIO and I2C.
 
-### Node
+#### Node
 
 An Eclipse fog05 **node** represents a locus of resources.
 Examples of fog05 nodes are: server, an RPi, an embedded board.
@@ -53,7 +53,7 @@ Examples of fog05 nodes are: server, an RPi, an embedded board.
 In order to expose its resources in the system each node has either a running fog05 agent or a device plugin.
 
 
-### Network
+#### Network
 
 In Eclipse fog05 a **network** represent a level-2 or level-3 network between a collection of deployable components.
 
@@ -61,20 +61,20 @@ Such networks are usually virtualized, and span across different nodes, even end
 physical networks.
 
 
-### Router
+#### Router
 
 An Eclipse fog05 **router** is a networking element able to interconnect two or more networks.
 
 It can also connect a network to the physical networking infrastructure.
 
 
-### Port
+#### Port
 
 A **port** in Eclipse fog05 is used to represent a network connection between a deployable unit and a network.
 
 Ports are also present in router to connect the router to the different networks, a port can have a floating IP assigned to it.
 
-### Fog Deployment Unit (FDU)
+#### Fog Deployment Unit (FDU)
 
 In Eclipse fog05 a **Fog Deployment Unit**, abbreviated to **FDU**, is **an indivisible unit of deployment**, such as, a binary executable, a Unikernel,
 a container or a virtual machine.
@@ -83,22 +83,22 @@ An FDU **requires** a certain kind of **resources** as a precondition to its exe
 
 The life-cycle of an FDU is defined by a Finite State Machine.
 
-## Components
+### Components
 
 The is composed by the following components.
 
-### Agent
+#### Agent
 
 The **agent** is the component in charge of the closed-loop management for a node and the advertising of node resources and functionalities to the whole system.
 
 It also provides an entry point for the node management and monitoring as well as the management of the FDUs running on a node.
 
 
-### Plugins
+#### Plugins
 
 The FIM is designed to leverages plugins for most of its functionalities, in Eclipse fog05 different kinds of plugin can be used.
 
-#### OS Plugin
+##### OS Plugin
 
 The **OS** plugin is the one used to abstract the underlying operating system and provide primitives to *agent* and other plugins.
 OS plugins have to implement an interface in order to be recognized by fog05.
@@ -108,7 +108,7 @@ In Eclipse fog05 the following *OS* plugin are implemented:
 - Linux
 - Windows
 
-#### Network Manager Plugin
+##### Network Manager Plugin
 
 The **Network Manager** plugin is used to create all the network related components, such as, *network*, *routers* and *ports*, is has to provide an implementation for each
 of this component. This plugin provides also some functionalities to *agent* and other plugins.
@@ -118,7 +118,7 @@ In Eclipse fog05 the following *Network Manager* plugin are implemented:
 
 - Linux bridge with VxLAN virtual networks, and routers in isolated network namespaces.
 
-#### Runtime Plugin
+##### Runtime Plugin
 
 The **Runtime** plugin implements the life-cycle management for *FDU*, is has to strictly follow the state machine defined for the *FDU* and provide handles for the state management and monitoring for the running *FDUs*.
 Runtime plugins have to implement an interface in order to be recognized by fog05.
@@ -135,7 +135,7 @@ The following ones are going to be implemented soon:
 - ROS2 Robotic framework
 
 
-#### Device Plugin
+##### Device Plugin
 
 This kind of plugin is the one that abstract the three previous one, and it is designed to allow the deployment and discovery of micro-controller and IoT board that does not have an operating system.
 
@@ -144,7 +144,7 @@ It is difficult to provide a real interface to be implemented for the device plu
 
 
 
-## Deployment
+### Deployment
 
 All the component of Eclipse fog05 are designed to be deployed in a distributed manner, in order to address the system heterogeneity.
 In particular the minimal set to run a fog05 *node* is to have an *agent* and a set of *plugins* running on it, while in the case of micro-controllers the minimal set is composed by only the *device* plugin. Other components such as the Zenoh routers can be either deployed in a fog05 *node* or on different machines.
@@ -156,10 +156,27 @@ This *composable* deployment allows to reduce the footprint and optimize the res
 
 ---
 
-# Fog Orchestration Engine
+## Fog Orchestration Engine
 
 The **Fog Orchestration Engine** is responsible for the end-to-end orchestration and management of applications and services in the Fog infrastructure.
 
 It enforces the **constraints** defined by the application/service and provides an allocation algorithm for the components of an application/service.
 
-This component is still in the design phase, it also leverages on state distribution and location-transparent data access for its functionalities.
+The **FOrcE** is designed to work in a decentralized fashion leveraging [Zenoh](https://zenoh.io) for state distribution and storage.
+
+It is able to instantiate deployments on a Kubernetes cluster hence enabling End-to-End services composed by both fog05's FDUs and Kubernetes deployments.
+
+**FOrcE** architecture is illustrated in the picture below:
+
+![force-architectrue](/img/force.png)
+
+It consist of:
+
+An **unified API** able to cover both fog05 and Kubernetes concepts.
+
+A **Close Loop Orchestration Engine** that monitors, schedules and provide a replica-based self-healing mechanism to the deployed applications.
+
+A set of **connectors** to communicate with different FIM deployments and Kubernetes clusters.
+
+Users interact with **FOrcE** by the means of fosctl a command line utility that uses FOrcE's REST interface for interaction.
+
