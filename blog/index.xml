@@ -6,10 +6,23 @@
     <description>Recent content in Blogs on Eclipse fog05 - The End-to-End Compute, Storage and Networking Virtualisation solution.</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 28 Jul 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 08 Oct 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://fog05.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Eclipse fog05 - 0.2.2 Release</title>
+      <link>https://fog05.io/blog/2020-10-release-0-2-2/</link>
+      <pubDate>Thu, 08 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://fog05.io/blog/2020-10-release-0-2-2/</guid>
+      <description>We are glad to announce that Eclipse fog05 0.2.2.
+This is release include the first implementation of fog05&#39;s Orchestration Engine, namely FOrcE and provide integration with Kubernetes.
+Release 0.2.2 includes also a new command line tool that allows interaction with FOrcE.
+In details 0.2.2 includes :
+ Initial implentation of Fog Orchestration Engine (FOrcE) Kubernetes integration in FOrcE fosctl command line utility Bugfixes  Instructions on how to install and use both fosctl and FOrcE are available here and here.</description>
+    </item>
     
     <item>
       <title>Edge Robotics with Eclipse fog05</title>

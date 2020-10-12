@@ -34,6 +34,18 @@ More specifically, Eclipse fog05 is a Fog Infrastructure-as-a-Service solution c
     </item>
     
     <item>
+      <title>FOrcE Installation</title>
+      <link>https://fog05.io/docs/getting-started/force-installation/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://fog05.io/docs/getting-started/force-installation/</guid>
+      <description>Before getting started with Eclipse fog05 orchestation we need to install and start it
+We have three possibilities for installing Eclipse fog05
+ From source From debian packages Using a docker image  From source We can now clone the Eclipse fog05 repository and build the orchestation engine
+$ git clone https://github.com/eclipse-fog05/fog05 -b 0.2.x $ cd fog05/src/force $ make $ sudo install -m 0755 /usr/local/bin From debian packages For each release .</description>
+    </item>
+    
+    <item>
       <title>Hello World!</title>
       <link>https://fog05.io/docs/getting-started/hello-world/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -43,6 +55,18 @@ More specifically, Eclipse fog05 is a Fog Infrastructure-as-a-Service solution c
 Let&#39;s get started.
 First, we need to install containerdm the containerd plugin for Eclipse fog05 and the fog05 client API.
 $ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.2.1/containerd.io_1.3.4-1_amd64.deb $ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.2.1/fog05-plugin-fdu-containerd_0.2.1-1_amd64.deb $ sudo apt install .</description>
+    </item>
+    
+    <item>
+      <title>Introducing fosctl</title>
+      <link>https://fog05.io/docs/getting-started/introducing-fosctl/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://fog05.io/docs/getting-started/introducing-fosctl/</guid>
+      <description>Eclipse fog05 provides a command line tool to facilitate the interaction with its orchestration engine. If you want to use fosctl you need to install FOrcE please follow the instructions.
+fosctl can be installed both for source of from its debian package
+Once it is installed we can use it
+From source Eclipse fog05 fosctl is written in rust, hence to build it from source you need a functional rust environment.</description>
     </item>
     
     <item>

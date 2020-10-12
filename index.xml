@@ -6,7 +6,7 @@
     <description>Recent content on Eclipse fog05 - The End-to-End Compute, Storage and Networking Virtualisation solution.</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 28 Jul 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 08 Oct 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://fog05.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -32,6 +32,31 @@ $ sudo apt install jq libev-dev libssl-dev m4 pkg-config rsync unzip bubblewrap 
       <description>Eclipse fog05 allows the end-to-end management of compute, storage, networking and I/O fabric in the Edge and Fog Environment. Instead of relying on a centralized architecture (like cloud-management-systems) it is based on a decentralized architecture.
 Eclipse fog05 allows users to manage and deploy different types of applications, packaged as containers, VMs, binaries and so on. This possibility is achieved thanks to Eclipse fog05 plugin architecture.
 More specifically, Eclipse fog05 is a Fog Infrastructure-as-a-Service solution composed by two major components:</description>
+    </item>
+    
+    <item>
+      <title>FOrcE Installation</title>
+      <link>https://fog05.io/docs/getting-started/force-installation/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://fog05.io/docs/getting-started/force-installation/</guid>
+      <description>Before getting started with Eclipse fog05 orchestation we need to install and start it
+We have three possibilities for installing Eclipse fog05
+ From source From debian packages Using a docker image  From source We can now clone the Eclipse fog05 repository and build the orchestation engine
+$ git clone https://github.com/eclipse-fog05/fog05 -b 0.2.x $ cd fog05/src/force $ make $ sudo install -m 0755 /usr/local/bin From debian packages For each release .</description>
+    </item>
+    
+    <item>
+      <title>Eclipse fog05 - 0.2.2 Release</title>
+      <link>https://fog05.io/blog/2020-10-release-0-2-2/</link>
+      <pubDate>Thu, 08 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://fog05.io/blog/2020-10-release-0-2-2/</guid>
+      <description>We are glad to announce that Eclipse fog05 0.2.2.
+This is release include the first implementation of fog05&#39;s Orchestration Engine, namely FOrcE and provide integration with Kubernetes.
+Release 0.2.2 includes also a new command line tool that allows interaction with FOrcE.
+In details 0.2.2 includes :
+ Initial implentation of Fog Orchestration Engine (FOrcE) Kubernetes integration in FOrcE fosctl command line utility Bugfixes  Instructions on how to install and use both fosctl and FOrcE are available here and here.</description>
     </item>
     
     <item>
@@ -88,6 +113,18 @@ As a consequence, these infrastructure fall short in addressing heterogeneity an
 Let&#39;s get started.
 First, we need to install containerdm the containerd plugin for Eclipse fog05 and the fog05 client API.
 $ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.2.1/containerd.io_1.3.4-1_amd64.deb $ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.2.1/fog05-plugin-fdu-containerd_0.2.1-1_amd64.deb $ sudo apt install .</description>
+    </item>
+    
+    <item>
+      <title>Introducing fosctl</title>
+      <link>https://fog05.io/docs/getting-started/introducing-fosctl/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://fog05.io/docs/getting-started/introducing-fosctl/</guid>
+      <description>Eclipse fog05 provides a command line tool to facilitate the interaction with its orchestration engine. If you want to use fosctl you need to install FOrcE please follow the instructions.
+fosctl can be installed both for source of from its debian package
+Once it is installed we can use it
+From source Eclipse fog05 fosctl is written in rust, hence to build it from source you need a functional rust environment.</description>
     </item>
     
     <item>

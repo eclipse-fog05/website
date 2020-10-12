@@ -27,7 +27,7 @@
 
     <title>
       
-        Introducing Eclipse fog05 · Eclipse fog05
+        Eclipse fog05 - 0.2.2 Release · Eclipse fog05
       
     </title>
   </head>
@@ -80,7 +80,7 @@
     <div class="col-12 col-md-3 col-xl-2 fos-sidebar">
       
       <div class="fos-docs-toggle d-md-none p-0 d-flex ml-3 collapsed align-item-center">
-        <h1 class="fos-title">Introducing Eclipse fog05</h1>
+        <h1 class="fos-title">Eclipse fog05 - 0.2.2 Release</h1>
         <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#fos-docs-nav" aria-controls="fos-docs-nav" aria-expanded="false" aria-label="Toggle docs navigation">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="30" height="30" focusable="false"><title>Menu</title><path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" d="M4 7h22M4 15h22M4 23h22"></path></svg>
         </button>
@@ -93,7 +93,7 @@
             <ul class="nav fos-sidenav">
               
               
-                  <li><a href="https://fog05.io/blog/2020-10-release-0-2-2/" class="">Eclipse fog05 - 0.2.2 Release</a></li>
+                  <li><a href="https://fog05.io/blog/2020-10-release-0-2-2/" class="active">Eclipse fog05 - 0.2.2 Release</a></li>
               
                   <li><a href="https://fog05.io/blog/2020-07-ros2/" class="">Edge Robotics with Eclipse fog05</a></li>
               
@@ -101,7 +101,7 @@
               
                   <li><a href="https://fog05.io/blog/2020-04-release-0-1/" class="">Eclipse fog05 - 0.1 Release</a></li>
               
-                  <li><a href="https://fog05.io/blog/2018-03-intro-0-1/" class="active">Introducing Eclipse fog05</a></li>
+                  <li><a href="https://fog05.io/blog/2018-03-intro-0-1/" class="">Introducing Eclipse fog05</a></li>
               
             </ul>
           </div>
@@ -109,40 +109,34 @@
     </div>
     <div class="d-none d-xl-block col-xl-2 fos-toc">
       <div class="section-nav">
-        <nav id="TableOfContents">
-  <ul>
-    <li><a href="#eclipse-fog05">Eclipse fog05</a></li>
-  </ul>
-</nav>
+        <nav id="TableOfContents"></nav>
       </div>
 
     </div>
     <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 fos-content fos-docs">
-      <h1 class="fos-title">Introducing Eclipse fog05</h1>
-      <p class="fos-date">16 March 2018</p>
+      <h1 class="fos-title">Eclipse fog05 - 0.2.2 Release</h1>
+      <p class="fos-date">08 October 2020</p>
       
-      <p>Fog computing aims at providing horizontal, system-level, abstractions to distribute computing, storage, control and networking
-functions closer to the user along a cloud-to-thing continuum. Whilst fog computing is increasingly recognized as the key paradigm
-at the foundation of Consumer and Industrial Internet of Things (IoT), most of the initiatives on fog computing focus on extending
-cloud infrastructure.</p>
-<p>As a consequence, these infrastructure fall short in addressing heterogeneity and resource constraints characteristics of fog
-computing environments.</p>
-<h2 id="eclipse-fog05">Eclipse fog05</h2>
-<p><strong>Eclipse fog05</strong> defines a set of abstractions to unify the compute, storage and communication fabric end-to-end and thus allow applications
-to be managed, monitored and orchestrated across the cloud to thing continuum.</p>
-<p>The abstraction used by <strong>fog05</strong> to provision, manage and orchestrate applications, or network functions, is the entity.
-An entity is defined as either an atomic entity, such as a Virtual Machine, a container, a Unikernel, a binary executable,
-or a Directed Acyclic Graph (DAG) of entities (see Figure 1). Where the set of atomic entities supported by <strong>fog05</strong> can be extended
-through plugins.</p>
-<p>Entities and Atomic Entities have a FSM that defines the legal state transitions. These FSM have been defined to be sufficiently
-generic to encompass essentially any kind of atomic entity ranging from a VM to a binary executable. Entities may define a
-deployment affinity w.r.t. to each other as well as with respect to compute, storage, I/O and accelerators such GPUs and FPGAs.</p>
+      <p>We are glad to announce that Eclipse fog05 0.2.2.</p>
+<p>This is release include the first implementation of fog05's Orchestration Engine, namely FOrcE and provide integration with <a href="https://kubernetes.io/">Kubernetes</a>.</p>
+<p>Release 0.2.2 includes also a new command line tool that allows interaction with FOrcE.</p>
+<p>In details 0.2.2 includes :</p>
+<ul>
+<li>Initial implentation of Fog Orchestration Engine (FOrcE)</li>
+<li>Kubernetes integration in FOrcE</li>
+<li>fosctl command line utility</li>
+<li>Bugfixes</li>
+</ul>
+<p>Instructions on how to install and use both <code>fosctl</code> and <strong>FOrcE</strong> are available <a href="https://fog05.io/docs/getting-started/introducing-fosctl/">here</a> and <a href="https://fog05.io/docs/getting-started/force-installation/">here</a>.</p>
+<p>More information and .deb packages can be found <a href="https://github.com/eclipse-fog05/fog05/releases/tag/v0.2.2">here</a></p>
+<p>The components included in the release are:</p>
+<p>Further information can be found on the <a href="https://gitter.im/atolab/fog05">Gitter</a> and on <a href="https://github.com/eclipse-fog05/fog05">GitHub</a></p>
 
       
 
       
         <div class="fos-next">
-          <b>Next up</b>: <a href ="/blog/2020-04-release-0-1/">Eclipse fog05 - 0.1 Release</a>
+          <b>Next up</b>: <a href ="/docs/getting-started/force-installation/">FOrcE Installation</a>
         </div>
       
     </main>
