@@ -141,10 +141,10 @@ After the installation the directory `/etc/fos/native-hypervisor` is created and
 
 ## From debian packages
 
-{{% notice warning %}}
-| Installation from debian packages installs the 0.2.2 version.
-| This is the old OCaml based version that WILL NOT receive any bugfix or support.
-{{% /notice %}}
+
+*Installation from debian packages installs the 0.2.2 version.
+This is the old OCaml based version that **WILL NOT** receive any bugfix or support.*
+
 
 For each release `.deb` files are generated for Ubuntu 18.04 LTS, and works also with newer versions of Ubuntu. Those files can be found in the [release page on GitHub](https://github.com/eclipse-fog05/fog05/releases/tag/v0.2.1), and are available for `x86_64` and `aarch64`.
 
