@@ -3,6 +3,8 @@ baseurl: "https://fog05.io"
 title: "Eclipse fog05 - The End-to-End Compute, Storage and Networking Virtualisation solution."
 languageCode: "en-us"
 canonifyURLs: "true"
+pygmentsCodefences: true
+pygmentsStyle: "manni"
 
 menu:
   docs:
