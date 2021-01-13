@@ -20,116 +20,130 @@ We have two possibilities for installing Eclipse fog05
 
 #### Agent
 
-Eclipse fog05 core component is written in OCaml, hence to build it we need
-a functional OCaml environment, luckily installing OCaml compiler and build system is not that complicated.
+Eclipse fog05 is written in rust, hence to build it we need
+a functional rust environment, luckily installing rust compiler and build system is not that complicated.
 
 
 
 ```bash
-$ sudo apt install jq libev-dev libssl-dev m4 pkg-config rsync unzip bubblewrap -y
-$ sh <(curl -sL https://raw.githubusercontent.com/ocaml/opam/master/shell/install.sh)
-$ opam init -c 4.09.0
-$ eval $(opam env)
+
+$ sudo apt install build-essential -y
+$ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs -o /tmp/rust.sh && chmod +x /tmp/rust.sh
+$ /tmp/rust.sh --default-toolchain nightly -y
+
 ```
 
-After that we can install all the OCaml dependencies:
+We can now clone the Eclipse fog05 repository and build the agent
 
 ```bash
-$ opam install dune.1.11.4 atdgen.2.0.0 conf-libev ocp-ocamlres -y
-$ opam pin add apero-core https://github.com/atolab/apero-core.git#0.4.6 -y
-$ opam pin add dynload-sys https://github.com/atolab/apero-core.git#0.4.6 -y
-$ opam pin add apero-net https://github.com/atolab/apero-net.git#0.4.6 -y
-$ opam pin add apero-time https://github.com/atolab/apero-time.git#0.4.6 -y
-$ opam pin add zenoh-proto https://github.com/atolab/zenoh.git#0.3.0 -y
-$ opam pin add zenoh-ocaml https://github.com/atolab/zenoh.git#0.3.0 -y
-$ opam pin add yaks-common https://github.com/atolab/yaks-common.git#0.3.0 -y
-$ opam pin add yaks-ocaml https://github.com/atolab/yaks-ocaml.git#0.3.0 -y
-$ opam pin add fos-sdk https://github.com/eclipse-fog05/sdk-ocaml.git#0.2.x -y
-$ opam pin add fos-fim-api https://github.com/eclipse-fog05/api-ocaml.git#0.2.x  -y
+
+$ git clone https://github.com/eclipse-fog05/fog05
+$ cd fog05
+$ cargo build --release --all-targets
 
 ```
-
-Then we need to get the Eclipse Zenoh daemon, fog05 uses version 0.3.0 building instruction can be found [here](https://github.com/atolab/fog05_debs/blob/master/zenoh/generate_deb.sh)
-
-
-We can now clone the Eclipse fog05 agent repository and build and install the agent
+If we are running on apt-based system (like Debian or Ubuntu), we can ask `cargo` to build an installation package for us.
 
 ```bash
-$ git clone https://github.com/eclipse-fog05/agent
-$ cd agent
-$ make
-$ sudo make install
+
+$ cargo deb -p fog05-agent
+$ cargo deb -p fog05-fosctl
+
 ```
 
-The installation creates the folder `/etc/fos` in which we can found the configuration file `agent.json` and the `agent` itself. It creates as well the systemd files for starting and stopping the service `fos_agent`
-
-
-After installing the agent is required to install at least the OS, Network Manager and one FDU plugin.
-
-#### Linux Plugin
-
-To install the OS plugin, we need Python3 and a set of dependencies
-
+Then we can install those packages using classical `apt` commands.
 
 ```bash
-$ sudo apt install python3 python3-dev python3-pip cmake build-essential python3-lxml
-$ git clone https://github.com/atolab/zenoh-c -b 0.3.0 && cd zenoh && make && sudo make install && cd ..
-$ pip3 install yaks==0.3.0.post1 zenoh==0.3.0 psutil netifaces pyangbind sphinx jinja2 packaging
-$ git clone https://github.com/eclipse-fog05/sdk-python -b 0.2.x cd sdk-python && make && sudo make install && cd ..
+
+$ sudo apt install ./target/debian/fog05-agent_0.3.0~alpha1_amd64.deb ./target/debian/fog05-fosctl_0.3.0~alpha1_amd64.deb
 
 ```
 
-Then we can clone and install the Linux Plugin
+The installation creates the folder `/etc/fos` in which we can found the configuration file `agent.yaml` and the `fog05-agent` itself. It creates as well the systemd files for starting and stopping the service `fos-agent`
+
+We then need to configure our agent, we can open the `/etc/fos/agent.yaml` file with an editor of our choice and set the `mgmt_interface` according to our configuration. Usually your first interface will be file.
+
+
+
+
+
+
+After installing the agent is required to install at least the  Networking plugin and one Hypervisor plugin.
+
+
+#### Linux Bridge Networking Plugin
+
+To install the Network Manager plugin, we start by cloning its repository.
 
 ```bash
-$ git clone https://github.com/eclipse-fog05/plugin-os-linux -b 0.2.x
-$ cd plugin-os-linux
-$ sudo make install
+
+$ git clone https://github.com/eclipse-fog05/fog05-networking-linux
+$ cd fog05-networking-linux
+$ cargo build --release --all-targets
+
 ```
 
-After the installation the directory `/etc/fos/plugins/plugin-os-linux` is created and the plugin configuration `/etc/fos/plugins/plugin-os-linux/linux_plugin.json` is populated with the `/etc/machine-id` as `nodeid` value. The systemd service `fos_linux` is created.
-
-
-#### Linux Bridge Plugin
-
-To install the Network Manager plugin, we need the same dependencies as the Linux one
-
-So we can clone and install the Network Manager Plugin
+If we are running on apt-based system (like Debian or Ubuntu), we can ask `cargo` to build an installation package for us.
 
 ```bash
-$ git clone https://github.com/eclipse-fog05/plugin-net-linuxbridge -b 0.2.x
-$ cd plugin-os-linux
-$ sudo make install
+
+$ cargo deb
+
 ```
 
-After the installation the directory `/etc/fos/plugins/plugin-net-linuxbridge` is created and the plugin configuration `/etc/fos/plugins/plugin-net-linuxbridge/linuxbridge_plugin.json` is populated with the `/etc/machine-id` as `nodeid` value. The systemd service `fos_linuxbridge` is created.
-
-
-#### FDUs Plugin
-
-
-For this guide we show how to install the LXD plugin, the steps are similar for the others plugins.
-
-We install the dependencies
+Then we can install the package using classical `apt` commands.
 
 ```bash
-sudo pip3 install pylxd
-sudo snap install lxd
+
+$ sudo apt install ./target/debian/fog05-networking-linux_0.3.0~alpha1_amd64.deb
+
 ```
 
-Then we clone and install the plugin
+After the installation the directory `/etc/fos/linux-network` is created and the plugin configuration `/etc/fos/linux-network/config.yaml` and the systemd service `fos-net-linux` is created.
+
+We then need to configure the plugin, we can open the `/etc/fos/linux-network/config.yaml` file with an editor of our choice and set both `overlay_iface` and `dataplane_iface` according to our network configuration.
+Usually your first interface will be file.
+
+
+#### Hypervisors Plugin
+
+
+For this guide we show how to install the Native plugin, the steps are similar for the others plugins.
+
+We start by cloning the repository
 
 
 ```bash
-$ git clone https://github.com/eclipse-fog05/plugin-fdu-lxd -b 0.2.x
-$ cd plugin-os-linux
-$ sudo make install
+
+$ git clone https://github.com/eclipse-fog05/fog05-hypervisor-native
+$ cd fog05-hypervisor-native
+$ cargo build --release --all-targets
+
+```
+If we are running on apt-based system (like Debian or Ubuntu), we can ask `cargo` to build an installation package for us.
+
+```bash
+
+$ cargo deb
+
 ```
 
-After the installation the directory `/etc/fos/plugins/plugin-fdu-lxd` is created and the plugin configuration `/etc/fos/plugins/plugin-fdu-lxd/LXD_plugin.json` is populated with the `/etc/machine-id` as `nodeid` value. The systemd service `fos_lxd` is created.
+Then we can install the package using classical `apt` commands.
+
+```bash
+
+$ sudo apt install ./target/debian/fog05-hypervisor-native_0.3.0~alpha1_amd64.deb
+
+```
+
+After the installation the directory `/etc/fos/native-hypervisor` is created and the plugin configuration `/etc/fos/native-hypervisor/config.yaml` and the systemd service `fos-hv-native` is created.
 
 
 ## From debian packages
+
+[[warning]]
+| Installation from debian packages installs the 0.2.2 version.
+| This is the old OCaml based version that WILL NOT receive any bugfix or support.
 
 For each release `.deb` files are generated for Ubuntu 18.04 LTS, and works also with newer versions of Ubuntu. Those files can be found in the [release page on GitHub](https://github.com/eclipse-fog05/fog05/releases/tag/v0.2.1), and are available for `x86_64` and `aarch64`.
 
