@@ -40,15 +40,27 @@ For each release `.deb` files are generated for Ubuntu 18.04 LTS, and works also
 To install the `force` we can simply run
 
 ```bash
-
+$ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.2.2/zenoh_0.3.0-1_amd64.deb
 $ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.2.2/fog05-force_0.2.2-1_amd64.deb
 $ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.2.2/libzenoh-0.3.0-amd64.deb
-$ sudo apt install ./libzenoh-0.3.0-amd64.deb ./fog05-force_0.2.2-1_amd64.deb
+$ sudo apt install ./zenoh_0.3.0-1_amd64.deb ./libzenoh-0.3.0-amd64.deb ./fog05-force_0.2.2-1_amd64.deb
 
 ```
 
 It will create the folder `/etc/fos` in which we can found the configuration file `force.json` and the `force`, and configures the systemd service `force` to start it.
 The configuration file contains the address of the zenoh router used by the orchestrator.
+If we have a Zenoh router running on the same machine we can modify the configuration file `/etc/fos/force.json` like this:
+
+```json
+
+
+{
+    "address":"0.0.0.0",
+    "port":"9191",
+    "zenoh":"tcp/127.0.0.1:7447"
+}
+
+```
 
 ## From docker
 
@@ -79,18 +91,22 @@ If installed by `.deb` file it can be started using systemd
 
 To start:
 ```bash
+
+$ sudo systemctl start zenoh
 $ sudo systemctl start force
+
 ```
 
 To stop:
 ```bash
 
 $ sudo systemctl stop force
+$ sudo systemctl stop zenoh
 
 ```
 
 Interaction is described in [fosctl usage]({{< ref "/docs/getting-started/introducing-fosctl" >}}).
 
-
+Status can be checked using `systemctl status force`
 Logs can be checked using `journalctl`, `journalctl -u force -f`
 
