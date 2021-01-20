@@ -51,7 +51,17 @@ $ cargo deb -p fog05-fosctl
 
 ```
 
-Then we can install those packages using classical `apt` commands.
+Before installing them we need to get the lastest Zenoh router and install it.
+
+```bash
+
+$ wget https://download.eclipse.org/zenoh/zenoh/0.5.0-beta.5/zenohd_0.5.0~beta.5_amd64.deb
+$ wget https://download.eclipse.org/zenoh/zenoh/0.5.0-beta.5/zenoh-storages_0.5.0~beta.5_amd64.deb
+$ sudo apt install ./zenohd_0.5.0~beta.5_amd64.deb  ./zenoh-storages_0.5.0~beta.5_amd64.deb
+
+```
+
+Then we can install fog05 packages using classical `apt` commands.
 
 ```bash
 
