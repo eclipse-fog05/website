@@ -40,6 +40,7 @@ For each release `.deb` files are generated for Ubuntu 18.04 LTS, and works also
 To install the `force` we can simply run
 
 ```bash
+
 $ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.2.2/zenoh_0.3.0-1_amd64.deb
 $ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.2.2/fog05-force_0.2.2-1_amd64.deb
 $ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.2.2/libzenoh-0.3.0-amd64.deb
