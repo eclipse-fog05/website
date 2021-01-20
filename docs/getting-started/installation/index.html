@@ -13,7 +13,12 @@ $ cargo build --release --all-targets
 $ cargo deb -p fog05-agent
 $ cargo deb -p fog05-fosctl
 
-</code></pre></div><p>Then we can install those packages using classical <code>apt</code> commands.</p><div class=highlight><pre style=background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>
+</code></pre></div><p>Before installing them we need to get the lastest Zenoh router and install it.</p><div class=highlight><pre style=background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>
+$ wget https://download.eclipse.org/zenoh/zenoh/0.5.0-beta.5/zenohd_0.5.0~beta.5_amd64.deb
+$ wget https://download.eclipse.org/zenoh/zenoh/0.5.0-beta.5/zenoh-storages_0.5.0~beta.5_amd64.deb
+$ sudo apt install ./zenohd_0.5.0~beta.5_amd64.deb  ./zenoh-storages_0.5.0~beta.5_amd64.deb
+
+</code></pre></div><p>Then we can install fog05 packages using classical <code>apt</code> commands.</p><div class=highlight><pre style=background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>
 $ sudo apt install ./target/debian/fog05-agent_0.3.0~alpha1_amd64.deb ./target/debian/fog05-fosctl_0.3.0~alpha1_amd64.deb
 
 </code></pre></div><p>The installation creates the folder <code>/etc/fos</code> in which we can found the configuration file <code>agent.yaml</code> and the <code>fog05-agent</code> itself. It creates as well the systemd files for starting and stopping the service <code>fos-agent</code></p><p>We then need to configure our agent, we can open the <code>/etc/fos/agent.yaml</code> file with an editor of our choice and set the <code>mgmt_interface</code> according to our configuration. Usually your first interface will be file.</p><p>After installing the agent is required to install at least the Networking plugin and one Hypervisor plugin.</p><h4 id=linux-bridge-networking-plugin>Linux Bridge Networking Plugin</h4><p>To install the Network Manager plugin, we start by cloning its repository.</p><div class=highlight><pre style=background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>
