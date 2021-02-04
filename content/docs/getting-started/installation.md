@@ -27,7 +27,7 @@ a functional rust environment, luckily installing rust compiler and build system
 
 ```bash
 
-$ sudo apt install build-essential -y
+$ sudo apt install build-essential libssl-dev pkg-config -y
 $ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs -o /tmp/rust.sh && chmod +x /tmp/rust.sh
 $ /tmp/rust.sh --default-toolchain nightly -y
 
@@ -45,7 +45,7 @@ $ cargo build --release --all-targets
 If we are running on apt-based system (like Debian or Ubuntu), we can ask `cargo` to build an installation package for us.
 
 ```bash
-
+$ cargo install cargo-deb
 $ cargo deb -p fog05-agent
 $ cargo deb -p fog05-fosctl
 
