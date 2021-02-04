@@ -9,7 +9,8 @@ $ git clone https://github.com/eclipse-fog05/fog05
 $ <span style=color:#366>cd</span> fog05
 $ cargo build --release --all-targets
 
-</code></pre></div><p>If we are running on apt-based system (like Debian or Ubuntu), we can ask <code>cargo</code> to build an installation package for us.</p><div class=highlight><pre style=background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ cargo install cargo-deb
+</code></pre></div><p>If we are running on apt-based system (like Debian or Ubuntu), we can ask <code>cargo</code> to build an installation package for us.</p><div class=highlight><pre style=background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>
+$ cargo install cargo-deb
 $ cargo deb -p fog05-agent
 $ cargo deb -p fog05-fosctl
 
@@ -21,7 +22,8 @@ $ sudo apt install ./zenohd_0.5.0~beta.5_amd64.deb  ./zenoh-storages_0.5.0~beta.
 </code></pre></div><p>Then we can install fog05 packages using classical <code>apt</code> commands.</p><div class=highlight><pre style=background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>
 $ sudo apt install ./target/debian/fog05-agent_0.3.0~alpha1_amd64.deb ./target/debian/fog05-fosctl_0.3.0~alpha1_amd64.deb
 
-</code></pre></div><p>The installation creates the folder <code>/etc/fos</code> in which we can found the configuration file <code>agent.yaml</code> and the <code>fog05-agent</code> itself. It creates as well the systemd files for starting and stopping the service <code>fos-agent</code></p><p>We then need to configure our agent, we can open the <code>/etc/fos/agent.yaml</code> file with an editor of our choice and set the <code>mgmt_interface</code> according to our configuration. Usually your first interface will be file.</p><p>After installing the agent is required to install at least the Networking plugin and one Hypervisor plugin.</p><h4 id=linux-bridge-networking-plugin>Linux Bridge Networking Plugin</h4><p>To install the Network Manager plugin, we start by cloning its repository.</p><div class=highlight><pre style=background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>
+</code></pre></div><p>The installation creates the folder <code>/etc/fos</code> in which we can found the configuration file <code>agent.yaml</code> and the <code>fog05-agent</code> itself. It creates as well the systemd files for starting and stopping the service <code>fos-agent</code></p><p>We then need to configure our agent, we can open the <code>/etc/fos/agent.yaml</code> file with an editor of our choice and set the <code>mgmt_interface</code> according to our configuration. Usually your first interface will be file.</p><p>After installing the agent is required to install at least the Networking plugin and one Hypervisor plugin.</p><h4 id=linux-bridge-networking-plugin>Linux Bridge Networking Plugin</h4><p>To install the Network Manager plugin, we start by installing some dependencies and then cloning its repository.</p><div class=highlight><pre style=background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>
+$ sudo apt install dnsmasq-base nftables libnftnl-dev libnfnetlink-dev libmnl-dev
 $ git clone https://github.com/eclipse-fog05/fog05-networking-linux
 $ <span style=color:#366>cd</span> fog05-networking-linux
 $ cargo build --release --all-targets
