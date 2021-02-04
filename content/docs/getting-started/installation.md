@@ -45,6 +45,7 @@ $ cargo build --release --all-targets
 If we are running on apt-based system (like Debian or Ubuntu), we can ask `cargo` to build an installation package for us.
 
 ```bash
+
 $ cargo install cargo-deb
 $ cargo deb -p fog05-agent
 $ cargo deb -p fog05-fosctl
@@ -83,10 +84,11 @@ After installing the agent is required to install at least the  Networking plugi
 
 #### Linux Bridge Networking Plugin
 
-To install the Network Manager plugin, we start by cloning its repository.
+To install the Network Manager plugin, we start by installing some dependencies and then cloning its repository.
 
 ```bash
 
+$ sudo apt install dnsmasq-base nftables libnftnl-dev libnfnetlink-dev libmnl-dev
 $ git clone https://github.com/eclipse-fog05/fog05-networking-linux
 $ cd fog05-networking-linux
 $ cargo build --release --all-targets
