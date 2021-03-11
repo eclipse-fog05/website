@@ -14,10 +14,12 @@ $ cargo install cargo-deb
 $ cargo deb -p fog05-agent
 $ cargo deb -p fog05-fosctl
 
-</code></pre></div><p>Before installing them we need to get the lastest Zenoh router and install it.</p><div class=highlight><pre style=background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>
-$ wget https://download.eclipse.org/zenoh/zenoh/0.5.0-beta.5/zenohd_0.5.0~beta.5_amd64.deb
-$ wget https://download.eclipse.org/zenoh/zenoh/0.5.0-beta.5/zenoh-storages_0.5.0~beta.5_amd64.deb
-$ sudo apt install ./zenohd_0.5.0~beta.5_amd64.deb  ./zenoh-storages_0.5.0~beta.5_amd64.deb
+</code></pre></div><p>Before installing them we need to get the lastest Zenoh (from master branch) router, build and install it.</p><div class=highlight><pre style=background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>
+$ git clone https://github.com/eclipse-zenoh/zenoh
+$ <span style=color:#366>cd</span> zenoh
+$ cargo deb -p zenoh
+$ cargo deb -p zenoh-storages
+$ sudo apt install ./target/debian/* -y
 
 </code></pre></div><p>Then we can install fog05 packages using classical <code>apt</code> commands.</p><div class=highlight><pre style=background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>
 $ sudo apt install ./target/debian/fog05-agent_0.3.0~alpha1_amd64.deb ./target/debian/fog05-fosctl_0.3.0~alpha1_amd64.deb
