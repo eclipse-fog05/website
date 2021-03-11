@@ -52,13 +52,15 @@ $ cargo deb -p fog05-fosctl
 
 ```
 
-Before installing them we need to get the lastest Zenoh router and install it.
+Before installing them we need to get the lastest Zenoh (from master branch) router, build and install it.
 
 ```bash
 
-$ wget https://download.eclipse.org/zenoh/zenoh/0.5.0-beta.5/zenohd_0.5.0~beta.5_amd64.deb
-$ wget https://download.eclipse.org/zenoh/zenoh/0.5.0-beta.5/zenoh-storages_0.5.0~beta.5_amd64.deb
-$ sudo apt install ./zenohd_0.5.0~beta.5_amd64.deb  ./zenoh-storages_0.5.0~beta.5_amd64.deb
+$ git clone https://github.com/eclipse-zenoh/zenoh
+$ cd zenoh
+$ cargo deb -p zenoh
+$ cargo deb -p zenoh-storages
+$ sudo apt install ./target/debian/* -y
 
 ```
 
