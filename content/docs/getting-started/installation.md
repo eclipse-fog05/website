@@ -59,7 +59,7 @@ Before installing them we need to get the lastest Zenoh (from master branch) rou
 $ git clone https://github.com/eclipse-zenoh/zenoh
 $ cd zenoh
 $ cargo deb -p zenoh
-$ cargo deb -p zenoh-storages
+$ cargo deb -p zenoh-plugin-storages
 $ sudo apt install ./target/debian/* -y
 
 ```
@@ -154,6 +154,9 @@ After the installation the directory `/etc/fos/native-hypervisor` is created and
 
 
 ## From debian packages
+
+
+Nightly Debian packages can be found in the [Eclipse download space](https://download.eclipse.org/fog05/fog05/nightly/).
 
 
 *Installation from debian packages installs the 0.2.2 version.
