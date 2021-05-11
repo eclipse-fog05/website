@@ -18,7 +18,7 @@ $ cargo deb -p fog05-fosctl
 $ git clone https://github.com/eclipse-zenoh/zenoh
 $ <span style=color:#366>cd</span> zenoh
 $ cargo deb -p zenoh
-$ cargo deb -p zenoh-storages
+$ cargo deb -p zenoh-plugin-storages
 $ sudo apt install ./target/debian/* -y
 
 </code></pre></div><p>Then we can install fog05 packages using classical <code>apt</code> commands.</p><div class=highlight><pre style=background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>
@@ -48,7 +48,7 @@ $ cargo deb
 </code></pre></div><p>Then we can install the package using classical <code>apt</code> commands.</p><div class=highlight><pre style=background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>
 $ sudo apt install ./target/debian/fog05-hypervisor-native_0.3.0~alpha1_amd64.deb
 
-</code></pre></div><p>After the installation the directory <code>/etc/fos/native-hypervisor</code> is created and the plugin configuration <code>/etc/fos/native-hypervisor/config.yaml</code> and the systemd service <code>fos-hv-native</code> is created.</p><h2 id=from-debian-packages>From debian packages</h2><p><em>Installation from debian packages installs the 0.2.2 version.
+</code></pre></div><p>After the installation the directory <code>/etc/fos/native-hypervisor</code> is created and the plugin configuration <code>/etc/fos/native-hypervisor/config.yaml</code> and the systemd service <code>fos-hv-native</code> is created.</p><h2 id=from-debian-packages>From debian packages</h2><p>Nightly Debian packages can be found in the <a href=https://download.eclipse.org/fog05/fog05/nightly/>Eclipse download space</a>.</p><p><em>Installation from debian packages installs the 0.2.2 version.
 This is the old OCaml based version that <strong>WILL NOT</strong> receive any bugfix or support.</em></p><p>For each release <code>.deb</code> files are generated for Ubuntu 18.04 LTS, and works also with newer versions of Ubuntu. Those files can be found in the <a href=https://github.com/eclipse-fog05/fog05/releases/tag/v0.2.1>release page on GitHub</a>, and are available for <code>x86_64</code> and <code>aarch64</code>.</p><h4 id=agent-1>Agent</h4><p>To install the <code>agent</code> we can simply run</p><div class=highlight><pre style=background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>
 $ wget https://github.com/eclipse-fog05/fog05/releases/download/v0.2.1/zenoh_0.3.0-1_amd64.deb
 sudo apt install ./zenoh_0.3.0-1_amd64.deb
